@@ -1,5 +1,7 @@
 package br.unesp.rc.habilidades.beans;
 
+import java.util.Date;
+
 public class Projeto {
 
 	private long idProjeto;
@@ -15,8 +17,6 @@ public class Projeto {
 	private String status;
 
 	private Membro[] membro;
-
-	private Tecnologia tecnologia;
 
 	private Tecnologia[] tecnologia;
 

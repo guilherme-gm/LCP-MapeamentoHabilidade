@@ -1,5 +1,7 @@
 package br.unesp.rc.habilidades.beans;
 
+import java.util.Date;
+
 public class Membro {
 
 	private long idMembro;
