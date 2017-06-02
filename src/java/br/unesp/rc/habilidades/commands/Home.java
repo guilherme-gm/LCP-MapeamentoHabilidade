@@ -16,7 +16,7 @@ public class Home implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "hello";
+        return "home";
     }
     
 }

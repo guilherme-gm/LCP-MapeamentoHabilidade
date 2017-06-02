@@ -2,6 +2,7 @@
     Document   : index
     Created on : Jun 2, 2017, 11:10:43 AM
     Author     : guilh
+    Description: Esqueleto do site
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
