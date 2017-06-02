@@ -5,6 +5,7 @@
  */
 package br.unesp.rc.habilidades.servlet;
 
+import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.NotFound;
@@ -14,13 +15,17 @@ import br.unesp.rc.habilidades.commands.NotFound;
  * @author guilh
  */
 public class CommandHelper {
+
     public static ICommand getCommand(String context) {
         switch (context) {
             case "/":
             case "/Home":
                 return new Home();
+
+            case "/doLogin":
+                return new DoLogin();
         }
-        
+
         return new NotFound();
     }
 }
