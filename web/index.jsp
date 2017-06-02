@@ -13,12 +13,12 @@
     </head>
     <body>
         <div>
-            <div><%@include file="header.jsp" %></div>
+            <div><jsp:include page="header.jsp" flush="true" /></div>
             <div>
-                <div><%@include file="menu.jsp" %></div>
-                <div><%@include file="pages/hello.jsp" %></div>
+                <div><jsp:include page="menu.jsp" flush="true" /></div>
+                <div><jsp:include page="pages/${page}.jsp" flush="true" /></div>
             </div>
-                <div><%@include file="footer.jsp" %></div>
+            <div><jsp:include page="footer.jsp" flush="true" /></div>
         </div>
     </body>
 </html>
