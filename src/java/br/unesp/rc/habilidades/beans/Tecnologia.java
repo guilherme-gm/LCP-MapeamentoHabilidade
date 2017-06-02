@@ -1,12 +1,12 @@
 package br.unesp.rc.habilidades.beans;
 
-public class Habilidade {
+public class Tecnologia {
 
-	private int idHabilidade;
+	private int idTecnologia;
 
 	private String nome;
 
-	private HabilidadeMembro[] habilidadeMembro;
+	private TecnologiaMembro[] tecnologiaMembro;
 
 	private Projeto projeto;
 

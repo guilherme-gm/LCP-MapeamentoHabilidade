@@ -1,12 +1,12 @@
 package br.unesp.rc.habilidades.beans;
 
-import java.util.Date;
-
 public class Membro {
 
 	private long idMembro;
 
 	private String nome;
+
+	private String telefone;
 
 	private String email;
 
@@ -16,7 +16,7 @@ public class Membro {
 
 	private Cargo cargo;
 
-	private HabilidadeMembro[] habilidadeMembro;
+	private TecnologiaMembro[] tecnologiaMembro;
 
 	private Projeto[] projeto;
 

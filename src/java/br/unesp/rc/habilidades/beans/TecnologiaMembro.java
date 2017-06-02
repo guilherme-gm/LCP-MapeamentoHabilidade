@@ -1,12 +1,12 @@
 package br.unesp.rc.habilidades.beans;
 
-public class HabilidadeMembro {
+public class TecnologiaMembro {
 
-	private int idHabilidadeMembro;
+	private long idTecnologiaMembro;
 
 	private short nivel;
 
-	private Habilidade habilidade;
+	private Tecnologia tecnologia;
 
 	public void validate() {
 
