@@ -10,5 +10,8 @@ package br.unesp.rc.habilidades.dao;
  * @author guilh
  */
 public interface LoginDAO {
-    
+//    final String INSERT;
+//    
+//    public boolean insert(Login login);
+//    public boolean remove(Login login);
 }
