@@ -10,5 +10,6 @@ package br.unesp.rc.habilidades.dao;
  * @author guilh
  */
 public class LoginDAOImpl implements LoginDAO {
+   
     
 }
