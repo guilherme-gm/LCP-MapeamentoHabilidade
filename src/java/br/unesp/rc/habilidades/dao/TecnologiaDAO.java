@@ -34,7 +34,7 @@ public interface TecnologiaDAO {
     public boolean remove(Tecnologia tec);
     public boolean update(Tecnologia tec);
     public Tecnologia select(int idTecnologia);
-    public List<Tecnologia> select();
+    //public List<Tecnologia> select();
     
     
     
