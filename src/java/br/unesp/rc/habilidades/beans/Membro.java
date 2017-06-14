@@ -26,4 +26,78 @@ public class Membro {
 
 	}
 
+    public long getIdMembro() {
+        return idMembro;
+    }
+
+    public void setIdMembro(long idMembro) {
+        this.idMembro = idMembro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDataContratacao() {
+        return dataContratacao;
+    }
+
+    public void setDataContratacao(Date dataContratacao) {
+        this.dataContratacao = dataContratacao;
+    }
+
+    public Acesso getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(Acesso acesso) {
+        this.acesso = acesso;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+    public TecnologiaMembro[] getTecnologiaMembro() {
+        return tecnologiaMembro;
+    }
+
+    public void setTecnologiaMembro(TecnologiaMembro[] tecnologiaMembro) {
+        this.tecnologiaMembro = tecnologiaMembro;
+    }
+
+    public Projeto[] getProjeto() {
+        return projeto;
+    }
+
+    public void setProjeto(Projeto[] projeto) {
+        this.projeto = projeto;
+    }
+        
+        
+
 }
