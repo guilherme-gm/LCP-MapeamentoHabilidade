@@ -77,6 +77,8 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
                 FabricaConexao.close(con, pstm, res);
             }
         }
+        
+        return aux;
     }
 
     @Override

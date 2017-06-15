@@ -1,6 +1,6 @@
 package br.unesp.rc.habilidades.beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Membro {
 
@@ -17,6 +17,8 @@ public class Membro {
 	private Acesso acesso;
 
 	private Cargo cargo;
+        
+        private boolean ativo;
 
 	private TecnologiaMembro[] tecnologiaMembro;
 
@@ -97,6 +99,16 @@ public class Membro {
     public void setProjeto(Projeto[] projeto) {
         this.projeto = projeto;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
         
         
 

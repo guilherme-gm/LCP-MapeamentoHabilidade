@@ -20,11 +20,13 @@ public interface MembroDAO {
             "`telefone`," +
             "`email`," +
             "`dataContratacao`," +
+            "`ativo`," +
             "`Acesso_idAcesso`," +
             "`Cargo_idCargo`" +
         ")"+
         "VALUES" +
         "(" +
+            "?," +
             "?," +
             "?," +
             "?," +
@@ -50,18 +52,34 @@ public interface MembroDAO {
             "    `Membro`.`telefone`, " +
             "    `Membro`.`email`, " +
             "    `Membro`.`dataContratacao`, " +
+            "    `Membro`.`ativo`, " +
             "    `Membro`.`Acesso_idAcesso`, " +
             "    `Membro`.`Cargo_idCargo` " +
             "FROM `Membro` " +
             "INNER JOIN `Acesso` " +
             "   ON `Acesso`.`idAcesso` = `Membro`.`Acesso_idAcesso` " +
             "WHERE " +
-            "   `Acesso`.`usuario` = ? AND `Acesso`.`senha` = ?";
+            "   `Acesso`.`usuario` = ? AND `Acesso`.`senha` = ? AND `Membro`.`ativo` = 1;";
     
+    final String DELETE_MEMBRO =
+            "UPDATE `Membro` SET `ativo` = 0 WHERE `idMembro` = ?;";
     
-    public boolean insert(Membro login);
-    public boolean remove(Membro login);
-    public boolean update(Membro login);
+    final String UPDATE_MEMBRO =
+            "UPDATE `Membro`, `Acesso` " +
+            "SET `Membro`.`nome` = ?, " +
+            "    `Membro`.`telefone` = ?, " +
+            "    `Membro`.`email` = ?, " +
+            "    `Membro`.`dataContratacao` = ?, " +
+            "    `Membro`.`ativo` = ?, " +
+            "    `Membro`.`Cargo_idCargo` = ?, " +
+            "    `Acesso`.`senha` = ? " +
+            "WHERE " +
+            "   `Membro`.`idAcesso` = `Acesso`.`idAcesso` AND " +
+            "   `Membro`.`idMembro` = ?;";
+    
+    public boolean insert(Membro membro);
+    public boolean remove(long idMembro);
+    public boolean update(Membro membro);
     public Membro select(String usuario, String senha);
     
 }

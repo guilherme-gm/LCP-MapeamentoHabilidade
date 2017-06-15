@@ -8,7 +8,6 @@ package br.unesp.rc.habilidades.dao;
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,8 +25,8 @@ public class MembroDAOImpl implements MembroDAO {
         Connection con = FabricaConexao.getConnection();
         ResultSet rs = null;
         PreparedStatement pstmt = null;
-        long idAcesso = -1;
-
+        boolean ret = true;
+        
         if (con == null) {
             return false;
         }
@@ -45,7 +44,7 @@ public class MembroDAOImpl implements MembroDAO {
                 throw new Exception("Nao foi possível inserir Acesso.");
             }
             
-            idAcesso = rs.getInt(1);
+            long idAcesso = rs.getInt(1);
             membro.getAcesso().setIdAcesso(idAcesso);
             
             pstmt.close();
@@ -53,26 +52,87 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setString(1, membro.getNome());
             pstmt.setString(2, membro.getTelefone());
             pstmt.setString(3, membro.getEmail());
-            pstmt.setDate(4, (Date) membro.getDataContratacao());
-            pstmt.setLong(5, idAcesso);
-            //pstmt.setInt(6, membro.getCargo().get);
+            pstmt.setDate(4, membro.getDataContratacao());
+            pstmt.setBoolean(5, membro.isAtivo());
+            pstmt.setLong(6, idAcesso);
+            pstmt.setInt(7, membro.getCargo().getIdCargo());
+            
+            pstmt.executeQuery();
+            rs = pstmt.getGeneratedKeys();
+            
+            if (!rs.next()) {
+                throw new Exception("Nao foi possível inserir Acesso.");
+            }
+            
+            long idMembro = rs.getInt(1);
+            membro.setIdMembro(idMembro);
         } catch (Exception ex) {
-            Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            ret = false;
         } finally {
             FabricaConexao.close(con, pstmt, rs);
         }
 
-        return true;
+        return ret;
     }
 
     @Override
-    public boolean remove(Membro login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean remove(long idMembro) {
+        Connection con = FabricaConexao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        boolean ret = true;
+        
+        if (con == null) {
+            return false;
+        }
+
+        try {
+            con.setAutoCommit(false);
+
+            pstmt = con.prepareStatement(DELETE_MEMBRO);
+            pstmt.setLong(1, idMembro);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ret = false;
+        } finally {
+            FabricaConexao.close(con, pstmt, rs);
+        }
+
+        return ret;
     }
 
     @Override
-    public boolean update(Membro login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(Membro membro) {
+        Connection con = FabricaConexao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        boolean ret = true;
+        
+        if (con == null) {
+            return false;
+        }
+
+        try {
+            con.setAutoCommit(false);
+
+            pstmt = con.prepareStatement(UPDATE_MEMBRO);
+            pstmt.setString(1, membro.getNome());
+            pstmt.setString(2, membro.getTelefone());
+            pstmt.setString(3, membro.getEmail());
+            pstmt.setDate(4, membro.getDataContratacao());
+            pstmt.setBoolean(5, membro.isAtivo());
+            pstmt.setInt(6, membro.getCargo().getIdCargo());
+            pstmt.setString(7, membro.getAcesso().getSenha());
+            pstmt.setLong(8, membro.getIdMembro());
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ret = false;
+        } finally {
+            FabricaConexao.close(con, pstmt, rs);
+        }
+
+        return ret;
     }
 
     @Override
@@ -94,12 +154,15 @@ public class MembroDAOImpl implements MembroDAO {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
+                CargoDAO cargoDao = new CargoDAOImpl();
+                
                 membro = new Membro();
-                //membro.setCargo(cargo);
+                membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
                 membro.setDataContratacao(rs.getDate("dataContratacao"));
                 membro.setEmail(rs.getString("email"));
                 membro.setIdMembro(rs.getLong("idMembro"));
                 membro.setNome(rs.getString("nome"));
+                membro.setAtivo(rs.getBoolean("ativo"));
                 //membro.setProjeto(projeto);
                 //membro.setTecnologiaMembro(tecnologiaMembro);
                 membro.setTelefone(rs.getString("telefone"));
