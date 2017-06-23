@@ -117,7 +117,7 @@ public class CargoDAOImpl implements CargoDAO {
         if (con != null) {
             try {
                 pstm = con.prepareStatement(SELECT);
-                pstm.setLong(1, idCargo);
+                pstm.setInt(1, idCargo);
                 res = pstm.executeQuery();
                 
                  if (res.next()){

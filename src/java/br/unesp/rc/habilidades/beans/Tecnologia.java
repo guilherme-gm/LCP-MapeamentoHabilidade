@@ -9,10 +9,20 @@ public class Tecnologia {
 	private TecnologiaMembro[] tecnologiaMembro;
 
 	private Projeto projeto;
+        
+         private boolean ativo;
 
 	public void validate() {
 
 	}
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
     public int getIdTecnologia() {
         return idTecnologia;
