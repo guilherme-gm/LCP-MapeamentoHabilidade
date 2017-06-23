@@ -17,7 +17,7 @@ public class Tecnologia {
 	}
 
     public boolean isAtivo() {
-        return ativo;
+        return ativo;  
     }
 
     public void setAtivo(boolean ativo) {
