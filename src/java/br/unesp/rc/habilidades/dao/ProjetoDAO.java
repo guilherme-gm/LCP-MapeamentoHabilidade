@@ -32,6 +32,12 @@ public interface ProjetoDAO {
             "VALUES" +
             "(?, ?);";
     
+    public final String DELETE_PROJETO_MEMBRO =
+            "DELETE FROM `Membro_has_Projeto` WHERE `Projeto_idProjeto` = ?;";
+    
+    public final String DELETE_PROJETO_TECNOLOGIA =
+            "DELETE FROM `Projeto_has_Tecnologia` WHERE `Projeto_idProjeto` = ?;";
+    
     public final String DELETE =
             "UPDATE `Projeto` SET `status` = 'CANCELADO'";
     
@@ -45,6 +51,9 @@ public interface ProjetoDAO {
             "SELECT `Projeto`.`idProjeto`,`Projeto`.`nome`, `Projeto`.`descricao`, " +
                     "`Projeto`.`dataInicio`, `Projeto`.`dataFim`, `Projeto`.`status` "+
             "FROM `Projeto`";
+    
+    public final String SELECT_MEMBROS =
+            "SELECT `Membro_idMembro`, `Projeto_idProjeto` FROM `Membro_has_Projeto` WHERE `Projeto_idProjeto` = ?";
     
     public final String SELECT_BY_ID = 
             "SELECT `Projeto`.`idProjeto`,`Projeto`.`nome`, `Projeto`.`descricao`, " +

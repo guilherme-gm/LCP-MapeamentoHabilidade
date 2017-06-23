@@ -61,6 +61,21 @@ public interface MembroDAO {
             "WHERE " +
             "   `Acesso`.`usuario` = ? AND `Acesso`.`senha` = ? AND `Membro`.`ativo` = 1;";
     
+    final String SELECT_BY_ID = 
+            "SELECT `Membro`.`idMembro`, " +
+            "    `Membro`.`nome`," +
+            "    `Membro`.`telefone`, " +
+            "    `Membro`.`email`, " +
+            "    `Membro`.`dataContratacao`, " +
+            "    `Membro`.`ativo`, " +
+            "    `Membro`.`Acesso_idAcesso`, " +
+            "    `Membro`.`Cargo_idCargo` " +
+            "FROM `Membro` " +
+            "INNER JOIN `Acesso` " +
+            "   ON `Acesso`.`idAcesso` = `Membro`.`Acesso_idAcesso` " +
+            "WHERE " +
+            "   `Membro`.`idMembro` = ?;";
+    
     final String DELETE_MEMBRO =
             "UPDATE `Membro` SET `ativo` = 0 WHERE `idMembro` = ?;";
     
@@ -81,5 +96,6 @@ public interface MembroDAO {
     public boolean remove(long idMembro);
     public boolean update(Membro membro);
     public Membro select(String usuario, String senha);
+    public Membro select(long idMembro);
     
 }

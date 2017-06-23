@@ -181,4 +181,44 @@ public class MembroDAOImpl implements MembroDAO {
         return membro;
     }
 
+    @Override
+    public Membro select(long idMembro) {
+        Connection con = FabricaConexao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        Membro membro = null;
+
+        if (con == null) {
+            return null;
+        }
+
+        try {
+            pstmt = con.prepareStatement(SELECT_BY_ID);
+            pstmt.setLong(1, idMembro);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                CargoDAO cargoDao = new CargoDAOImpl();
+                
+                membro = new Membro();
+                membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
+                membro.setDataContratacao(rs.getDate("dataContratacao"));
+                membro.setEmail(rs.getString("email"));
+                membro.setIdMembro(rs.getLong("idMembro"));
+                membro.setNome(rs.getString("nome"));
+                membro.setAtivo(rs.getBoolean("ativo"));
+                //membro.setProjeto(projeto);
+                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTelefone(rs.getString("telefone"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.close(con, pstmt, rs);
+        }
+
+        return membro;
+    }
+
 }
