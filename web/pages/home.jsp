@@ -8,7 +8,10 @@
     </p>
 </c:if>
     <form method="POST" action="<c:url value="/doLogin"></c:url>">
-    <label for="usuario">Usuário:</label><input type="text" name="usuario"/> <br />
+        <div class="form-group">
+            <label for="usuario">Usuário:</label>
+            <input class="form-control" type="text" name="usuario"/> <br />
+        </div>
     <label for="senha">Senha:</label><input type="password" name="senha"/> <br />
     <input type="submit" value="Login"/>
 </form>
