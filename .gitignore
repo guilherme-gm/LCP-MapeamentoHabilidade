@@ -31,3 +31,6 @@ nbdist/
 
 # Workbench backup
 *.mwb.bak
+
+# Bibliotecas
+!libs/**

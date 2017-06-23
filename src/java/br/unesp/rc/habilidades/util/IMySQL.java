@@ -13,7 +13,7 @@ public interface IMySQL {
         
     static final String DATABASE = "jdbc:mysql://localhost:3306/mapeamentohabilidade";
     static final String USER = "root";
-    static final String PASSWORD = "aluno";
+    static final String PASSWORD = "vertrigo";
     static final String DRIVER = "org.gjt.mm.mysql.Driver";
 
 }
