@@ -23,13 +23,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     </head>
     <body>
-        <div>
-            <div><jsp:include page="header.jsp" flush="true" /></div>
-            <div>
-                <div><jsp:include page="menu.jsp" flush="true" /></div>
-                <div><jsp:include page="pages/${page}.jsp" flush="true" /></div>
+        <div class="container" id="content" tabindex="-1">
+            <div class="row">
+                <div class="col-sm-12"><jsp:include page="header.jsp" flush="true" /></div>
             </div>
-            <div><jsp:include page="footer.jsp" flush="true" /></div>
+            <div class="row">
+                <div class="col-sm-2"><jsp:include page="menu.jsp" flush="true" /></div>
+                <div class="col-sm-10"><jsp:include page="pages/${page}.jsp" flush="true" /></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12"><jsp:include page="footer.jsp" flush="true" /></div>
+            </div>
         </div>
 
         <!-- Latest compiled and minified JavaScript -->
