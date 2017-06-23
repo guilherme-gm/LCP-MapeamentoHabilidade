@@ -28,8 +28,8 @@
                 <div class="col-sm-12"><jsp:include page="header.jsp" flush="true" /></div>
             </div>
             <div class="row">
-                <div class="col-sm-2"><jsp:include page="menu.jsp" flush="true" /></div>
-                <div class="col-sm-10"><jsp:include page="pages/${page}.jsp" flush="true" /></div>
+                <div class="col-sm-3"><jsp:include page="menu.jsp" flush="true" /></div>
+                <div class="col-sm-9"><jsp:include page="pages/${page}.jsp" flush="true" /></div>
             </div>
             <div class="row">
                 <div class="col-sm-12"><jsp:include page="footer.jsp" flush="true" /></div>
