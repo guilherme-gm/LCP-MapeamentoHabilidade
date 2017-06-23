@@ -6,6 +6,7 @@
 package br.unesp.rc.habilidades.dao;
 
 import br.unesp.rc.habilidades.beans.Tecnologia;
+import static br.unesp.rc.habilidades.dao.MembroDAO.DELETE_MEMBRO;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,15 +25,16 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
         Connection con = null;
         ResultSet res = null;
         PreparedStatement pstm = null;
-       
+
         int idTecnologia = -1;
         boolean aux = false;
-        
+
         if (con != null) {
             try {
                 pstm = con.prepareStatement(INSERT_TECNOLOGIA, PreparedStatement.RETURN_GENERATED_KEYS);
                 pstm.setInt(1, tec.getIdTecnologia());
                 pstm.setString(2, tec.getNome());
+                pstm.setBoolean(3, tec.isAtivo());
                 pstm.executeUpdate();
 
                 res = pstm.getGeneratedKeys();
@@ -51,8 +53,28 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
     }
 
     @Override
-    public boolean remove(Tecnologia tec) {
-        return false;
+    public boolean remove(int idTecnologia) {
+
+        Connection con;
+        ResultSet res = null;
+        PreparedStatement pstmt = null;
+        boolean ret = false;
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstmt = con.prepareStatement(DELETE_TECNOLOGIA);
+                pstmt.setInt(1, idTecnologia);
+                pstmt.executeUpdate();
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao remover: " + ex.getMessage());
+                ret = false;
+            } finally {
+                FabricaConexao.close(con, pstmt, res);
+            }
+        }
+        return ret;
     }
 
     @Override
@@ -61,7 +83,7 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
         Connection con;
         ResultSet res = null;
         PreparedStatement pstm = null;
-        boolean aux = false;
+        boolean ret = false;
         con = FabricaConexao.getConnection();
 
         if (con != null) {
@@ -69,7 +91,7 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
                 pstm = con.prepareStatement(UPDATE_TECNOLOGIA);
                 pstm.setInt(1, tec.getIdTecnologia());
                 pstm.setString(2, tec.getNome());
-                aux = pstm.executeUpdate() > 0;
+                ret = pstm.executeUpdate() > 0;
 
             } catch (SQLException ex) {
                 System.out.println("Erro ao atualizar: " + ex.getMessage());
@@ -77,17 +99,74 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
                 FabricaConexao.close(con, pstm, res);
             }
         }
-        
-        return aux;
+
+        return ret;
     }
 
     @Override
     public Tecnologia select(int idTecnologia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Connection con = FabricaConexao.getConnection();;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        Tecnologia ret = null;
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(SELECT_TECNOLOGIA);
+                pstm.setInt(1, idTecnologia);
+                res = pstm.executeQuery();
+
+                if (res.next()) {
+                    Tecnologia tec = new Tecnologia();
+                    tec.setIdTecnologia(res.getInt(1));
+                    tec.setNome(res.getString(2));
+                    tec.setAtivo(res.getBoolean("ativo"));
+                    ret = tec;
+                }
+            } catch (SQLException ex) {
+                System.out.println("Erro ao selecionar: " + ex.getMessage());
+                ret = null;
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+        return ret;
     }
 
 //    @Override
-//    public List<Tecnologia> select() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    public List<Tecnologia> select() {
+        Connection con = null;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        List<Tecnologia> ret = null;
+
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(SELECT_ALL);
+                res = pstm.executeQuery();
+
+                while (res.next()) {
+                    Tecnologia tec = new Tecnologia();
+                    tec.setIdTecnologia(res.getInt(1));
+                    tec.setNome(res.getString(2));
+                    tec.setAtivo(res.getBoolean("ativo"));
+                    ret.add(tec);
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao selecionar: " + ex.getMessage());
+                ret = null;
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+        return ret;
+    }
+
 }
+
