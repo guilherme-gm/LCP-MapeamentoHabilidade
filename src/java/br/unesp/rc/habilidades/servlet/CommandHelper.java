@@ -8,6 +8,7 @@ package br.unesp.rc.habilidades.servlet;
 import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
+import br.unesp.rc.habilidades.commands.ListarCargos;
 import br.unesp.rc.habilidades.commands.NotFound;
 
 /**
@@ -24,6 +25,9 @@ public class CommandHelper {
 
             case "/doLogin":
                 return new DoLogin();
+                
+            case "/ListarCargos":
+                return new ListarCargos();
         }
 
         return new NotFound();
