@@ -44,7 +44,7 @@ public class MembroDAOImpl implements MembroDAO {
                 throw new Exception("Nao foi possível inserir Acesso.");
             }
             
-            long idAcesso = rs.getInt(1);
+            long idAcesso = rs.getLong(1);
             membro.getAcesso().setIdAcesso(idAcesso);
             
             pstmt.close();
@@ -67,6 +67,11 @@ public class MembroDAOImpl implements MembroDAO {
             long idMembro = rs.getInt(1);
             membro.setIdMembro(idMembro);
         } catch (Exception ex) {
+            try {
+                con.rollback();
+            } catch (SQLException ex1) {
+                System.out.println("Nao foi possível fazer rollback.");
+            }
             ret = false;
         } finally {
             FabricaConexao.close(con, pstmt, rs);
