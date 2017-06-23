@@ -5,8 +5,16 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Acesso;
+import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.dao.MembroDAO;
+import br.unesp.rc.habilidades.dao.MembroDAOImpl;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  *
@@ -16,8 +24,24 @@ public class DoLogin implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        Acesso acesso = new Acesso();
+        try {
+            BeanUtils.populate(acesso, request.getParameterMap());
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        // TODO : Rotina validação
+        MembroDAO membroDao = new MembroDAOImpl();
+        Membro membro = membroDao.select(acesso.getUsuario(), acesso.getSenha());
+        
+        if (membro == null) {
+            request.setAttribute("erro", "Nome de usuário ou senha incorretos.");
+            return "home";
+        }
+        
+        request.getSession().setAttribute("membro", membro);
         
         return "painel";
     }
