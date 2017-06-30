@@ -5,6 +5,8 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.dao.CargoDAO;
+import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +18,14 @@ public class DoExcluirCargo implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        System.out.println("HELLO WORLD");
+        int id = Integer.parseInt(request.getParameter("idCargo"));
+        
+        System.out.println("HELLO WORLD" + id);
+        CargoDAO cargoDao = new CargoDAOImpl();
+        cargoDao.delete(id);
+        System.out.println("HELLO WORLD");
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo excluído com sucesso");
         request.setAttribute("menu", "admincargo");

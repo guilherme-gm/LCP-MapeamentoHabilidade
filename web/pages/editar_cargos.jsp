@@ -7,15 +7,16 @@
 
 <div class ="row">
 
-    <form class="form-horizontal" method="POST" action="<c:url value="/DoCriarCargo"></c:url>">
+    <form class="form-horizontal" method="POST" action="<c:url value="/DoEditarCargo"></c:url>">
         <div class="row"> 
         &nbsp;&nbsp;
         </div>
 
+        <input type="hidden" name="idCargo" value="<c:out value="${cargo.idCargo}"></c:out>"/> <br />
         <div class="form-group">
             <label for="nome" class="col-sm-2 control-label">Nome</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="nome" placeholder="Nome"/> <br />
+                <input class="form-control" type="text" name="nome" placeholder="Nome" value="<c:out value="${cargo.nome}"></c:out>"/> <br />
             </div>
         </div>
 

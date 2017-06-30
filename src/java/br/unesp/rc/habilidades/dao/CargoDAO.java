@@ -16,10 +16,10 @@ public interface CargoDAO {
     final String INSERT = "insert into Cargo (nome,permissao)"
             + "values (?,?);";
     final String UPDATE = "update Cargo "
-        + "set nome  = ?, set permissao = ? where idCargo = ?;";
+        + "set nome  = ?, permissao = ? where idCargo = ?;";
     final String DELETE = "delete from Cargo where idCargo = ?;";
-    final String SELECT = "select (idCargo, nome, permissao) from Cargo where idCargo = ?;";
-    final String SELECT_ALL = "select (idCargo, nome, permissao) from Cargo;";
+    final String SELECT = "select idCargo, nome, permissao from Cargo where idCargo = ?;";
+    final String SELECT_ALL = "select idCargo, nome, permissao from Cargo;";
     
     public boolean insert(Cargo cargo);
     public boolean update(Cargo cargo);

@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,6 +69,7 @@ public class CargoDAOImpl implements CargoDAO {
                 pstm = con.prepareStatement(UPDATE);
                 pstm.setString(1, cargo.getNome());
                 pstm.setInt(2, cargo.getPermissao());
+                pstm.setInt(3, cargo.getIdCargo());
                 ret = pstm.executeUpdate() > 0;
             } catch (SQLException ex) {
                 System.out.println("Erro ao atualizar: " + ex.getMessage());
@@ -94,6 +95,7 @@ public class CargoDAOImpl implements CargoDAO {
             try {
                 pstm = con.prepareStatement(DELETE);
                 pstm.setInt(1, idCargo);
+                pstm.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("Erro ao deletar: " + ex.getMessage());
                 ret = false;
@@ -144,7 +146,7 @@ public class CargoDAOImpl implements CargoDAO {
         ResultSet res = null;
         PreparedStatement pstm = null;
 
-        List<Cargo> ret = null;
+        List<Cargo> ret = new ArrayList<Cargo>();
 
         con = FabricaConexao.getConnection();
 

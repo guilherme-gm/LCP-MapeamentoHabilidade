@@ -8,7 +8,6 @@ package br.unesp.rc.habilidades.commands;
 import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,17 +15,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilh
  */
-public class ListarCargos implements ICommand {
+public class EditarCargo implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         
-        CargoDAO cargoDao = new CargoDAOImpl();
-        List<Cargo> cargos = cargoDao.select();
+        int id = Integer.parseInt(request.getParameter("idCargo"));
         
-        request.setAttribute("cargos", cargos);
+        CargoDAO cargoDao = new CargoDAOImpl();
+        Cargo cargo = cargoDao.select(id);
+        
+        request.setAttribute("cargo", cargo);
         request.setAttribute("menu", "admincargo");
-        return "listar_cargos";
+        return "editar_cargos";
     }
     
 }
