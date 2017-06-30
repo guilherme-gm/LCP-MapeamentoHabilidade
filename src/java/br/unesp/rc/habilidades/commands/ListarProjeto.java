@@ -16,6 +16,7 @@ public class ListarProjeto implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menu", "adminproj");
         return "listar_projeto";
     }
     

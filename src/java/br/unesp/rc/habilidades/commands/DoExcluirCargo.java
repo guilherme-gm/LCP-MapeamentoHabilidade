@@ -18,6 +18,7 @@ public class DoExcluirCargo implements ICommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo excluído com sucesso");
+        request.setAttribute("menu", "admincargo");
         return "listar_cargos";
     }
     

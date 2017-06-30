@@ -16,6 +16,7 @@ public class ListarCargos implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menu", "admincargo");
         return "listar_cargos";
     }
     

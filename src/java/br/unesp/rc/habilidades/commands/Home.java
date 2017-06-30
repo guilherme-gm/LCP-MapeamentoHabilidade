@@ -16,6 +16,7 @@ public class Home implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menu", "home");
         return "home";
     }
     
