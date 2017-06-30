@@ -15,6 +15,7 @@ import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
+import br.unesp.rc.habilidades.commands.ListarMembro;
 import br.unesp.rc.habilidades.commands.ListarProjeto;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
@@ -45,6 +46,9 @@ public class CommandHelper {
 
             case "/CriarTecnologia":
                 return new CriarTecnologia();
+
+            case "/ListarMembro":
+                return new ListarMembro();
 
             case "/ListarProjeto":
                 return new ListarProjeto();
