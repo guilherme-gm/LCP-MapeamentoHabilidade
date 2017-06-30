@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DoExcluirCargo implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         
         System.out.println("HELLO WORLD");
         int id = Integer.parseInt(request.getParameter("idCargo"));
@@ -29,7 +29,7 @@ public class DoExcluirCargo implements ICommand {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo excluído com sucesso");
         request.setAttribute("menu", "admincargo");
-        return "listar_cargos";
+        return new CommandResult(request, "ListarCargo");
     }
     
 }

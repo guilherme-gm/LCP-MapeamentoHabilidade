@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 public class ListarCargos implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         
         CargoDAO cargoDao = new CargoDAOImpl();
         List<Cargo> cargos = cargoDao.select();
         
         request.setAttribute("cargos", cargos);
         request.setAttribute("menu", "admincargo");
-        return "listar_cargos";
+        return new CommandResult("listar_cargos");
     }
     
 }

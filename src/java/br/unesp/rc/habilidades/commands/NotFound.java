@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class NotFound implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "notfound";
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        return new CommandResult("notfound");
     }
     
 }

@@ -22,7 +22,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class DoEditarCargo implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         Cargo cargo = new Cargo();
         try {
             BeanUtils.populate(cargo, request.getParameterMap());
@@ -38,7 +38,7 @@ public class DoEditarCargo implements ICommand {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo atualizado com sucesso.");
         request.setAttribute("menu", "admincargo");
-        return "listar_cargos";
+        return new CommandResult(request, "ListarCargo");
     }
     
     
@@ -56,11 +56,11 @@ public class DoEditarCargo implements ICommand {
 //        
 //        if (membro == null) {
 //            request.setAttribute("erro", "Nome de usuário ou senha incorretos.");
-//            return "home";
+//            return new CommandResult("home");
 //        }
 //        
 //        request.setAttribute("menu", "home");
 //        request.getSession().setAttribute("membro", membro);
 //        
-//        return "painel";
+//        return new CommandResult("painel");
 }

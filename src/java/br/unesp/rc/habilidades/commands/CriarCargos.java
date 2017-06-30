@@ -15,9 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 public class CriarCargos implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "admincargo");
-        return "criar_cargos";
+        
+        return new CommandResult("criar_cargos");
     }
     
 }

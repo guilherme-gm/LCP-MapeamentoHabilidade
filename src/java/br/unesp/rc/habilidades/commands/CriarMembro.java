@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CriarMembro implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "adminmembro");
-        return "criar_membro";
+        return new CommandResult("criar_membro");
     }
     
 }

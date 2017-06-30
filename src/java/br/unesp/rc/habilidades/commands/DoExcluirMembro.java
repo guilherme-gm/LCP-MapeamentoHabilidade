@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 public class DoExcluirMembro implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Membro excluído com sucesso");
         request.setAttribute("menu", "adminmembro");
-        return "listar_membro";
+        return new CommandResult(request, "ListarMembro");
     }
     
 }

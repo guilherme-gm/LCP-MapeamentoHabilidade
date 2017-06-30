@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 public class DoExcluirTecnologia implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Tecnologia excluída com sucesso");
         request.setAttribute("menu", "admintec");
-        return "listar_tecnologia";
+        return new CommandResult(request, "ListarTecnologia");
     }
     
 }

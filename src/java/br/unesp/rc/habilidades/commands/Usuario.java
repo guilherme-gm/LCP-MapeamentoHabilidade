@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Usuario implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "perfil_usuario";
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        return new CommandResult("perfil_usuario");
     }
     
 }

@@ -13,5 +13,5 @@ import javax.servlet.http.HttpServletResponse;
  * @author guilh
  */
 public interface ICommand {
-    public String execute(HttpServletRequest request, HttpServletResponse response);
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response);
 }

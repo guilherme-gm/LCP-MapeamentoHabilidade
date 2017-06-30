@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SelecionaTecnologia implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "seleciona_tecnologia";
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        return new CommandResult("seleciona_tecnologia");
     }
     
 }

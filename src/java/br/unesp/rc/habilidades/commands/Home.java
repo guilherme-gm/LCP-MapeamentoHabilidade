@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 public class Home implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "home");
-        return "home";
+        return new CommandResult("home");
     }
     
 }

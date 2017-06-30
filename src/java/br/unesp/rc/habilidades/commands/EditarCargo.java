@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EditarCargo implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         
         int id = Integer.parseInt(request.getParameter("idCargo"));
         
@@ -27,7 +27,7 @@ public class EditarCargo implements ICommand {
         
         request.setAttribute("cargo", cargo);
         request.setAttribute("menu", "admincargo");
-        return "editar_cargos";
+        return new CommandResult("editar_cargos");
     }
     
 }

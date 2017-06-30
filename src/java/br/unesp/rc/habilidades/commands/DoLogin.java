@@ -23,7 +23,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class DoLogin implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         Acesso acesso = new Acesso();
         try {
             BeanUtils.populate(acesso, request.getParameterMap());
@@ -38,13 +38,13 @@ public class DoLogin implements ICommand {
         
         if (membro == null) {
             request.setAttribute("erro", "Nome de usuário ou senha incorretos.");
-            return "home";
+            return new CommandResult("home");
         }
         
         request.setAttribute("menu", "home");
         request.getSession().setAttribute("membro", membro);
         
-        return "painel";
+        return new CommandResult(request, "Painel");
     }
     
 }

@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CriarProjetos implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "adminproj");
-        return "criar_projetos";
+        return new CommandResult("criar_projetos");
     }
     
     

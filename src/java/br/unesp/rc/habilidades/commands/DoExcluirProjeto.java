@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 public class DoExcluirProjeto implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Projeto excluído com sucesso");
         request.setAttribute("menu", "lprojeto");
-        return "listar_projeto";
+        return new CommandResult(request, "ListarProjeto");
     }
     
 }

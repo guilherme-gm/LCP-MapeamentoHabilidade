@@ -5,7 +5,9 @@
  */
 package br.unesp.rc.habilidades.servlet;
 
+import br.unesp.rc.habilidades.commands.CommandResult;
 import br.unesp.rc.habilidades.commands.ICommand;
+import br.unesp.rc.habilidades.util.FlashUtils;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +34,24 @@ public class SrvController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        ICommand command = CommandHelper.getCommand(request.getServletPath());
-        String page = command.execute(request, response);
+        CommandResult flashResult = (CommandResult) FlashUtils.getFlash(request);
         
-        request.getSession().setAttribute("page", page);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        if (flashResult != null) {
+            for (String attribute : flashResult.getAttributes().keySet()) {
+                request.setAttribute(attribute, flashResult.getAttributes().get(attribute));
+            }
+        }
+        
+        ICommand command = CommandHelper.getCommand(request.getServletPath());
+        CommandResult result = command.execute(request, response);
+        
+        if (result.isRedirect()) {
+            FlashUtils.setFlash(request, result);
+            response.sendRedirect(result.getPage());
+        } else {
+            request.getSession().setAttribute("page", result.getPage());
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

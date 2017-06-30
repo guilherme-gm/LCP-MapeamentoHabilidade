@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SelecionaMembro implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "seleciona_membro";
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        return new CommandResult("seleciona_membro");
     }
     
 }

@@ -22,7 +22,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class DoCriarCargo implements ICommand {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         Cargo cargo = new Cargo();
         try {
             BeanUtils.populate(cargo, request.getParameterMap());
@@ -31,36 +31,14 @@ public class DoCriarCargo implements ICommand {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         CargoDAO cargoDao = new CargoDAOImpl();
         cargoDao.insert(cargo);
-        
+
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo inserido com sucesso.");
         request.setAttribute("menu", "admincargo");
-        return "listar_cargos";
+
+        return new CommandResult(request, "ListarCargo");
     }
-    
-    
-//     Acesso acesso = new Acesso();
-//        try {
-//            BeanUtils.populate(acesso, request.getParameterMap());
-//        } catch (IllegalAccessException ex) {
-//            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InvocationTargetException ex) {
-//            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        MembroDAO membroDao = new MembroDAOImpl();
-//        Membro membro = membroDao.select(acesso.getUsuario(), acesso.getSenha());
-//        
-//        if (membro == null) {
-//            request.setAttribute("erro", "Nome de usuário ou senha incorretos.");
-//            return "home";
-//        }
-//        
-//        request.setAttribute("menu", "home");
-//        request.getSession().setAttribute("membro", membro);
-//        
-//        return "painel";
 }

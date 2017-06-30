@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class EditarUsuario implements ICommand{
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "editar_usuario";
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        return new CommandResult("editar_usuario");
     }
     
 }
