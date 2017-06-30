@@ -10,7 +10,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/ListarCargos</url-pattern>
+        <url-pattern>/ListarTecnologia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/ListarCargo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>

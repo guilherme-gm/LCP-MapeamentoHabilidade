@@ -12,6 +12,7 @@ import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
+import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
 
 /**
@@ -29,7 +30,7 @@ public class CommandHelper {
             case "/doLogin":
                 return new DoLogin();
                 
-            case "/ListarCargos":
+            case "/ListarCargo":
                 return new ListarCargos();
             
             case "/CriarCargos":
@@ -40,6 +41,9 @@ public class CommandHelper {
             
             case "/CriarProjetos":
                 return new CriarProjetos();
+                
+            case "/ListarTecnologia":
+                return new ListarTecnologia();
         }
 
         return new NotFound();
