@@ -21,9 +21,12 @@
                             <img src="https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.0-1/c0.0.100.100/p100x100/563707_477172245735752_723010721_n.jpg?oh=6868191f6205b61cfd7f17e9c2ef3639&oe=59D1C7F8" alt="" class="img-circle ">                            
                         </figure>
                     </div>
-                    <div class="col-xs-12 col-sm-12 text-center">    
-                        <button type="button" class="btn btn-primary col-xs-10 col-sm-10 text-center "> Alterar Dados</button>
+                    <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 10px;">    
+                        <button type="button" class="btn btn-primary col-xs-10 col-sm-10 text-center"> Alterar Dados</button>
                     </div>                    
+                    <div class="col-xs-12 col-sm-12 text-center">    
+                        <button type="button" class="btn btn-primary col-xs-10 col-sm-10 text-center "> Alterar Habilidades</button>
+                    </div>                     
                 </div>
             </div>
         </div>
