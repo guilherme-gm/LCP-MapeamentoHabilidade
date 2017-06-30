@@ -10,6 +10,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/Usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/EditarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
         <url-pattern>/ListarTecnologia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
