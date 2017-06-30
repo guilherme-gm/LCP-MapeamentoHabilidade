@@ -6,9 +6,11 @@
 package br.unesp.rc.habilidades.servlet;
 
 import br.unesp.rc.habilidades.commands.CriarCargos;
+import br.unesp.rc.habilidades.commands.CriarMembro;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
+import br.unesp.rc.habilidades.commands.DoExcluirMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoLogin;
@@ -17,9 +19,11 @@ import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
 import br.unesp.rc.habilidades.commands.ListarHabilidadesMembro;
+import br.unesp.rc.habilidades.commands.ListarMembro;
 import br.unesp.rc.habilidades.commands.ListarProjeto;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
+import br.unesp.rc.habilidades.commands.SelecionaMembro;
 import br.unesp.rc.habilidades.commands.Usuario;
 
 /**
@@ -57,6 +61,15 @@ public class CommandHelper {
             case "/CriarTecnologia":
                 return new CriarTecnologia();
 
+            case "/ListarMembro":
+                return new ListarMembro();
+                
+            case "/DoExcluirMembro":
+                return new DoExcluirMembro();
+                
+            case "/CriarMembro":
+                return new CriarMembro();
+
             case "/ListarProjeto":
                 return new ListarProjeto();
 
@@ -71,6 +84,9 @@ public class CommandHelper {
 
             case "/DoExcluirTecnologia":
                 return new DoExcluirTecnologia();
+                
+            case "/SelecionaMembro":
+                return new SelecionaMembro();
         }
         return new NotFound();
     }
