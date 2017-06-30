@@ -6,5 +6,14 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Novo Telefone</label>
-    <input type="phone" class="form-control" placeholder="Telefone"> 
+    <input type="phone" class="form-control" placeholder="Telefone">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Senha Atual</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Nova Senha</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+  </div>
 </form>
