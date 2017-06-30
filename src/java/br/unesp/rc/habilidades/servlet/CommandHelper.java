@@ -14,6 +14,7 @@ import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
+import br.unesp.rc.habilidades.commands.SelecionaMembro;
 
 /**
  *
@@ -44,6 +45,9 @@ public class CommandHelper {
                 
             case "/ListarTecnologia":
                 return new ListarTecnologia();
+                
+            case "/SelecionaMembro":
+                return new SelecionaMembro();
         }
 
         return new NotFound();
