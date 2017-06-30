@@ -14,7 +14,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoExcluirTecnologia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
         <url-pattern>/ListarCargo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoExcluirCargo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
