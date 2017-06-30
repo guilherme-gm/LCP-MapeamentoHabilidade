@@ -18,6 +18,7 @@ import br.unesp.rc.habilidades.commands.EditarUsuario;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
+import br.unesp.rc.habilidades.commands.ListarHabilidadesMembro;
 import br.unesp.rc.habilidades.commands.ListarMembro;
 import br.unesp.rc.habilidades.commands.ListarProjeto;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
@@ -43,7 +44,9 @@ public class CommandHelper {
 
             case "/EditarUsuario":
                 return new EditarUsuario();
-
+            case "/ListarHabilidadesMembro":
+                return new ListarHabilidadesMembro();
+                
             case "/doLogin":
                 return new DoLogin();
 
