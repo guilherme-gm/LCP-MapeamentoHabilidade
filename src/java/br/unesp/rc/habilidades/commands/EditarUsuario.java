@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aluno
  */
-public class Usuario implements ICommand{
+public class EditarUsuario implements ICommand{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return "perfil_usuario";
+        return "editar_usuario";
     }
     
 }
