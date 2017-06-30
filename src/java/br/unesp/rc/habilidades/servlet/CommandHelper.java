@@ -23,6 +23,7 @@ import br.unesp.rc.habilidades.commands.ListarProjeto;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
 import br.unesp.rc.habilidades.commands.SelecionaMembro;
+import br.unesp.rc.habilidades.commands.SelecionaTecnologia;
 import br.unesp.rc.habilidades.commands.Usuario;
 
 /**
@@ -84,6 +85,8 @@ public class CommandHelper {
                 
             case "/SelecionaMembro":
                 return new SelecionaMembro();
+            case "/SelecionaTecnologia":
+                return new SelecionaTecnologia();
         }
         return new NotFound();
     }
