@@ -77,7 +77,6 @@ public class CommandHelper {
             case "/DoExcluirTecnologia":
                 return new DoExcluirTecnologia();
         }
-
         return new NotFound();
     }
 }
