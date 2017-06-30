@@ -9,11 +9,13 @@ import br.unesp.rc.habilidades.commands.CriarCargos;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
+import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.Home;
 import br.unesp.rc.habilidades.commands.ICommand;
 import br.unesp.rc.habilidades.commands.ListarCargos;
+import br.unesp.rc.habilidades.commands.ListarProjeto;
 import br.unesp.rc.habilidades.commands.ListarTecnologia;
 import br.unesp.rc.habilidades.commands.NotFound;
 
@@ -43,6 +45,12 @@ public class CommandHelper {
 
             case "/CriarTecnologia":
                 return new CriarTecnologia();
+
+            case "/ListarProjeto":
+                return new ListarProjeto();
+
+            case "/DoExcluirProjeto":
+                return new DoExcluirProjeto();
 
             case "/CriarProjetos":
                 return new CriarProjetos();
