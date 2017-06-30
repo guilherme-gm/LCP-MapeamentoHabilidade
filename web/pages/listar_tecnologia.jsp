@@ -2,12 +2,12 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <h1>Lista de Cargos</h1>
+        <h1>Lista de Tecnologias</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <a href="<c:url value="AdicionarCargo"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="<c:url value="AdicionarTecnologia"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     </div>
     <div class="row">
@@ -15,20 +15,20 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Nome do Cargo</th>
+                        <th>Nome da Tecnologia</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Gerente</td>
+                        <td>PHP</td>
                         <td>
-                            <a href="<c:url value="EditarCargo?id=1"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
-                            <a onclick="remover_cargo_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="<c:url value="EditarTecnologia?id=1"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                            <a onclick="remover_tecnologia_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Gerente</td>
+                    <td>Java</td>
                     <td><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"/></td>
                 </tr>
             </tbody>
@@ -36,24 +36,24 @@
     </div>
 </div>
 
-<!-- Modal: Remover Cargo -->
+<!-- Modal: Remover Tecnologia -->
 <div class="modal fade" id="remover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Remover Cargo</h4>
+                <h4 class="modal-title" id="myModalLabel">Remover Tecnologia</h4>
             </div>
             <div class="modal-body">
-                Tem certeza que deseja remover este cargo?
+                Tem certeza que deseja remover esta tecnologia?
             </div>
             <div class="modal-footer">
-                <form method="POST" action="<c:url value="/DoExcluirCargo"></c:url>">
-                    <input type="hidden" id="idCargo" name="idCargo"/>
+                <form method="POST" action="<c:url value="/DoExcluirTecnologia"></c:url>">
+                    <input type="hidden" id="idTecnologia" name="idTecnologia"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Excluir</button>
-                </form>
-            </div>
+                </form> 
+           </div>
         </div>
     </div>
 </div>
