@@ -46,6 +46,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoExcluirMembro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
         <url-pattern>/ListarProjeto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -60,7 +64,7 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/doLogin</url-pattern>
     </servlet-mapping>
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>-->

@@ -9,6 +9,7 @@ import br.unesp.rc.habilidades.commands.CriarCargos;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
+import br.unesp.rc.habilidades.commands.DoExcluirMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoLogin;
@@ -57,6 +58,9 @@ public class CommandHelper {
 
             case "/ListarMembro":
                 return new ListarMembro();
+                
+            case "/DoExcluirMembro":
+                return new DoExcluirMembro();
 
             case "/ListarProjeto":
                 return new ListarProjeto();
