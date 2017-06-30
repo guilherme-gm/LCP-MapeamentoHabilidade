@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author aluno
+ * @author guilh
  */
-public class CriarCargos implements ICommand{
+public class DoExcluirTecnologia implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("menu", "admincargo");
-        return "criar_cargos";
+        request.setAttribute("msg_tipo", "alert-success");
+        request.setAttribute("msg", "Tecnologia excluída com sucesso");
+        request.setAttribute("menu", "admintec");
+        return "listar_tecnologia";
     }
     
 }

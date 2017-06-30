@@ -7,3 +7,8 @@ function remover_tecnologia_click(id) {
     $("#idTecnologia").val(id);
     $("#remover").modal(); 
 }
+
+function remover_projeto_click(id) {
+    $("#idProjeto").val(id);
+    $("#remover").modal(); 
+}
