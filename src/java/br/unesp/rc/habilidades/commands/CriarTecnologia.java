@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aluno
  */
-public class CriarTecnologia implements ICommand{
+public class CriarTecnologia implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-       return "criar_tecnologia"; 
+        request.setAttribute("menu", "admintec");
+        return "criar_tecnologia";
     }
-    
+
 }

@@ -16,6 +16,7 @@ public class ListarTecnologia implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menu", "admintec");
         return "listar_tecnologia";
     }
     

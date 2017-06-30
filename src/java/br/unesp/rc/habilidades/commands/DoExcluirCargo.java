@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author aluno
+ * @author guilh
  */
-public class CriarCargos implements ICommand{
+public class DoExcluirCargo implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("msg_tipo", "alert-success");
+        request.setAttribute("msg", "Cargo excluído com sucesso");
         request.setAttribute("menu", "admincargo");
-        return "criar_cargos";
+        return "listar_cargos";
     }
     
 }
