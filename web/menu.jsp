@@ -10,7 +10,7 @@
                 <li <c:if test="${menu eq 'home'}">class="active"</c:if>><a href="<c:url value="/Home"></c:url>"><span class="glyphicon glyphicon-home"/> <b>Home</b></a></li>
                 <li <c:if test="${menu eq 'adminproj'}">class="active"</c:if>><a href="<c:url value="/ListarProjeto"></c:url>"><span class="glyphicon glyphicon-pencil"/>  <b>Administrar Projetos</b></a></li>
                 <li <c:if test="${menu eq 'admintec'}">class="active"</c:if>><a href="<c:url value="/ListarTecnologia"></c:url>"><span class="glyphicon glyphicon-console"/>  <b>Administrar Tecnologias</b></a></li>
-                <li <c:if test="${menu eq ''}">class="active"</c:if>><a href="<c:url value="/ListarMembro"></c:url>"><span class="glyphicon glyphicon-user"/>  <b>Administrar Membros</b></a></li>
+                <li <c:if test="${menu eq 'adminmembro'}">class="active"</c:if>><a href="<c:url value="/ListarMembro"></c:url>"><span class="glyphicon glyphicon-user"/>  <b>Administrar Membros</b></a></li>
                 <li <c:if test="${menu eq 'admincargo'}">class="active"</c:if>><a href="<c:url value="/ListarCargo"></c:url>"><span class="glyphicon glyphicon-user"/>  <b>Administrar Cargos</b></a></li>
             </ul>
             <h5><i class="glyphicon glyphicon-user"></i>
