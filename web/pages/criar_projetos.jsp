@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">
     <div class="col-sm-12">
         <h1>Adicionar Projetos</h1>
@@ -6,14 +7,14 @@
 
 <div class ="row">
 
-    <form class="form-horizontal col-sm-12">
+    <form class="form-horizontal col-sm-12" action="<c:url value="/SelecionaMembro"></c:url>">
         <div class="row col-sm-12"> 
             &nbsp;&nbsp;
         </div>
 
         <div class="form-group col-sm-12">
             <label for="nome" class="col-sm-1 control-label">Nome</label>
-            <div class="col-sm-4">
+            <div class="col-sm-7">
                 <input class="form-control" type="text" name="nome" id =" nome" placeholder="Nome"/> <br />
             </div>
         </div>
@@ -34,7 +35,7 @@
 
         <div class="form-group row col-sm-12">
             <label for="descricao" class="col-sm-1 control-label">Descri&ccedil;&atilde;o:</label>
-            <div class=" col-sm-6">
+            <div class=" col-sm-7">
                 <textarea class="form-control col-sm-4" rows="2" name = "descricao" id = "descricao"></textarea>
             </div>
         </div>
