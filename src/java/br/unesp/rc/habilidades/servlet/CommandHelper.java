@@ -6,6 +6,7 @@
 package br.unesp.rc.habilidades.servlet;
 
 import br.unesp.rc.habilidades.commands.CriarCargos;
+import br.unesp.rc.habilidades.commands.CriarMembro;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
@@ -61,6 +62,9 @@ public class CommandHelper {
                 
             case "/DoExcluirMembro":
                 return new DoExcluirMembro();
+                
+            case "/CriarMembro":
+                return new CriarMembro();
 
             case "/ListarProjeto":
                 return new ListarProjeto();

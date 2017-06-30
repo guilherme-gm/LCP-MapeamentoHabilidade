@@ -16,7 +16,7 @@ public class CriarMembro implements ICommand{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("menu", "admincargo");
+        request.setAttribute("menu", "adminmembro");
         return "criar_membro";
     }
     
