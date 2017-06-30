@@ -3,7 +3,7 @@
 <c:if test="${msg ne ''}">
     <div class="alert <c:out value="${msg_tipo}"></c:out>">
         <c:out value="${msg}"></c:out>
-    </div>
+        </div>
 </c:if>
 <div class="row">
     <div class="col-sm-12">
@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <a href="<c:url value="AdicionarTecnologia"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="<c:url value="CriarTecnologia"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     </div>
     <div class="row">

@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <a href="<c:url value="AdicionarCargo"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="<c:url value="CriarCargos"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     </div>
     <div class="row">
