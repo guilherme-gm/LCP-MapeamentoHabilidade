@@ -31,6 +31,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="usuario" class="col-sm-2 control-label">Nome de Usuário</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="usuario" placeholder="Usuário"/> <br />
+            </div>
+        </div>
+        <div class="form-group">
             <label for="cargo" class="col-sm-2 control-label">Cargo</label>
             <div class="col-sm-4">
                 <select id="cargo" nome="cargo" class="form-control">
@@ -46,7 +52,7 @@
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Confirmar</button>
             &nbsp;&nbsp;
-            <button type="submit" class="btn btn-default">Voltar</button>
+            <button type="button" class="btn btn-default">Voltar</button>
         </div>
 
 
