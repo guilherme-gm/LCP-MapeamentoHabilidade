@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row ">
     <div class="col-sm-12">
-        <h1>Selecione os membros</h1>
+        <h1>Selecione os Membros</h1>
     </div>
 </div>
 
@@ -17,31 +18,31 @@
             <tr class="info">
                 <td>Ian </td>
                 <td>
-                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url><span class=" glyphicon glyphicon-minus"></span></a>
+                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url>"><span class="glyphicon glyphicon-minus"></span></a>
                 </td>
             </tr>
             <tr>
                 <td>Maria </td>
                 <td>
-                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url><span class="glyphicon glyphicon-plus align-center"></span></a>
+                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url>"><span class="glyphicon glyphicon-plus align-center"></span></a>
                 </td>
             </tr>
             <tr class="info">
                 <td>Carlos </td>
                 <td class=" ">
-                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url><span class=" glyphicon glyphicon-minus"></span></a>
+                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url>"><span class=" glyphicon glyphicon-minus"></span></a>
                 </td>
             </tr>
             <tr  class="info">
                 <td>Lais </td>
                 <td>
-                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url><span class=" glyphicon glyphicon-minus"></span></a>
+                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url>"><span class=" glyphicon glyphicon-minus"></span></a>
                 </td>
             </tr>
-             <tr>
+            <tr>
                 <td>Maria B.</td>
                 <td>
-                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url><span class="glyphicon glyphicon-plus align-center"></span></a>
+                    <a href="<c:url value="AdicionaMembroProjeto?id=1"></c:url>"><span class="glyphicon glyphicon-plus align-center"></span></a>
                 </td>
             </tr>
             </body>

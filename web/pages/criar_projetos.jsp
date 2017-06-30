@@ -7,7 +7,7 @@
 
 <div class ="row">
 
-    <form class="form-horizontal col-sm-12" action="<c:url value="/SelecionaMembro"></c:url>">
+    <form class="form-horizontal col-sm-12" action="<c:url value="/SelecionaTecnologia"></c:url>">
         <div class="row col-sm-12"> 
             &nbsp;&nbsp;
         </div>
