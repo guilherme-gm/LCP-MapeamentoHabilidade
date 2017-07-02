@@ -8,6 +8,7 @@ package br.unesp.rc.habilidades.commands;
 import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,9 @@ public class DoCriarCargo implements ICommand {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // TODO:
+        // cargo.validate();
 
         CargoDAO cargoDao = new CargoDAOImpl();
         cargoDao.insert(cargo);
