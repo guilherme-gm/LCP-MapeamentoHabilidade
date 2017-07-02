@@ -5,44 +5,49 @@
     </div>
 </div>
 
-<div class ="row">
+<div class="row">
 
-    <form class="form-horizontal" method="POST" action="<c:url value="/DoEditarCargo"></c:url>">
+    <form class="form-horizontal" method="POST" action="<c:url value="/DoEditarCargo"/>">
         <div class="row"> 
-        &nbsp;&nbsp;
+            &nbsp;&nbsp;
         </div>
 
-        <input type="hidden" name="idCargo" value="<c:out value="${cargo.idCargo}"></c:out>"/> <br />
+        <input type="hidden" name="idCargo" value="<c:out value="${cargo.idCargo}"/>"/> <br />
         <div class="form-group">
             <label for="nome" class="col-sm-2 control-label">Nome</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="nome" placeholder="Nome" value="<c:out value="${cargo.nome}"></c:out>"/> <br />
+                <input class="form-control" type="text" name="nome" placeholder="Nome" value="<c:out value="${cargo.nome}"/>"/> <br />
             </div>
         </div>
 
-        <div class =" row">
-            <h4> Permissões </h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4> Permissões </h4>
+            </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="1">
-                Adicionar projetos
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="2">
-                Remover membro
-            </label>
-        </div>
+        <c:forEach items="${permissoes}" var="p">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="permissao"
+                           value="<c:out value="${p}" />"
+                           <c:if test="${cargo.hasPermissao(p) eq true}">
+                               checked="checked"
+                           </c:if>
+                           />
+                    <span><c:out value="${p.displayName}"/></span>
+                </label>
+            </div>
+        </c:forEach>
+
         <p>
+        <div class="row">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Confirmar</button>
+                <input type="submit" class="btn btn-default" value="Confirmar" />
                 &nbsp;&nbsp;
-                <button type="submit" class="btn btn-default">Voltar</button>
+                <a href="<c:url value="/ListarCargo"/>" class="btn btn-default">Voltar</a>
             </div>
-
-           
+        </div>
         </p>
     </form>
 </div>

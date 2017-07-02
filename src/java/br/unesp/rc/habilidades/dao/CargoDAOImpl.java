@@ -6,12 +6,15 @@
 package br.unesp.rc.habilidades.dao;
 
 import br.unesp.rc.habilidades.beans.Cargo;
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,7 +38,7 @@ public class CargoDAOImpl implements CargoDAO {
             try {
                 pstm = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
                 pstm.setString(1, cargo.getNome());
-                pstm.setInt(2, cargo.getPermissao());
+                pstm.setString(2, Permissao.serialize(cargo.getPermissao()));
                 pstm.executeUpdate();
 
                 res = pstm.getGeneratedKeys();
@@ -68,7 +71,7 @@ public class CargoDAOImpl implements CargoDAO {
             try {
                 pstm = con.prepareStatement(UPDATE);
                 pstm.setString(1, cargo.getNome());
-                pstm.setInt(2, cargo.getPermissao());
+                pstm.setString(2, Permissao.serialize(cargo.getPermissao()));
                 pstm.setInt(3, cargo.getIdCargo());
                 ret = pstm.executeUpdate() > 0;
             } catch (SQLException ex) {
@@ -126,7 +129,7 @@ public class CargoDAOImpl implements CargoDAO {
                     Cargo cargo = new Cargo();
                     cargo.setIdCargo(res.getInt(1));
                     cargo.setNome(res.getString(2));
-                    cargo.setPermissao(res.getInt(3));
+                    cargo.setPermissao(Permissao.deserialize(res.getString(3)));
                     ret = cargo;
                  } 
                 
@@ -159,7 +162,7 @@ public class CargoDAOImpl implements CargoDAO {
                     Cargo cargo = new Cargo();
                     cargo.setIdCargo(res.getInt(1));
                     cargo.setNome(res.getString(2));
-                    cargo.setPermissao(res.getInt(3));
+                    cargo.setPermissao(Permissao.deserialize(res.getString(3)));
                     ret.add(cargo);
                  } 
                 

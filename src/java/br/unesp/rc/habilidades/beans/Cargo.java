@@ -2,7 +2,9 @@ package br.unesp.rc.habilidades.beans;
 
 import br.unesp.rc.habilidades.exception.ValidateException;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cargo {
 
@@ -10,7 +12,7 @@ public class Cargo {
 
     private String nome;
 
-    private int permissao;
+    private EnumSet<Permissao> permissao = EnumSet.noneOf(Permissao.class);
 
     public void validate() throws ValidateException {
         List<String> erros = new ArrayList<>();
@@ -21,9 +23,9 @@ public class Cargo {
             erros.add("O nome deve ter menos de 50 caracteres");
         }
         
-        if (this.permissao == 0) {
-            erros.add("Pelo menos uma permissão deve ser definida");
-        }
+//        if (this.permissao == ) {
+//            erros.add("Pelo menos uma permissão deve ser definida");
+//        }
         
         if (erros.size() > 0) {
             throw new ValidateException(erros);
@@ -38,7 +40,7 @@ public class Cargo {
         return nome;
     }
 
-    public int getPermissao() {
+    public EnumSet<Permissao> getPermissao() {
         return permissao;
     }
 
@@ -50,8 +52,12 @@ public class Cargo {
         this.nome = nome;
     }
 
-    public void setPermissao(int permissao) {
+    public void setPermissao(EnumSet<Permissao> permissao) {
         this.permissao = permissao;
+    }
+    
+    public boolean hasPermissao(Permissao permissao) {
+        return this.permissao.contains(permissao);
     }
 
 }

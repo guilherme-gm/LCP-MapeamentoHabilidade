@@ -6,6 +6,7 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Cargo;
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import br.unesp.rc.habilidades.exception.ValidateException;
@@ -25,13 +26,9 @@ public class DoCriarCargo implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         Cargo cargo = new Cargo();
-        try {
-            BeanUtils.populate(cargo, request.getParameterMap());
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        cargo.setNome(request.getParameter("nome"));
+        String[] permissoes = request.getParameterValues("permissao");
+        cargo.setPermissao(Permissao.fromArray(permissoes));
         
         // TODO:
         // cargo.validate();

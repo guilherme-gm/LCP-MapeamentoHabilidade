@@ -6,6 +6,7 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Cargo;
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,9 @@ public class EditarCargo implements ICommand {
         Cargo cargo = cargoDao.select(id);
         
         request.setAttribute("cargo", cargo);
+        request.setAttribute("permissoes", Permissao.values());
         request.setAttribute("menu", "admincargo");
+        
         return new CommandResult("editar_cargos");
     }
     

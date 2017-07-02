@@ -9,7 +9,7 @@
 
     <form class="form-horizontal" method="POST" action="<c:url value="/DoCriarCargo"></c:url>">
         <div class="row"> 
-        &nbsp;&nbsp;
+            &nbsp;&nbsp;
         </div>
 
         <div class="form-group">
@@ -24,24 +24,30 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="1">
-                Adicionar projetos
+                <input type="checkbox" name="permissao" value="GERENCIAR_PROJETOS">
+                Gerenciar Projetos
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="2">
-                Remover membro
+                <input type="checkbox" name="permissao" value="GERENCIAR_CARGOS">
+                Gerenciar Cargos
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="permissao" value="GERENCIAR_HABILIDADES">
+                Gerenciar Habilidades
             </label>
         </div>
         <p>
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Confirmar</button>
-                &nbsp;&nbsp;
-                <button type="submit" class="btn btn-default">Voltar</button>
-            </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Confirmar</button>
+            &nbsp;&nbsp;
+            <button type="submit" class="btn btn-default">Voltar</button>
+        </div>
 
-           
+
         </p>
     </form>
 </div>

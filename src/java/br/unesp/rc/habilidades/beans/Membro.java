@@ -4,29 +4,33 @@ import java.sql.Date;
 
 public class Membro {
 
-	private long idMembro;
+    private long idMembro;
 
-	private String nome;
+    private String nome;
 
-	private String telefone;
+    private String telefone;
 
-	private String email;
+    private String email;
 
-	private Date dataContratacao;
+    private Date dataContratacao;
 
-	private Acesso acesso;
+    private Acesso acesso;
 
-	private Cargo cargo;
-        
-        private boolean ativo;
+    private Cargo cargo;
 
-	private TecnologiaMembro[] tecnologiaMembro;
+    private boolean ativo;
 
-	private Projeto[] projeto;
+    private TecnologiaMembro[] tecnologiaMembro;
 
-	public void validate() {
+    private Projeto[] projeto;
 
-	}
+    public void validate() {
+
+    }
+    
+    public boolean hasPermissao(Permissao permissao) {
+        return this.cargo.hasPermissao(permissao);
+    }
 
     public long getIdMembro() {
         return idMembro;
@@ -107,9 +111,5 @@ public class Membro {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    
-        
-        
 
 }
