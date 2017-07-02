@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${msg ne ''}">
+<c:if test="${not empty msg}">
     <div class="alert <c:out value="${msg_tipo}"></c:out>">
         <c:out value="${msg}"></c:out>
         </div>
