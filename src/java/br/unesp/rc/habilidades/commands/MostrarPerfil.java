@@ -8,22 +8,21 @@ package br.unesp.rc.habilidades.commands;
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guilh
+ * @author Raphael
  */
-public class ListarMembro implements ICommand {
+public class MostrarPerfil implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         MembroDAO membroDao = new MembroDAOImpl();
-        //List<Membro> membros = membroDao.select(); a fazer
+//        Membro membro= membroDao.select(membro.idMembro);
             
-        //request.setAttribute("membros", membros);       
+//       request.setAttribute("membro", membro);       
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("listar_membro");
     }
