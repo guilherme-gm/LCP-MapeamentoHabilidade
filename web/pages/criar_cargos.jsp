@@ -7,7 +7,7 @@
 
 <div class ="row">
 
-    <form class="form-horizontal" method="POST" action="<c:url value="/DoCriarCargo"></c:url>">
+    <form class="form-horizontal" method="POST" action="<c:url value="/DoCriarCargo"/>">
         <div class="row"> 
             &nbsp;&nbsp;
         </div>
@@ -19,35 +19,34 @@
             </div>
         </div>
 
-        <div class =" row">
-            <h4> Permissões </h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4> Permissões </h4>
+            </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="permissao" value="GERENCIAR_PROJETOS">
-                Gerenciar Projetos
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="permissao" value="GERENCIAR_CARGOS">
-                Gerenciar Cargos
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="permissao" value="GERENCIAR_HABILIDADES">
-                Gerenciar Habilidades
-            </label>
-        </div>
+        <c:forEach items="${permissoes}" var="p">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="permissao"
+                           value="<c:out value="${p}" />"
+                           <c:if test="${cargo.hasPermissao(p) eq true}">
+                               checked="checked"
+                           </c:if>
+                           />
+                    <span><c:out value="${p.displayName}"/></span>
+                </label>
+            </div>
+        </c:forEach>
+
         <p>
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Confirmar</button>
-            &nbsp;&nbsp;
-            <button type="submit" class="btn btn-default">Voltar</button>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-default" value="Confirmar" />
+                &nbsp;&nbsp;
+                <a href="<c:url value="/ListarCargo"/>" class="btn btn-default">Voltar</a>
+            </div>
         </div>
-
-
         </p>
     </form>
 </div>

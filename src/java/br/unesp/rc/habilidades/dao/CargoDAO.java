@@ -15,11 +15,11 @@ import java.util.List;
 public interface CargoDAO {
     final String INSERT = "insert into Cargo (nome,permissao)"
             + "values (?,?);";
-    final String UPDATE = "update Cargo "
-        + "set nome  = ?, permissao = ? where idCargo = ?;";
-    final String DELETE = "delete from Cargo where idCargo = ?;";
-    final String SELECT = "select idCargo, nome, permissao from Cargo where idCargo = ?;";
-    final String SELECT_ALL = "select idCargo, nome, permissao from Cargo;";
+    final String UPDATE = "UPDATE `Cargo` "
+        + "SET `nome`  = ?, `permissao` = ? WHERE `idCargo` = ?;";
+    final String DELETE = "UPDATE `Cargo` SET `ativo` = 0 WHERE `idCargo` = ?;";
+    final String SELECT = "SELECT `idCargo`, `nome`, `permissao` FROM `Cargo` WHERE `idCargo` = ?;";
+    final String SELECT_ALL = "SELECT `idCargo`, `nome`, `permissao` FROM `Cargo` WHERE `ativo` = 1;";
     
     public boolean insert(Cargo cargo);
     public boolean update(Cargo cargo);

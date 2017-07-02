@@ -5,6 +5,7 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ public class CriarCargos implements ICommand{
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "admincargo");
+        request.setAttribute("permissoes", Permissao.values());
         
         return new CommandResult("criar_cargos");
     }
