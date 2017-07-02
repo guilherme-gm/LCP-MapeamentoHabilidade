@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -41,10 +42,13 @@ public class DoLogin implements ICommand {
             return new CommandResult("home");
         }
         
+        HttpSession session = request.getSession(true);
+        session.setAttribute("membro", membro);
+        
         request.setAttribute("menu", "home");
         request.getSession().setAttribute("membro", membro);
         
-        return new CommandResult(request, "Painel");
+        return new CommandResult(request, "Usuario");
     }
     
 }

@@ -19,6 +19,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="#"><span class="glyphicon glyphicon-folder-open"/>  <b>Meus Projetos</b></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-cog"/>  <b>Minhas Tecnologias</b></a></li>
+                <li><a href="<c:url value="/DoLogout"></c:url>"><span class="glyphicon glyphicon-log-out"/>  <b>Logout</b></a></li>
             </ul>
         </div>
     </div>        

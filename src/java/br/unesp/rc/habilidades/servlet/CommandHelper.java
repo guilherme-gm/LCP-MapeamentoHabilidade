@@ -16,6 +16,7 @@ import br.unesp.rc.habilidades.commands.DoExcluirMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoLogin;
+import br.unesp.rc.habilidades.commands.DoLogout;
 import br.unesp.rc.habilidades.commands.EditarCargo;
 import br.unesp.rc.habilidades.commands.EditarUsuario;
 import br.unesp.rc.habilidades.commands.Home;
@@ -52,6 +53,9 @@ public class CommandHelper {
                 
             case "/doLogin":
                 return new DoLogin();
+                
+            case "/DoLogout":
+                return new DoLogout();
 
             case "/ListarCargo":
                 return new ListarCargos();

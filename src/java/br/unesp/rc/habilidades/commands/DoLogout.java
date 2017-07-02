@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author guilh
  */
-public class Home implements ICommand {
+public class DoLogout implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
@@ -22,11 +22,12 @@ public class Home implements ICommand {
         if (session != null) {
             Membro membro = (Membro) session.getAttribute("membro");
             if (membro != null) {
-                return new CommandResult(request, "Usuario");
+                session.setAttribute("membro", null);
             }
         }
+        
         request.setAttribute("menu", "home");
-        return new CommandResult("home");
+        return new CommandResult(request, "Home");
     }
     
 }
