@@ -2,22 +2,22 @@ package br.unesp.rc.habilidades.beans;
 
 public class Tecnologia {
 
-	private int idTecnologia;
+    private int idTecnologia;
 
-	private String nome;
+    private String nome;
 
-	private TecnologiaMembro[] tecnologiaMembro;
+    private TecnologiaMembro[] tecnologiaMembro;
 
-	private Projeto projeto;
-        
-         private boolean ativo;
+    private Projeto projeto;
 
-	public void validate() {
+    private boolean ativo;
 
-	}
+    public void validate() {
+
+    }
 
     public boolean isAtivo() {
-        return ativo;  
+        return ativo;
     }
 
     public void setAtivo(boolean ativo) {
@@ -55,5 +55,5 @@ public class Tecnologia {
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
     }
-        
+
 }

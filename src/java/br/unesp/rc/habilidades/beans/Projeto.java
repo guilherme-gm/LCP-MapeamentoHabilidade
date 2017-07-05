@@ -1,6 +1,8 @@
 package br.unesp.rc.habilidades.beans;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Projeto {
 
@@ -16,9 +18,14 @@ public class Projeto {
 
     private String status;
 
-    private Membro[] membro;
+    private List<Membro> membro;
 
-    private Tecnologia[] tecnologia;
+    private List<Tecnologia> tecnologia;
+
+    public Projeto() {
+        this.membro = new ArrayList<>();
+        this.tecnologia = new ArrayList<>();
+    }
 
     public void validate() {
 
@@ -72,20 +79,32 @@ public class Projeto {
         this.status = status;
     }
 
-    public Membro[] getMembro() {
+    public List<Membro> getMembro() {
         return membro;
     }
 
-    public void setMembro(Membro[] membro) {
+    public void setMembro(List<Membro> membro) {
         this.membro = membro;
     }
 
-    public Tecnologia[] getTecnologia() {
+    public List<Tecnologia> getTecnologia() {
         return tecnologia;
     }
 
-    public void setTecnologia(Tecnologia[] tecnologia) {
+    public void setTecnologia(List<Tecnologia> tecnologia) {
         this.tecnologia = tecnologia;
+    }
+
+    public boolean hasTecnologia(Tecnologia tecnologia) {
+        return this.tecnologia.contains(tecnologia);
+    }
+
+    public void addTecnologia(Tecnologia tecnologia) {
+        this.tecnologia.add(tecnologia);
+    }
+    
+    public void delTecnologia(Tecnologia tecnologia) {
+        this.tecnologia.remove(tecnologia);
     }
 
 }

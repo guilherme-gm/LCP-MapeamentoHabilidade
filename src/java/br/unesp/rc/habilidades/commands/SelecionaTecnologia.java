@@ -16,6 +16,7 @@ public class SelecionaTecnologia implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("menu", "adminproj");
         return new CommandResult("seleciona_tecnologia");
     }
     

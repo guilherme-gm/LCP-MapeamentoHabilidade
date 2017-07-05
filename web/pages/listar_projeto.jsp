@@ -3,7 +3,7 @@
 <c:if test="${not empty msg}">
     <div class="alert <c:out value="${msg_tipo}"></c:out>">
         <c:out value="${msg}"></c:out>
-    </div>
+        </div>
 </c:if>
 <div class="row">
     <div class="col-sm-12">
@@ -25,35 +25,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${projetos}" var="projeto">
                     <tr>
-                        <td>Site 1</td>
+                        <td><c:out value="${projeto.nome}" /></td>
                         <td>
-                            <a href="<c:url value="EditarProjeto?id=1"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
-                            <a onclick="remover_projeto_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Site 2</td>
-                        <td><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                            <a href="<c:url value="EditarProjeto?id=${projeto.idProjeto}" />"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                            <a onclick="remover_projeto_click(<c:out value="${projeto.idProjeto}"/>)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                        </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
+</div>
 
-    <!-- Modal: Remover Projeto -->
-    <div class="modal fade" id="remover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Remover Projeto</h4>
-                </div>
-                <div class="modal-body">
-                    Tem certeza que deseja remover este projeto?
-                </div>
-                <div class="modal-footer">
-                    <form method="POST" action="<c:url value="/DoExcluirProjeto"></c:url>">
+<!-- Modal: Remover Projeto -->
+<div class="modal fade" id="remover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Remover Projeto</h4>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja remover este projeto?
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="<c:url value="/DoExcluirProjeto"></c:url>">
                     <input type="hidden" id="idTecnologia" name="idProjeto"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Excluir</button>

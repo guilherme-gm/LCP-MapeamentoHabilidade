@@ -209,7 +209,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
         return projetos;
     }
 
-    private Membro[] selectMembros(long projetoId) {
+    private List<Membro> selectMembros(long projetoId) {
         List<Membro> membros = new ArrayList<>();
         Connection con = FabricaConexao.getConnection();
         ResultSet rs = null;
@@ -235,10 +235,10 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             FabricaConexao.close(con, pstmt, rs);
         }
 
-        return membros.toArray(new Membro[0]);
+        return membros;
     }
     
-    private Tecnologia[] selectTecnologias(long projetoId) {
+    private List<Tecnologia> selectTecnologias(long projetoId) {
         List<Tecnologia> tecnologias = new ArrayList<>();
         Connection con = FabricaConexao.getConnection();
         ResultSet rs = null;
@@ -264,7 +264,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             FabricaConexao.close(con, pstmt, rs);
         }
 
-        return tecnologias.toArray(new Tecnologia[0]);
+        return tecnologias;
     }
     
     @Override

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -135,13 +136,13 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
         return ret;
     }
 
-//    @Override
+    @Override
     public List<Tecnologia> select() {
         Connection con = null;
         ResultSet res = null;
         PreparedStatement pstm = null;
 
-        List<Tecnologia> ret = null;
+        List<Tecnologia> ret = new ArrayList<>();
 
         con = FabricaConexao.getConnection();
 

@@ -44,8 +44,8 @@ public interface TecnologiaDAO {
             + " idTecnologia = ? ";
     final String SELECT_ALL
              = "SELECT `Tecnologia`.`idTecnologia`, "
-            + "    `Tecnologia`.`nome`,"
-            + "    `Tecnologia`.`ativo`, "
+            + "    `Tecnologia`.`nome`, "
+            + "    `Tecnologia`.`ativo` "
             + "FROM `Tecnologia` ";
 
     public boolean insert(Tecnologia tec);
@@ -55,6 +55,7 @@ public interface TecnologiaDAO {
     public boolean update(Tecnologia tec);
 
     public Tecnologia select(int idTecnologia);
-    //public List<Tecnologia> select();
+    
+    public List<Tecnologia> select();
 
 }

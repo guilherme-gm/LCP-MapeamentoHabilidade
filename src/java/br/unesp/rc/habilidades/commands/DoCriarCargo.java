@@ -9,13 +9,8 @@ import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
-import br.unesp.rc.habilidades.exception.ValidateException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.beanutils.BeanUtils;
 
 /**
  *
