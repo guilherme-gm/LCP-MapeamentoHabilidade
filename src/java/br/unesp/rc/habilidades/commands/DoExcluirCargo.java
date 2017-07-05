@@ -19,13 +19,11 @@ public class DoExcluirCargo implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         
-        System.out.println("HELLO WORLD");
         int id = Integer.parseInt(request.getParameter("idCargo"));
         
-        System.out.println("HELLO WORLD" + id);
         CargoDAO cargoDao = new CargoDAOImpl();
         cargoDao.delete(id);
-        System.out.println("HELLO WORLD");
+        
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Cargo excluído com sucesso");
         request.setAttribute("menu", "admincargo");

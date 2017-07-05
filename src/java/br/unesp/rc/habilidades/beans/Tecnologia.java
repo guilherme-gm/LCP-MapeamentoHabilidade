@@ -7,11 +7,7 @@ public class Tecnologia {
     private int idTecnologia;
 
     private String nome;
-
-    private TecnologiaMembro[] tecnologiaMembro;
-
-    private Projeto projeto;
-
+    
     private boolean ativo;
 
     public void validate() {
@@ -42,21 +38,7 @@ public class Tecnologia {
         this.nome = nome;
     }
 
-    public TecnologiaMembro[] getTecnologiaMembro() {
-        return tecnologiaMembro;
-    }
-
-    public void setTecnologiaMembro(TecnologiaMembro[] tecnologiaMembro) {
-        this.tecnologiaMembro = tecnologiaMembro;
-    }
-
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
+    
 
     @Override
     public boolean equals(Object obj) {

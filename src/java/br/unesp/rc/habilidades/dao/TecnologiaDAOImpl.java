@@ -29,13 +29,12 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
 
         int idTecnologia = -1;
         boolean aux = false;
-
+        con = FabricaConexao.getConnection();
+        
         if (con != null) {
             try {
                 pstm = con.prepareStatement(INSERT_TECNOLOGIA, PreparedStatement.RETURN_GENERATED_KEYS);
-                pstm.setInt(1, tec.getIdTecnologia());
-                pstm.setString(2, tec.getNome());
-                pstm.setBoolean(3, tec.isAtivo());
+                pstm.setString(1, tec.getNome());
                 pstm.executeUpdate();
 
                 res = pstm.getGeneratedKeys();
@@ -90,8 +89,9 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
         if (con != null) {
             try {
                 pstm = con.prepareStatement(UPDATE_TECNOLOGIA);
-                pstm.setInt(1, tec.getIdTecnologia());
-                pstm.setString(2, tec.getNome());
+                pstm.setString(1, tec.getNome());
+                pstm.setBoolean(2, tec.isAtivo());
+                pstm.setInt(3, tec.getIdTecnologia());
                 ret = pstm.executeUpdate() > 0;
 
             } catch (SQLException ex) {
@@ -170,4 +170,3 @@ public class TecnologiaDAOImpl implements TecnologiaDAO {
     }
 
 }
-

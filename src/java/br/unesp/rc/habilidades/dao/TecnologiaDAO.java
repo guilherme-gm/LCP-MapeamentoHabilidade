@@ -15,21 +15,19 @@ import java.util.List;
 public interface TecnologiaDAO {
 
     final String INSERT_TECNOLOGIA
-            = "INSET INTO `Tecnologia`"
+            = "INSERT INTO `Tecnologia`"
             + "("
-            + " `idTecnologia`,"
             + " `nome`,"
-            + "`ativo`,"
-            + ") VALUES (?,?,?,?)";
+            + "`ativo`"
+            + ") VALUES (?,1)";
 
     final String UPDATE_TECNOLOGIA
             = "UPDATE `Tecnologia`"
             + "SET"
-            + " `idTecnologia` = ?,"
             + " `nome` = ?,"
-            + " `ativo` = ?,"
+            + " `ativo` = ? "
             + "WHERE"
-            + " `idAtendimento` = ?";
+            + " `idTecnologia` = ?;";
     final String DELETE_TECNOLOGIA
             = "UPDATE `Tecnologia` "
             + "SET `ativo` = 0 "
@@ -38,7 +36,7 @@ public interface TecnologiaDAO {
     final String SELECT_TECNOLOGIA
             = "SELECT `Tecnologia`.`idTecnologia`, "
             + "    `Tecnologia`.`nome`,"
-            + "    `Tecnologia`.`ativo`, "
+            + "    `Tecnologia`.`ativo` "
             + "FROM `Tecnologia` "
             + "WHERE "
             + " idTecnologia = ? ";
@@ -46,7 +44,9 @@ public interface TecnologiaDAO {
              = "SELECT `Tecnologia`.`idTecnologia`, "
             + "    `Tecnologia`.`nome`, "
             + "    `Tecnologia`.`ativo` "
-            + "FROM `Tecnologia` ";
+            + "FROM `Tecnologia` "
+            + "WHERE "
+            + " ativo = 1 ";
 
     public boolean insert(Tecnologia tec);
 
