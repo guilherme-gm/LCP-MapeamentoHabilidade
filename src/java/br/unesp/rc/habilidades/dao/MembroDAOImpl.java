@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +28,7 @@ public class MembroDAOImpl implements MembroDAO {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         boolean ret = true;
-        
+
         if (con == null) {
             return false;
         }
@@ -39,14 +41,14 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setString(2, membro.getAcesso().getSenha());
             pstmt.executeQuery();
             rs = pstmt.getGeneratedKeys();
-            
+
             if (!rs.next()) {
                 throw new Exception("Nao foi possível inserir Acesso.");
             }
-            
+
             long idAcesso = rs.getLong(1);
             membro.getAcesso().setIdAcesso(idAcesso);
-            
+
             pstmt.close();
             pstmt = con.prepareStatement(INSERT_MEMBRO, PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, membro.getNome());
@@ -56,14 +58,14 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setBoolean(5, membro.isAtivo());
             pstmt.setLong(6, idAcesso);
             pstmt.setInt(7, membro.getCargo().getIdCargo());
-            
+
             pstmt.executeQuery();
             rs = pstmt.getGeneratedKeys();
-            
+
             if (!rs.next()) {
                 throw new Exception("Nao foi possível inserir Acesso.");
             }
-            
+
             long idMembro = rs.getInt(1);
             membro.setIdMembro(idMembro);
         } catch (Exception ex) {
@@ -86,7 +88,7 @@ public class MembroDAOImpl implements MembroDAO {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         boolean ret = true;
-        
+
         if (con == null) {
             return false;
         }
@@ -112,7 +114,7 @@ public class MembroDAOImpl implements MembroDAO {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         boolean ret = true;
-        
+
         if (con == null) {
             return false;
         }
@@ -129,7 +131,7 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setInt(6, membro.getCargo().getIdCargo());
             pstmt.setString(7, membro.getAcesso().getSenha());
             pstmt.setLong(8, membro.getIdMembro());
-            
+
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             ret = false;
@@ -160,7 +162,7 @@ public class MembroDAOImpl implements MembroDAO {
 
             if (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
-                
+
                 membro = new Membro();
                 membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
                 membro.setDataContratacao(rs.getDate("dataContratacao"));
@@ -200,7 +202,7 @@ public class MembroDAOImpl implements MembroDAO {
 
             if (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
-                
+
                 membro = new Membro();
                 membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
                 membro.setDataContratacao(rs.getDate("dataContratacao"));
@@ -219,6 +221,47 @@ public class MembroDAOImpl implements MembroDAO {
         }
 
         return membro;
+    }
+
+    @Override
+    public List<Membro> select() {
+        List<Membro> membros = new ArrayList<>();
+        Connection con = FabricaConexao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+
+        if (con == null) {
+            return null;
+        }
+
+        try {
+            pstmt = con.prepareStatement(SELECT_ALL);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                CargoDAO cargoDao = new CargoDAOImpl();
+
+                Membro membro = new Membro();
+                membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
+                membro.setDataContratacao(rs.getDate("dataContratacao"));
+                membro.setEmail(rs.getString("email"));
+                membro.setIdMembro(rs.getLong("idMembro"));
+                membro.setNome(rs.getString("nome"));
+                membro.setAtivo(rs.getBoolean("ativo"));
+                //membro.setProjeto(projeto);
+                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTelefone(rs.getString("telefone"));
+
+                membros.add(membro);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.close(con, pstmt, rs);
+        }
+
+        return membros;
     }
 
 }
