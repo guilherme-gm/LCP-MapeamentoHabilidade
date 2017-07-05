@@ -76,6 +76,9 @@ public interface MembroDAO {
             "WHERE " +
             "   `Membro`.`idMembro` = ?;";
     
+    //final String SELECT_ALL = ""; a fazer
+            
+    
     final String DELETE_MEMBRO =
             "UPDATE `Membro` SET `ativo` = 0 WHERE `idMembro` = ?;";
     
