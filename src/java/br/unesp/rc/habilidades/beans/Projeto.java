@@ -106,5 +106,17 @@ public class Projeto {
     public void delTecnologia(Tecnologia tecnologia) {
         this.tecnologia.remove(tecnologia);
     }
+    
+    public boolean hasMembro(Membro membro) {
+        return this.membro.contains(membro);
+    }
+    
+    public void addMembro(Membro membro) {
+        this.membro.add(membro);
+    }
+    
+    public void delMembro(Membro membro) {
+        this.membro.remove(membro);
+    }
 
 }

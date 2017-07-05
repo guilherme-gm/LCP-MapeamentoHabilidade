@@ -202,6 +202,7 @@ public class MembroDAOImpl implements MembroDAO {
 
             if (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
+                TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
 
                 membro = new Membro();
                 membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
@@ -210,8 +211,7 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setIdMembro(rs.getLong("idMembro"));
                 membro.setNome(rs.getString("nome"));
                 membro.setAtivo(rs.getBoolean("ativo"));
-                //membro.setProjeto(projeto);
-                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
             }
         } catch (SQLException ex) {

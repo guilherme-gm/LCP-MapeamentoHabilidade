@@ -38,10 +38,10 @@ public interface TecnologiaDAO {
     final String SELECT_TECNOLOGIA
             = "SELECT `Tecnologia`.`idTecnologia`, "
             + "    `Tecnologia`.`nome`,"
-            + "    `Tecnologia`.`ativo`, "
+            + "    `Tecnologia`.`ativo` "
             + "FROM `Tecnologia` "
             + "WHERE "
-            + " idTecnologia = ? ";
+            + " `Tecnologia`.`idTecnologia` = ?;";
     final String SELECT_ALL
              = "SELECT `Tecnologia`.`idTecnologia`, "
             + "    `Tecnologia`.`nome`, "

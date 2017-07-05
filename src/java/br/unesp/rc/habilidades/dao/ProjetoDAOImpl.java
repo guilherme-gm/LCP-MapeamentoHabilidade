@@ -46,7 +46,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             pstmt.setDate(3, projeto.getDataInicio());
             pstmt.setDate(4, projeto.getDataFim());
             pstmt.setString(5, projeto.getStatus().toString());
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (!rs.next()) {
@@ -64,7 +64,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             for (Membro membro : projeto.getMembro()) {
                 pstmt.setLong(1, membro.getIdMembro());
                 pstmt.setLong(2, projeto.getIdProjeto());
-                pstmt.executeQuery();
+                pstmt.executeUpdate();
             }
 
             pstmt.close();
@@ -75,13 +75,14 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             for (Tecnologia tecnologia : projeto.getTecnologia()) {
                 pstmt.setLong(1, projeto.getIdProjeto());
                 pstmt.setLong(2, tecnologia.getIdTecnologia());
-                pstmt.executeQuery();
+                pstmt.executeUpdate();
             }
 
             pstmt.close();
 
             con.commit();
         } catch (Exception ex) {
+            System.out.println("Erro ao inserir: " + ex.getMessage());
             try {
                 con.rollback();
             } catch (SQLException ex1) {
@@ -122,7 +123,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             pstmt.setDate(4, projeto.getDataFim());
             pstmt.setString(5, projeto.getStatus().toString());
             pstmt.setLong(6, projeto.getIdProjeto());
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             pstmt.close();
 
             // Atualiza membros no projeto
@@ -136,7 +137,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             for (Membro membro : projeto.getMembro()) {
                 pstmt.setLong(1, membro.getIdMembro());
                 pstmt.setLong(2, projeto.getIdProjeto());
-                pstmt.executeQuery();
+                pstmt.executeUpdate();
             }
 
             pstmt.close();
@@ -152,13 +153,14 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             for (Tecnologia tecnologia : projeto.getTecnologia()) {
                 pstmt.setLong(1, projeto.getIdProjeto());
                 pstmt.setLong(2, tecnologia.getIdTecnologia());
-                pstmt.executeQuery();
+                pstmt.executeUpdate();
             }
 
             pstmt.close();
 
             con.commit();
         } catch (Exception ex) {
+            System.out.println("Erro ao atualizar: " + ex.getMessage());
             try {
                 con.rollback();
             } catch (SQLException ex1) {
@@ -194,11 +196,11 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 projeto.setNome(rs.getString("nome"));
                 projeto.setDescricao(rs.getString("descricao"));
                 projeto.setDataInicio(rs.getDate("dataInicio"));
-                projeto.setDataFim(rs.getDate("projetoFim"));
+                projeto.setDataFim(rs.getDate("dataFim"));
                 projeto.setStatus(StatusProjeto.valueOf(rs.getString("status")));
                 projeto.setMembro(this.selectMembros(projeto.getIdProjeto()));
                 projeto.setTecnologia(this.selectTecnologias(projeto.getIdProjeto()));
-                
+
                 projetos.add(projeto);
             }
         } catch (SQLException ex) {
@@ -238,7 +240,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
 
         return membros;
     }
-    
+
     private List<Tecnologia> selectTecnologias(long projetoId) {
         List<Tecnologia> tecnologias = new ArrayList<>();
         Connection con = FabricaConexao.getConnection();
@@ -267,7 +269,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
 
         return tecnologias;
     }
-    
+
     @Override
     public Projeto select(long projetoId) {
         Connection con = FabricaConexao.getConnection();
@@ -303,6 +305,61 @@ public class ProjetoDAOImpl implements ProjetoDAO {
         }
 
         return projeto;
+    }
+
+    @Override
+    public List<Membro> select_membros(List<Tecnologia> tecnologias) {
+        List<Membro> membros = new ArrayList<>();
+        Connection con = FabricaConexao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+
+        if (con == null) {
+            return null;
+        }
+
+        try {
+            pstmt = con.prepareStatement(SELECT_MEMBRO_RANK);
+            int i = 1, j = 0;
+
+            while (j < 11 && j < tecnologias.size()) {
+                pstmt.setLong(i, tecnologias.get(j).getIdTecnologia());
+                ++i;
+                ++j;
+            }
+            j -= 1;
+            while (i < 11) {
+                pstmt.setLong(i, tecnologias.get(j).getIdTecnologia());
+                ++i;
+            }
+            pstmt.setInt(i, tecnologias.size());
+            ++i;
+
+            j = 0;
+            while (j < 10 && j < tecnologias.size()) {
+                pstmt.setLong(i, tecnologias.get(j).getIdTecnologia());
+                ++i;
+                ++j;
+            }
+            j -= 1;
+            while (i < 22) {
+                pstmt.setLong(i, tecnologias.get(j).getIdTecnologia());
+                ++i;
+            }
+
+            rs = pstmt.executeQuery();
+
+            MembroDAO membroDao = new MembroDAOImpl();
+            while (rs.next()) {
+                membros.add(membroDao.select(rs.getLong("a.Membro_idMembro")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            FabricaConexao.close(con, pstmt, rs);
+        }
+
+        return membros;
     }
 
 }
