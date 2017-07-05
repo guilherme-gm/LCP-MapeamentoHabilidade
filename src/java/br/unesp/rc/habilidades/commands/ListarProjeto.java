@@ -11,6 +11,7 @@ import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,6 +24,11 @@ public class ListarProjeto implements ICommand {
         
         ProjetoDAO projetoDao = new ProjetoDAOImpl();
         List<Projeto> projetos = projetoDao.select();
+        
+        HttpSession session = request.getSession();
+        if (session != null) {
+            session.setAttribute("projeto", null);
+        }
         
         request.setAttribute("projetos", projetos);
         request.setAttribute("menu", "adminproj");

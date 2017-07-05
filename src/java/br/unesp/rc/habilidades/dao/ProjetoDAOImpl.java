@@ -7,6 +7,7 @@ package br.unesp.rc.habilidades.dao;
 
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Projeto;
+import br.unesp.rc.habilidades.beans.StatusProjeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
@@ -44,7 +45,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             pstmt.setString(2, projeto.getDescricao());
             pstmt.setDate(3, projeto.getDataInicio());
             pstmt.setDate(4, projeto.getDataFim());
-            pstmt.setString(5, projeto.getStatus());
+            pstmt.setString(5, projeto.getStatus().toString());
             pstmt.executeQuery();
             rs = pstmt.getGeneratedKeys();
 
@@ -119,7 +120,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             pstmt.setString(2, projeto.getDescricao());
             pstmt.setDate(3, projeto.getDataInicio());
             pstmt.setDate(4, projeto.getDataFim());
-            pstmt.setString(5, projeto.getStatus());
+            pstmt.setString(5, projeto.getStatus().toString());
             pstmt.setLong(6, projeto.getIdProjeto());
             pstmt.executeQuery();
             pstmt.close();
@@ -194,7 +195,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 projeto.setDescricao(rs.getString("descricao"));
                 projeto.setDataInicio(rs.getDate("dataInicio"));
                 projeto.setDataFim(rs.getDate("projetoFim"));
-                projeto.setStatus(rs.getString("status"));
+                projeto.setStatus(StatusProjeto.valueOf(rs.getString("status")));
                 projeto.setMembro(this.selectMembros(projeto.getIdProjeto()));
                 projeto.setTecnologia(this.selectTecnologias(projeto.getIdProjeto()));
                 
@@ -291,7 +292,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 projeto.setDescricao(rs.getString("descricao"));
                 projeto.setDataInicio(rs.getDate("dataInicio"));
                 projeto.setDataFim(rs.getDate("projetoFim"));
-                projeto.setStatus(rs.getString("status"));
+                projeto.setStatus(StatusProjeto.valueOf(rs.getString("status")));
                 projeto.setMembro(this.selectMembros(projetoId));
                 projeto.setTecnologia(this.selectTecnologias(projetoId));
             }

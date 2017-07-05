@@ -7,6 +7,8 @@ package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
+import br.unesp.rc.habilidades.dao.TecnologiaDAO;
+import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +26,11 @@ public class DoRemoverTecnologiaProjeto implements ICommand {
         
         HttpSession session = request.getSession();
         Projeto projeto = (Projeto) session.getAttribute("projeto");
-        List<Tecnologia> tecnologias = (List<Tecnologia>) session.getAttribute("tecnologias");
+        
+        TecnologiaDAO tecnologiaDao = new TecnologiaDAOImpl();
+        List<Tecnologia> tecnologias = tecnologiaDao.select();
+        
+        request.setAttribute("tecnologias", tecnologias);
         
         int i = 0;
         while (i < tecnologias.size() && tecnologias.get(i).getIdTecnologia() != tecnologiaId) {

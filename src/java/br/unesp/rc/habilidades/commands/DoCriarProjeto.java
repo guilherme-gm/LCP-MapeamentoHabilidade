@@ -6,11 +6,8 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Projeto;
-import br.unesp.rc.habilidades.beans.Tecnologia;
-import br.unesp.rc.habilidades.dao.TecnologiaDAO;
-import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
+import br.unesp.rc.habilidades.beans.StatusProjeto;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +26,7 @@ public class DoCriarProjeto implements ICommand {
         Projeto projeto = new Projeto();
         try {
             BeanUtils.populate(projeto, request.getParameterMap());
+            projeto.setStatus(StatusProjeto.valueOf(request.getParameter("pstatus")));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(DoCriarProjeto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
@@ -37,11 +35,6 @@ public class DoCriarProjeto implements ICommand {
         
         HttpSession session = request.getSession(true);
         session.setAttribute("projeto", projeto);
-        
-        TecnologiaDAO tecnologiaDao = new TecnologiaDAOImpl();
-        List<Tecnologia> tecnologias = tecnologiaDao.select();
-        
-        session.setAttribute("tecnologias", tecnologias);
         
         request.setAttribute("menu", "adminproj");
 

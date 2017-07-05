@@ -5,6 +5,7 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.StatusProjeto;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ public class CriarProjetos implements ICommand{
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("menu", "adminproj");
+        request.setAttribute("status", StatusProjeto.values());
         return new CommandResult("criar_projetos");
     }
     

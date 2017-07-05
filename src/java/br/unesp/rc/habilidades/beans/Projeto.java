@@ -16,7 +16,7 @@ public class Projeto {
 
     private Date dataFim;
 
-    private String status;
+    private StatusProjeto status;
 
     private List<Membro> membro;
 
@@ -71,11 +71,11 @@ public class Projeto {
         this.dataFim = dataFim;
     }
 
-    public String getStatus() {
+    public StatusProjeto getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusProjeto status) {
         this.status = status;
     }
 

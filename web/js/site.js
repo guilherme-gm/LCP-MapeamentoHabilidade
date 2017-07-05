@@ -17,3 +17,7 @@ function remover_membro_click(id) {
     $("#idMembro").val(id);
     $("#remover").modal(); 
 }
+
+function goBack() {
+    window.history.back();
+}

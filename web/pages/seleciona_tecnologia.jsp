@@ -38,8 +38,8 @@
     </table>
 
     <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Pr&oacute;ximo</button>
+        <a href="<c:url value="SelecionaMembro"/>" class="btn btn-default">Pr&oacute;ximo</a>
         &nbsp;&nbsp;
-        <button type="submit" class="btn btn-default">Voltar</button>
+        <a href="<c:url value="CriarProjetos"/>" class="btn btn-default">Voltar</a>
     </div>
 </div>
