@@ -6,19 +6,23 @@
 package br.unesp.rc.habilidades.servlet;
 
 import br.unesp.rc.habilidades.commands.CriarCargos;
+import br.unesp.rc.habilidades.commands.CriarHabilidadesMembro;
 import br.unesp.rc.habilidades.commands.CriarMembro;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoAdicionarTecnologiaProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarCargo;
+import br.unesp.rc.habilidades.commands.DoCriarHabilidadesMembro;
 import br.unesp.rc.habilidades.commands.DoCriarProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoEditarCargo;
 import br.unesp.rc.habilidades.commands.DoEditarTecnologia;
+import br.unesp.rc.habilidades.commands.DoEditarTecnologiaMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
 import br.unesp.rc.habilidades.commands.DoExcluirMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
+import br.unesp.rc.habilidades.commands.DoExcluirTecnologiaMembro;
 import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.DoLogout;
 import br.unesp.rc.habilidades.commands.DoRemoverTecnologiaProjeto;
@@ -54,9 +58,22 @@ public class CommandHelper {
 
             case "/EditarUsuario":
                 return new EditarUsuario();
+                
             case "/ListarHabilidadesMembro":
                 return new ListarHabilidadesMembro();
 
+            case "/CriarHabilidadesMembro":
+                return new CriarHabilidadesMembro();
+                
+            case "/DoCriarHabilidadesMembro":
+                return new DoCriarHabilidadesMembro();
+                
+            case "/DoEditarTecnologiaMembro":
+                return new DoEditarTecnologiaMembro();
+            
+            case "/DoExcluirTecnologiaMembro":
+                return new DoExcluirTecnologiaMembro();
+                
             case "/doLogin":
                 return new DoLogin();
 

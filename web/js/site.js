@@ -18,6 +18,14 @@ function remover_membro_click(id) {
     $("#remover").modal(); 
 }
 
-function goBack() {
-    window.history.back();
+function remover_tecmembro_click(id) {
+    $("#idTecno").val(id);
+    $("#remover").modal(); 
+}
+
+function editar_tecmembro_click(id, nome, nivel) {
+    $("#idTecnologiaMembro").val(id);
+    $("#nomeTecno").text(nome);
+    $("#nivel").val(nivel);
+    $("#editar").modal();
 }
