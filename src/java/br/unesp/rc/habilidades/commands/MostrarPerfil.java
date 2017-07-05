@@ -19,10 +19,11 @@ public class MostrarPerfil implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        MembroDAO membroDao = new MembroDAOImpl();
-//        Membro membro= membroDao.select(membro.idMembro);
+    //    MembroDAO membroDao = new MembroDAOImpl();
+   //     Membro membro = new Membro();
+    //    membro = membroDao.select(membro.getIdMembro());
             
-//       request.setAttribute("membro", membro);       
+    //    request.setAttribute("membro", membro);       
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("listar_membro");
     }
