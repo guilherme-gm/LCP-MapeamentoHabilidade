@@ -25,17 +25,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="tec" items = "${tecnologias}">
                     <tr>
-                        <td>PHP</td>
+                        <td><c:out value="${tec.nome}"></c:out></td>
                         <td>
-                            <a href="<c:url value="EditarTecnologia?id=1"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
-                            <a onclick="remover_tecnologia_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="<c:url value="EditarTecnologia?id=${tec.idTecnologia}"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                            <a onclick="remover_tecnologia_click(<c:out value="${tec.idTecnologia}"></c:out>)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Java</td>
-                        <td><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"/></td>
-                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

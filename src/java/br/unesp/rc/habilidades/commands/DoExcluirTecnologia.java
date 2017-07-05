@@ -5,6 +5,8 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.dao.TecnologiaDAO;
+import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +18,12 @@ public class DoExcluirTecnologia implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        int id = Integer.parseInt(request.getParameter("idTecnologia"));
+      
+        TecnologiaDAO tecDao = new TecnologiaDAOImpl();
+        tecDao.remove(id);
+      
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Tecnologia excluída com sucesso");
         request.setAttribute("menu", "admintec");
