@@ -9,6 +9,7 @@ import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.beans.StatusProjeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
+import static br.unesp.rc.habilidades.dao.CargoDAO.DELETE;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,7 +99,27 @@ public class ProjetoDAOImpl implements ProjetoDAO {
 
     @Override
     public boolean remove(long projetoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = null;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        boolean ret = true;
+
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(DELETE);
+                pstm.setLong(1, projetoId);
+                pstm.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao deletar: " + ex.getMessage());
+                ret = false;
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+        return ret;
     }
 
     @Override

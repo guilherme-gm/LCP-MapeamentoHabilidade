@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer">
                 <form method="POST" action="<c:url value="/DoExcluirProjeto"></c:url>">
-                    <input type="hidden" id="idTecnologia" name="idProjeto"/>
+                    <input type="hidden" id="idProjeto" name="idProjeto"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Excluir</button>
                 </form> 

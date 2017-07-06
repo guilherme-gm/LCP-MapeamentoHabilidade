@@ -41,7 +41,7 @@ public interface ProjetoDAO {
             = "DELETE FROM `Projeto_has_Tecnologia` WHERE `Projeto_idProjeto` = ?;";
 
     public final String DELETE
-            = "UPDATE `Projeto` SET `status` = 'CANCELADO'";
+            = "DELETE FROM `Projeto` WHERE `idProjeto` = ?";
 
     public final String UPDATE
             = "UPDATE `Projeto` "

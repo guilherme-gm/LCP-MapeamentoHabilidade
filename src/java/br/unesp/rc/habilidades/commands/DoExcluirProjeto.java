@@ -5,6 +5,10 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.dao.CargoDAO;
+import br.unesp.rc.habilidades.dao.CargoDAOImpl;
+import br.unesp.rc.habilidades.dao.ProjetoDAO;
+import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,9 +20,14 @@ public class DoExcluirProjeto implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        long id = Integer.parseInt(request.getParameter("idProjeto"));
+        
+        ProjetoDAO projetoDao = new ProjetoDAOImpl();
+        projetoDao.remove(id);
+        
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Projeto excluído com sucesso");
-        request.setAttribute("menu", "lprojeto");
+        request.setAttribute("menu", "adminproj");
         return new CommandResult(request, "ListarProjeto");
     }
     
