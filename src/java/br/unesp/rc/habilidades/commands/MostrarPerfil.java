@@ -16,18 +16,26 @@ import javax.servlet.http.HttpSession;
  *
  * @author Raphael
  */
-public class MostrarPerfil implements ICommand{
+public class MostrarPerfil implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Membro membro = (Membro) session.getAttribute("membro");              
-        
-        MembroDAO membroDao = new MembroDAOImpl();
-        membro = membroDao.select(membro.getIdMembro());
-            
-        request.setAttribute("membro", membro);       
-        request.setAttribute("menu", "adminmembro");
-        return new CommandResult("mostrar_perfil");
-    }   
+        Membro membro;
+
+        if (request.getParameter("id") == null) {
+            HttpSession session = request.getSession(true);
+            membro = (Membro) session.getAttribute("membro");
+
+            request.setAttribute("menu", "home");
+            MembroDAO membroDao = new MembroDAOImpl();
+            membro = membroDao.select(membro.getIdMembro());
+        } else {
+            MembroDAO membroDao = new MembroDAOImpl();
+            membro = membroDao.select(Long.parseLong(request.getParameter("id")));
+            request.setAttribute("menu", "adminmembro");
+        }
+
+        request.setAttribute("membro", membro);
+        return new CommandResult("perfil_usuario");
+    }
 }

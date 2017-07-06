@@ -38,12 +38,33 @@ public class Membro {
             erros.add("O nome deve ter menos de 50 caracteres");
         }
 
-        String formato = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}?";
-
-        if ((this.telefone == null) || (this.telefone.length() != 13) || (!this.telefone.matches(formato))) {
+        String formato = "(10)|\\([1-9][1-9]\\) ?[2-9][0-9]{3}-[0-9]{4}"; 
+        if ((this.telefone == null) || (!this.telefone.matches(formato))) {
             erros.add("Telefone inválido");
         }
-      
+                
+        if(this.email.indexOf("@") == -1 || this.email.indexOf(".") == -1){
+            erros.add("Email inválido");
+        }
+        
+        if(this.cargo == null){
+            erros.add("Cargo Inválido");
+        }
+        
+        try {
+            this.acesso.validate();
+        } catch (ValidateException ex) {
+                        
+            for (String erro : ex.getErros()) {
+                erros.add(erro);
+            }
+        }
+        
+        
+        
+        if (erros.size() > 0) {
+            throw new ValidateException(erros);
+        }
     }
 
     public boolean hasPermissao(Permissao permissao) {

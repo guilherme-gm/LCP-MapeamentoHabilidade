@@ -4,7 +4,11 @@
         <h1>Editar Membro</h1>
     </div>
 </div>
-
+<c:if test="${not empty msg}">
+    <div class="alert <c:out value="${msg_tipo}"></c:out>">
+        ${msg}
+    </div>
+</c:if>
 <div class ="row">
     <form method="POST" action="<c:url value="/DoEditarMembro"/> " class="form-horizontal">
         <input type="hidden" name="idMembro" value="<c:out value="${membro.idMembro}"/>"/><br />
@@ -35,7 +39,7 @@
             <div class="col-sm-4">
                 <select id="cargo" name="idCargo" class="form-control">
                     <c:forEach var="cargo" items="${Cargos}">
-                        <option value="<c:out value="${cargo.idCargo}"/>"><c:out value="${cargo.nome}"/></option>
+                        <option value="<c:out value="${cargo.idCargo}"/>" <c:if  test="${cargo.idCargo eq membro.cargo.idCargo}">selected="selected" </c:if>><c:out value="${cargo.nome}"/></option>
                     </c:forEach>
                 </select>
             </div>

@@ -22,7 +22,7 @@ public class Home implements ICommand {
         if (session != null) {
             Membro membro = (Membro) session.getAttribute("membro");
             if (membro != null) {
-                return new CommandResult(request, "Usuario");
+                return new CommandResult(request, "MostrarPerfil");
             }
         }
         request.setAttribute("menu", "home");
