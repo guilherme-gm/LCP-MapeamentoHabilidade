@@ -134,6 +134,8 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setLong(8, membro.getIdMembro());
 
             pstmt.executeUpdate();
+            
+            con.commit();
         } catch (SQLException ex) {
             ret = false;
         } finally {
