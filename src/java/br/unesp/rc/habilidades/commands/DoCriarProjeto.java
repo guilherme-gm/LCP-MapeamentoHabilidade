@@ -32,7 +32,7 @@ public class DoCriarProjeto implements ICommand {
         Projeto projeto = new Projeto();
         try {
             BeanUtils.populate(projeto, request.getParameterMap());
-            projeto.setStatus(StatusProjeto.valueOf(request.getParameter("pstatus")));
+            projeto.setStatus(StatusProjeto.EM_ANDAMENTO);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(DoCriarProjeto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {

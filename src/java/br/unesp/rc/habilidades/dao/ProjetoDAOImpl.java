@@ -9,13 +9,11 @@ import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.beans.StatusProjeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
-import static br.unesp.rc.habilidades.dao.CargoDAO.DELETE;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -409,7 +407,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
             }
         }
     }
-    
+
     @Override
     public void cancela(long projetoId) {
         Connection con = null;
@@ -433,6 +431,42 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 FabricaConexao.close(con, pstm, res);
             }
         }
+    }
+
+    @Override
+    public List<Projeto> selectProjetoMembro(Membro membro) {
+        List<Projeto> projetos = new ArrayList<>();
+        Connection con = FabricaConexao.getConnection();;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        boolean ret = true;
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(SELECT_BY_MEMBRO);
+                pstm.setLong(1, membro.getIdMembro());
+                ResultSet rs = pstm.executeQuery();
+
+                while (rs.next()) {
+                    Projeto projeto = new Projeto();
+                    projeto.setIdProjeto(rs.getLong("idProjeto"));
+                    projeto.setNome(rs.getString("nome"));
+                    projeto.setDescricao(rs.getString("descricao"));
+                    projeto.setDataInicio(rs.getDate("dataInicio"));
+                    projeto.setDataFim(rs.getDate("dataFim"));
+                    projeto.setStatus(StatusProjeto.valueOf(rs.getString("status")));
+
+                    projetos.add(projeto);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Erro ao carregar projetos do membro: " + ex.getMessage());
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+
+        return projetos;
     }
 
 }

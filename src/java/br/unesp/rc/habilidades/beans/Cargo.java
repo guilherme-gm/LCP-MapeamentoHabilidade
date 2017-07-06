@@ -22,11 +22,7 @@ public class Cargo {
         } else if (this.nome.length() >= 50) {
             erros.add("O nome deve ter menos de 50 caracteres");
         }
-        
-//        if (this.permissao == ) {
-//            erros.add("Pelo menos uma permissão deve ser definida");
-//        }
-        
+                
         if (erros.size() > 0) {
             throw new ValidateException(erros);
         }

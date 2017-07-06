@@ -44,6 +44,6 @@ public class DoEditarProjeto implements ICommand {
 
         request.setAttribute("menu", "adminproj");
 
-        return new CommandResult(request, "EditarSelecionaTecnologia");
+        return new CommandResult(request, "EditarSelecionaMembro");
     }
 }

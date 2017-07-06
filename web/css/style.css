@@ -124,13 +124,17 @@ span.tags
 }
 
 .prj-cancelado {
-    /*background-color: red;*/
+    background-color: rgba(255, 0, 0, 0.44);
 }
 
 .prj-concluido {
-    /*background-color: green;*/
+    background-color: rgba(0, 232, 0, 0.61);
 }
 
 .prj-em_andamento {
     
+}
+
+thead {
+    color: #337ab7;
 }

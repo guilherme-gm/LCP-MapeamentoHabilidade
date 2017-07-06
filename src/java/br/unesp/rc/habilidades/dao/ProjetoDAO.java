@@ -61,6 +61,15 @@ public interface ProjetoDAO {
             + "`Projeto`.`dataInicio`, `Projeto`.`dataFim`, `Projeto`.`status` "
             + "FROM `Projeto` "
             + "ORDER BY `Projeto`.`status` DESC";
+    
+    public final String SELECT_BY_MEMBRO
+            = "SELECT `Projeto`.`idProjeto`,`Projeto`.`nome`, `Projeto`.`descricao`, "
+            + "`Projeto`.`dataInicio`, `Projeto`.`dataFim`, `Projeto`.`status` "
+            + "FROM `Projeto` "
+            + "INNER JOIN `Membro_has_Projeto` "
+            + "ON `Membro_has_Projeto`.`Projeto_idProjeto` = `Projeto`.`idProjeto` "
+            + "WHERE `Membro_has_Projeto`.`Membro_idMembro` = ? "
+            + "ORDER BY `Projeto`.`status` DESC";
 
     public final String SELECT_MEMBROS
             = "SELECT `Membro_idMembro`, `Projeto_idProjeto` FROM `Membro_has_Projeto` WHERE `Projeto_idProjeto` = ?";
@@ -114,5 +123,7 @@ public interface ProjetoDAO {
     public void finaliza(long projetoId);
     
     public void cancela(long projetoId);
+    
+    public List<Projeto> selectProjetoMembro(Membro membro);
 
 }

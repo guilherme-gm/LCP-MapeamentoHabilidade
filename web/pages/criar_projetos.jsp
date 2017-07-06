@@ -13,41 +13,37 @@
         </div>
 
         <div class="form-group col-sm-12">
-            <label for="nome" class="col-sm-1 control-label">Nome</label>
+            <label for="nome" class="col-sm-2 control-label" style="text-align: left">Nome</label>
             <div class="col-sm-7">
-                <input class="form-control" type="text" name="nome" id="nome" placeholder="Nome" value="<c:out value="${projeto.nome}"/>" /> <br />
+                <input class="form-control" type="text" name="nome" id="Nome" placeholder="Nome" value="<c:out value="${projeto.nome}"/>" /> <br />
             </div>
         </div>
 
         <div class="form-group row col-sm-12">
-            <label for="dataInicio" class="col-sm-1 col-form-label">Data Inicio</label>
+            <label for="dataInicio" class="col-sm-2 col-form-label" style="text-align: left">Data Inicio</label>
             <div class="col-sm-3">
                 <input class="form-control" type="date" name="dataInicio" id="dataInicio" value="<c:out value="${projeto.dataInicio}"/>">
             </div>
         </div>
 
         <div class="form-group row col-sm-12">
-            <label for="dataFim" class="col-sm-1 col-form-label">Data Fim</label>
+            <label for="dataEntrega" class="col-sm-2 col-form-label" style="text-align: left">Data de Entrega</label>
             <div class="col-sm-3">
-                <input class="form-control" type="date" name="dataFim" id="dataFim" value="<c:out value="${projeto.dataFim}"/>">
+                <input class="form-control" type="date" name="dataFim" id="dataEntrega" value="<c:out value="${projeto.dataFim}"/>">
             </div>
         </div>
 
         <div class="form-group row col-sm-12">
-            <label for="descricao" class="col-sm-1 control-label">Descri&ccedil;&atilde;o:</label>
+            <label for="descricao" class="col-sm-2 control-label" style="text-align: left">Descri&ccedil;&atilde;o</label>
             <div class="col-sm-7">
                 <textarea class="form-control col-sm-4" rows="2" name="descricao" id="descricao"><c:out value="${projeto.descricao}"/></textarea>
             </div>
         </div>
 
         <div class=" row col-sm-12">
-            <label for="status" class="col-sm-1 control-label" placeholder="Status">Status</label>
+            <label class="col-sm-2">Status</label>
             <div class="col-sm-4">
-                <select class="form-control" name="pstatus" id="status">
-                    <c:forEach items="${status}" var="s">
-                        <option value="<c:out value="${s}"/>" <c:if test="${projeto.status eq s}">selected="selected"</c:if>><c:out value="${s.displayName}"/></option>
-                    </c:forEach>
-                </select>
+                 <label style="text-align: center" > Em andamento</label>
             </div>
         </div>
         <div class="row col-sm-12"> 
