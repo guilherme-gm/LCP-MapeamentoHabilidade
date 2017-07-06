@@ -40,10 +40,9 @@
             <label for="cargo" class="col-sm-2 control-label">Cargo</label>
             <div class="col-sm-4">
                 <select id="cargo" nome="cargo" class="form-control">
-                    <option value="1">Diretor de RH</option>
-                    <option value="2">Diretor de Projetos</option>
-                    <option value="3">Gerente</option>
-                    <option value="4">Assessor de RH</option>
+                    <c:forEach var="cargo" items="${Cargos}">
+                        <option value="<c:out value="${cargo.idCargo}"/>"><c:out value="${cargo.nome}"/></option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
