@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface TecnologiaMembroDAO {
 
-    final String INSERT = "insert into TecnologiaMembro (nivel, Membro_idMembro, Tecnologia_idTecnologia)"
+    final String INSERT = "insert into TecnologiaMembro (nivel, Membro_idMembro, Tecnologia_idTecnologia) "
             + "values (?,?,?);";
     final String UPDATE = "update TecnologiaMembro "
             + "set nivel  = ? where idTecnologiaMembro = ?;";

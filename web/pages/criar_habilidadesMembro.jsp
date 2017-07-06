@@ -16,7 +16,10 @@
             <label for="tecnologia" class="col-sm-2 control-label">Tecnologia</label>
             <div class="col-sm-4">
                 <select class="form-control" name="tecnologia" id="tecnologia">
-                    <option value="1">Java</option>
+                    <c:forEach var="tec" items="${tecnologia}">
+                        <option value="<c:out value="${tec.idTecnologia}"/>">   <c:out value ="${tec.nome}" /></option>
+                        
+                    </c:forEach>
                 </select>
             </div>
         </div>

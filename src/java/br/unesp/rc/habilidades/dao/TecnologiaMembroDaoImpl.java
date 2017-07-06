@@ -71,6 +71,7 @@ public class TecnologiaMembroDaoImpl implements TecnologiaMembroDAO {
             try {
                 pstm = con.prepareStatement(UPDATE);
                 pstm.setShort(1, tecnologiaMembro.getNivel());
+                pstm.setLong(2, tecnologiaMembro.getIdTecnologiaMembro());
 
                 ret = pstm.executeUpdate() > 0;
             } catch (SQLException ex) {
@@ -97,6 +98,7 @@ public class TecnologiaMembroDaoImpl implements TecnologiaMembroDAO {
             try {
                 pstm = con.prepareStatement(DELETE);
                 pstm.setLong(1, idTecnologiaMembro);
+                pstm.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("Erro ao deletar: " + ex.getMessage());
                 ret = false;
