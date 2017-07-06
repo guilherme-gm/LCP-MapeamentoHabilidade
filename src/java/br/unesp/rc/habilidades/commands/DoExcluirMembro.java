@@ -24,16 +24,13 @@ public class DoExcluirMembro implements ICommand {
         if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_MEMBROS))
         {
              return new CommandResult("forbidden");
-        }
+        }        
         
-        System.out.println("HELLO WORLD");
-        int id = Integer.parseInt(request.getParameter("idMembro"));
-        
-        System.out.println("HELLO WORLD" + id);
+        int id = Integer.parseInt(request.getParameter("idMembro"));        
+       
         MembroDAO membroDao = new MembroDAOImpl();
         membroDao.remove(id);
-        System.out.println("HELLO WORLD");     
-        
+                
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Membro excluído com sucesso");
         request.setAttribute("menu", "adminmembro");

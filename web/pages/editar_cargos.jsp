@@ -6,7 +6,6 @@
 </div>
 
 <div class="row">
-
     <form class="form-horizontal" method="POST" action="<c:url value="/DoEditarCargo"/>">
         <div class="row"> 
             &nbsp;&nbsp;

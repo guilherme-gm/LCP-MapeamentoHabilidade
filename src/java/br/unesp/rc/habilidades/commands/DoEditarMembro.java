@@ -5,8 +5,11 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Permissao;
+import br.unesp.rc.habilidades.dao.CargoDAO;
+import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
@@ -31,7 +34,9 @@ public class DoEditarMembro implements ICommand{
              return new CommandResult("forbidden");
         }
         
-        Membro membro = new Membro();
+        MembroDAO membroDao = new MembroDAOImpl();
+        Membro membro = membroDao.select(Long.parseLong(request.getParameter("idMembro")));
+        
         try {
             BeanUtils.populate(membro, request.getParameterMap());
         } catch (IllegalAccessException ex) {
@@ -40,7 +45,11 @@ public class DoEditarMembro implements ICommand{
             Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        MembroDAO membroDao = new MembroDAOImpl();
+        CargoDAO cargoDao = new CargoDAOImpl();
+        int idCargo = Integer.parseInt(request.getParameter("idCargo"));
+        Cargo cargo = cargoDao.select(idCargo);
+        membro.setCargo(cargo);
+       
         membroDao.update(membro);
         
         request.setAttribute("msg_tipo", "alert-success");
