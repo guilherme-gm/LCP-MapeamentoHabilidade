@@ -5,10 +5,12 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
 import br.unesp.rc.habilidades.dao.TecnologiaDAO;
 import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,11 @@ public class DoRemoverTecnologiaProjeto implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_HABILIDADES) || (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)))
+        {
+             return new CommandResult("forbidden");
+        }
+        
         int tecnologiaId = Integer.parseInt(request.getParameter("id"));
         
         HttpSession session = request.getSession();

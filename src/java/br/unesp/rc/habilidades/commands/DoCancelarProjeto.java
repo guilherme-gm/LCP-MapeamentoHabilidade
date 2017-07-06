@@ -5,8 +5,10 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.ProjetoDAO;
 import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +20,11 @@ public class DoCancelarProjeto implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)) {
+            return new CommandResult("forbidden");
+        }
+        
         long id = Long.parseLong(request.getParameter("idProjeto"));
         
         ProjetoDAO projetoDao = new ProjetoDAOImpl();

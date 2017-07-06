@@ -6,8 +6,10 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +25,12 @@ public class DoEditarMembro implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_MEMBROS))
+        {
+             return new CommandResult("forbidden");
+        }
+        
         Membro membro = new Membro();
         try {
             BeanUtils.populate(membro, request.getParameterMap());

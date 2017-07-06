@@ -6,9 +6,11 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.dao.ProjetoDAO;
 import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -26,6 +28,11 @@ public class SelecionaMembro implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_MEMBROS) || (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)))
+        {
+             return new CommandResult("forbidden");
+        }
         HttpSession session = request.getSession();
         Projeto projeto = (Projeto) session.getAttribute("projeto");
 
