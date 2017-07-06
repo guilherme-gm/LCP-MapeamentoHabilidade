@@ -29,7 +29,7 @@
         <div class="form-group row col-sm-12">
             <label for="dataFim" class="col-sm-1 col-form-label">Data Fim</label>
             <div class="col-sm-3">
-                <input class="form-control" type="date" name=dataFim" id="dataFim"  value="<c:out value="${projeto.dataFim}"/>">
+                <input class="form-control" type="date" name="dataFim" id="dataFim" value="<c:out value="${projeto.dataFim}"/>">
             </div>
         </div>
 

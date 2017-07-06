@@ -10,6 +10,7 @@ import br.unesp.rc.habilidades.commands.CriarHabilidadesMembro;
 import br.unesp.rc.habilidades.commands.CriarMembro;
 import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
+import br.unesp.rc.habilidades.commands.DoAdicionarMembroProjeto;
 import br.unesp.rc.habilidades.commands.DoAdicionarTecnologiaProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarCargo;
 import br.unesp.rc.habilidades.commands.DoCriarHabilidadesMembro;
@@ -25,7 +26,9 @@ import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologiaMembro;
 import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.DoLogout;
+import br.unesp.rc.habilidades.commands.DoRemoverMembroProjeto;
 import br.unesp.rc.habilidades.commands.DoRemoverTecnologiaProjeto;
+import br.unesp.rc.habilidades.commands.DoSalvarProjeto;
 import br.unesp.rc.habilidades.commands.EditarCargo;
 import br.unesp.rc.habilidades.commands.EditarTecnologia;
 import br.unesp.rc.habilidades.commands.EditarUsuario;
@@ -122,12 +125,6 @@ public class CommandHelper {
             case "/DoCriarProjeto":
                 return new DoCriarProjeto();
 
-            case "/DoAdicionarTecnologiaProjeto":
-                return new DoAdicionarTecnologiaProjeto();
-               
-            case "/DoRemoverTecnologiaProjeto":
-                return new DoRemoverTecnologiaProjeto();
-
             case "/ListarTecnologia":
                 return new ListarTecnologia();
 
@@ -145,9 +142,25 @@ public class CommandHelper {
 
             case "/SelecionaMembro":
                 return new SelecionaMembro();
-                
+
+            case "/DoAdicionarMembroProjeto":
+                return new DoAdicionarMembroProjeto();
+
+            case "/DoRemoverMembroProjeto":
+                return new DoRemoverMembroProjeto();
+
             case "/SelecionaTecnologia":
                 return new SelecionaTecnologia();
+
+            case "/DoAdicionarTecnologiaProjeto":
+                return new DoAdicionarTecnologiaProjeto();
+
+            case "/DoRemoverTecnologiaProjeto":
+                return new DoRemoverTecnologiaProjeto();
+                
+            case "/DoSalvarProjeto":
+                return new DoSalvarProjeto();
+
         }
         return new NotFound();
     }

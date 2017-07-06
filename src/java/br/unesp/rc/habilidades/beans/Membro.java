@@ -1,6 +1,8 @@
 package br.unesp.rc.habilidades.beans;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Objects;
 
 public class Membro {
 
@@ -20,9 +22,9 @@ public class Membro {
 
     private boolean ativo;
 
-    private TecnologiaMembro[] tecnologiaMembro;
-
-    private Projeto[] projeto;
+    private List<TecnologiaMembro> tecnologiaMembro;
+    
+    private int rank;
 
     public void validate() {
 
@@ -88,20 +90,12 @@ public class Membro {
         this.cargo = cargo;
     }
 
-    public TecnologiaMembro[] getTecnologiaMembro() {
+    public List<TecnologiaMembro> getTecnologiaMembro() {
         return tecnologiaMembro;
     }
 
-    public void setTecnologiaMembro(TecnologiaMembro[] tecnologiaMembro) {
+    public void setTecnologiaMembro(List<TecnologiaMembro> tecnologiaMembro) {
         this.tecnologiaMembro = tecnologiaMembro;
-    }
-
-    public Projeto[] getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto[] projeto) {
-        this.projeto = projeto;
     }
 
     public boolean isAtivo() {
@@ -110,6 +104,57 @@ public class Membro {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+    
+    public void calculaRank(List<Tecnologia> tecnologias) throws Exception {
+        this.rank = 0;
+        for (Tecnologia tecnologia : tecnologias) {
+            int i = 0;
+            while (i < this.tecnologiaMembro.size() && this.tecnologiaMembro.get(i).getTecnologia().getIdTecnologia() != tecnologia.getIdTecnologia())
+                i++;
+            
+            if (i == this.tecnologiaMembro.size()) {
+                throw new Exception("Membro nãoa possui uma tecnologia requerida!");
+            }
+            
+            this.rank += this.tecnologiaMembro.get(i).getNivel();
+        }
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + (int) (this.idMembro ^ (this.idMembro >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.telefone);
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.dataContratacao);
+        hash = 47 * hash + Objects.hashCode(this.acesso);
+        hash = 47 * hash + Objects.hashCode(this.cargo);
+        hash = 47 * hash + (this.ativo ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Membro other = (Membro) obj;
+        if (this.idMembro != other.idMembro) {
+            return false;
+        }
+        return true;
     }
 
 }

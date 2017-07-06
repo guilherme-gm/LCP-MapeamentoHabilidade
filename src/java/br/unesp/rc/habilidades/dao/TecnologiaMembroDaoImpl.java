@@ -5,14 +5,15 @@
  */
 package br.unesp.rc.habilidades.dao;
 
-
+import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.TecnologiaMembro;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -37,7 +38,7 @@ public class TecnologiaMembroDaoImpl implements TecnologiaMembroDAO {
                 pstm.setShort(1, tecnologiaMembro.getNivel());
                 pstm.setLong(2, tecnologiaMembro.getMembro().getIdMembro());
                 pstm.setInt(3, tecnologiaMembro.getTecnologia().getIdTecnologia());
-                
+
                 pstm.executeUpdate();
 
                 res = pstm.getGeneratedKeys();
@@ -70,7 +71,7 @@ public class TecnologiaMembroDaoImpl implements TecnologiaMembroDAO {
             try {
                 pstm = con.prepareStatement(UPDATE);
                 pstm.setShort(1, tecnologiaMembro.getNivel());
-               
+
                 ret = pstm.executeUpdate() > 0;
             } catch (SQLException ex) {
                 System.out.println("Erro ao atualizar: " + ex.getMessage());
@@ -104,5 +105,43 @@ public class TecnologiaMembroDaoImpl implements TecnologiaMembroDAO {
             }
         }
         return ret;
-    }    
+    }
+
+    @Override
+    public List<TecnologiaMembro> select(Membro membro) {
+        Connection con;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        List<TecnologiaMembro> ret = new ArrayList<>();
+
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(SELECT_ALL_MEMBRO);
+                pstm.setLong(1, membro.getIdMembro());
+                res = pstm.executeQuery();
+
+                TecnologiaDAO tecnologiaDao = new TecnologiaDAOImpl();
+                
+                while (res.next()) {
+                    TecnologiaMembro tecMembro = new TecnologiaMembro();
+                    tecMembro.setIdTecnologiaMembro(res.getLong("idTecnologiaMembro"));
+                    tecMembro.setMembro(membro);
+                    tecMembro.setNivel(res.getShort("nivel"));
+                    tecMembro.setTecnologia(tecnologiaDao.select(res.getInt("Tecnologia_idTecnologia")));
+                    
+                    ret.add(tecMembro);
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao selecionar: " + ex.getMessage());
+                ret = null;
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+        return ret;
+    }
 }
