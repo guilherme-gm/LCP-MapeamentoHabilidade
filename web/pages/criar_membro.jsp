@@ -5,6 +5,12 @@
     </div>
 </div>
 
+<c:if test="${not empty msg}">
+    <div class="alert <c:out value="${msg_tipo}"></c:out>">
+        ${msg}
+    </div>
+</c:if>
+
 <div class ="row">
     <form method="POST" action="<c:url value="/DoCriarMembro"/> " class="form-horizontal">
         <div class="row"> 

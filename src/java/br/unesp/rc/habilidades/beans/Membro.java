@@ -1,6 +1,8 @@
 package br.unesp.rc.habilidades.beans;
 
+import br.unesp.rc.habilidades.exception.ValidateException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,17 +25,31 @@ public class Membro {
     private boolean ativo;//
 
     private List<TecnologiaMembro> tecnologiaMembro;
-    
+
     private int rank;
 
-    public void validate() {
+    public void validate() throws ValidateException {
 
+        List<String> erros = new ArrayList<>();
+
+        if (this.nome.length() == 0) {
+            erros.add("O nome é obrigatório");
+        } else if (this.nome.length() >= 50) {
+            erros.add("O nome deve ter menos de 50 caracteres");
+        }
+
+        String formato = "\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}?";
+
+        if ((this.telefone == null) || (this.telefone.length() != 13) || (!this.telefone.matches(formato))) {
+            erros.add("Telefone inválido");
+        }
+      
     }
-    
+
     public boolean hasPermissao(Permissao permissao) {
         return this.cargo.hasPermissao(permissao);
     }
-    
+
     public boolean hasPermissao(String permissao) {
         return this.cargo.hasPermissao(Permissao.valueOf(permissao));
     }
@@ -109,18 +125,19 @@ public class Membro {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
+
     public void calculaRank(List<Tecnologia> tecnologias) throws Exception {
         this.rank = 0;
         for (Tecnologia tecnologia : tecnologias) {
             int i = 0;
-            while (i < this.tecnologiaMembro.size() && this.tecnologiaMembro.get(i).getTecnologia().getIdTecnologia() != tecnologia.getIdTecnologia())
+            while (i < this.tecnologiaMembro.size() && this.tecnologiaMembro.get(i).getTecnologia().getIdTecnologia() != tecnologia.getIdTecnologia()) {
                 i++;
-            
+            }
+
             if (i == this.tecnologiaMembro.size()) {
                 throw new Exception("Membro nãoa possui uma tecnologia requerida!");
             }
-            
+
             this.rank += this.tecnologiaMembro.get(i).getNivel();
         }
     }
