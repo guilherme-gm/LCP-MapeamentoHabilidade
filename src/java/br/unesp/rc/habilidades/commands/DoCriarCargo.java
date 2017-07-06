@@ -47,7 +47,7 @@ public class DoCriarCargo implements ICommand {
             request.setAttribute("msg_tipo", "alert-danger");
             request.setAttribute("msg", sb.toString());
             request.setAttribute("menu", "admincargo");
-            return new CommandResult("criar_cargos");
+            return new CommandResult(request, "CriarCargos");
         }
 
         CargoDAO cargoDao = new CargoDAOImpl();
