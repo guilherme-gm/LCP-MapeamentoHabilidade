@@ -31,9 +31,12 @@ import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.DoLogout;
 import br.unesp.rc.habilidades.commands.DoRemoverMembroProjeto;
 import br.unesp.rc.habilidades.commands.DoRemoverTecnologiaProjeto;
+import br.unesp.rc.habilidades.commands.DoSalvarEditarProjeto;
 import br.unesp.rc.habilidades.commands.DoSalvarProjeto;
 import br.unesp.rc.habilidades.commands.EditarCargo;
 import br.unesp.rc.habilidades.commands.EditarProjeto;
+import br.unesp.rc.habilidades.commands.EditarSelecionaMembro;
+import br.unesp.rc.habilidades.commands.EditarSelecionaTecnologia;
 import br.unesp.rc.habilidades.commands.EditarTecnologia;
 import br.unesp.rc.habilidades.commands.EditarUsuario;
 import br.unesp.rc.habilidades.commands.Home;
@@ -176,33 +179,15 @@ public class CommandHelper {
                 
             case "/DoEditarProjeto":
                 return new DoEditarProjeto();
-
-//        <url-pattern>/EditarSelecionaMembro</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/DoAdicionarMembroProjeto</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/DoRemoverMembroProjeto</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/EditarSelecionaTecnologia</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/DoAdicionarTecnologiaEditarProjeto</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/DoRemoverTecnologiaEditarProjeto</url-pattern>
-//    </servlet-mapping>
-//    <servlet-mapping>
-//        <servlet-name>MainServlet</servlet-name>
-//        <url-pattern>/DoSalvarEditarProjeto</url-pattern>
-//    </servlet-mapping>
+                
+            case "/EditarSelecionaTecnologia":
+                return new EditarSelecionaTecnologia();
+                
+            case "/EditarSelecionaMembro":
+                return new EditarSelecionaMembro();
+             
+            case "/DoSalvarEditarProjeto":
+                return new DoSalvarEditarProjeto();
         }
         return new NotFound();
     }

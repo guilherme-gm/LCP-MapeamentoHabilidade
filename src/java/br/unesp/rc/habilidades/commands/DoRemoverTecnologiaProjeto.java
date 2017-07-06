@@ -23,30 +23,30 @@ public class DoRemoverTecnologiaProjeto implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         int tecnologiaId = Integer.parseInt(request.getParameter("id"));
-        
+
         HttpSession session = request.getSession();
         Projeto projeto = (Projeto) session.getAttribute("projeto");
-        
+
         TecnologiaDAO tecnologiaDao = new TecnologiaDAOImpl();
         List<Tecnologia> tecnologias = tecnologiaDao.select();
-        
+
         request.setAttribute("tecnologias", tecnologias);
-        
+
         int i = 0;
         while (i < tecnologias.size() && tecnologias.get(i).getIdTecnologia() != tecnologiaId) {
             i++;
         }
-        
+
         if (i == tecnologias.size()) {
             // TODO : Erro, nao encontrou
             return null;
         }
-        
+
         Tecnologia tec = tecnologias.get(i);
         if (projeto.hasTecnologia(tec)) {
             projeto.delTecnologia(tec);
         }
-    
+
         request.setAttribute("menu", "adminproj");
 
         return new CommandResult(request, "SelecionaTecnologia");

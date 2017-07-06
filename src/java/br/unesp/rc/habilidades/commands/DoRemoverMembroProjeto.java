@@ -36,6 +36,10 @@ public class DoRemoverMembroProjeto implements ICommand {
     
         request.setAttribute("menu", "adminproj");
 
-        return new CommandResult(request, "SelecionaMembro");
+        if (request.getParameter("e") == null) {
+            return new CommandResult(request, "SelecionaMembro");
+        } else {
+            return new CommandResult(request, "EditarSelecionaMembro");
+        }
     }
 }
