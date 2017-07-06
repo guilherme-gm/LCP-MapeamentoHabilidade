@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,18 +34,26 @@ public class SrvController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         CommandResult flashResult = (CommandResult) FlashUtils.getFlash(request);
-        
+
         if (flashResult != null) {
             for (String attribute : flashResult.getAttributes().keySet()) {
                 request.setAttribute(attribute, flashResult.getAttributes().get(attribute));
             }
         }
+
+        if (!request.getServletPath().equals("/Home") && !request.getServletPath().equals("/doLogin")) {
+            HttpSession session = request.getSession();
+            if (session.getAttribute("membro") == null) {
+                response.sendRedirect("Home");
+                return;
+            }
+        }
         
         ICommand command = CommandHelper.getCommand(request.getServletPath());
         CommandResult result = command.execute(request, response);
-        
+
         if (result.isRedirect()) {
             FlashUtils.setFlash(request, result);
             response.sendRedirect(result.getPage());
