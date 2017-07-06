@@ -10,6 +10,7 @@ import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,13 +20,14 @@ public class MostrarPerfil implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-    //    MembroDAO membroDao = new MembroDAOImpl();
-   //     Membro membro = new Membro();
-    //    membro = membroDao.select(membro.getIdMembro());
+        HttpSession session = request.getSession(true);
+        Membro membro = (Membro) session.getAttribute("membro");              
+        
+        MembroDAO membroDao = new MembroDAOImpl();
+        membro = membroDao.select(membro.getIdMembro());
             
-    //    request.setAttribute("membro", membro);       
+        request.setAttribute("membro", membro);       
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("listar_membro");
-    }
-    
+    }   
 }

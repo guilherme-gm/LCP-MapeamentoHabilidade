@@ -10,6 +10,7 @@ import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,12 +20,13 @@ public class EditarPerfil implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        // int id = Integer.parseInt(request.getParameter("idMembro")); mudar ID
+       HttpSession session = request.getSession(true);
+       Membro membro = (Membro) session.getAttribute("membro");       
         
         MembroDAO membroDao = new MembroDAOImpl();
-       // Membro membro = membroDao.select(id);
+        membro = membroDao.select(membro.getIdMembro());
         
-       // request.setAttribute("membro", membro);
+        request.setAttribute("membro", membro);
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("editar_membro");
     }
