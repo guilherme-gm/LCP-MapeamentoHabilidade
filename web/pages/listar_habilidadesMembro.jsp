@@ -7,7 +7,7 @@
 </c:if>
 <div class="row">
     <div class="col-sm-12">
-        <h1>Lista de Habilidades de GUIZAO</h1>
+        <h1>Lista de Habilidades de <c:out value="${membro.nome}"/></h1>
     </div>
 </div>
 <div class="row">
@@ -26,22 +26,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>PHP</td>
-                    <td>10</td>
-                    <td>
-                        <a onclick="editar_tecmembro_click(1, 'PHP', 10)" href="#"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
-                        <a onclick="remover_tecmembro_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                    </td>
-                </tr>
-                <tr>
+                <c:forEach var="habilidades" items="${tecMembro}">
+                    <tr>
+                        <td><c:out value="${habilidades.tecnologia.nome}"/></td>
+                        <td><c:out value="${habilidades.nivel}"/></td>
+                        <td>
+                            <a onclick="editar_tecmembro_click(<c:out value="${habilidades.idTecnologiaMembro}"/>, '<c:out value="${habilidades.tecnologia.nome}"/>', <c:out value="${habilidades.nivel}"/>)" href="#"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
+                            <a onclick="remover_tecmembro_click(<c:out value="${habilidades.idTecnologiaMembro}"/>)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <!--tr>
                     <td>Java</td>
                     <td>5</td>
                     <td>
                         <a onclick="editar_tecmembro_click(2, 'Java', 5)" href="#"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
                         <a onclick="remover_tecmembro_click(2)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
-                </tr>
+                </tr-->
             </tbody>
         </table>
     </div>
