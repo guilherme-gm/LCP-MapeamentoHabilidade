@@ -1,18 +1,34 @@
 package br.unesp.rc.habilidades.beans;
 
+import br.unesp.rc.habilidades.exception.ValidateException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TecnologiaMembro {
 
-	private long idTecnologiaMembro;
+    private long idTecnologiaMembro;
 
-	private short nivel;
+    private short nivel;
 
-	private Tecnologia tecnologia;
-        
-        private Membro membro;
+    private Tecnologia tecnologia;
 
-	public void validate() {
+    private Membro membro;
 
+    public void validate() throws ValidateException {
+
+        List<String> erros = new ArrayList<>();
+
+        if (this.nivel < 0 || this.nivel > 10) {
+            erros.add("Nível inválido");
         }
+        if (this.tecnologia == null) {
+            erros.add("Tecnologia invalida");
+        }
+
+        if (erros.size() > 0) {
+            throw new ValidateException(erros);
+        }
+    }
 
     public long getIdTecnologiaMembro() {
         return idTecnologiaMembro;
@@ -45,6 +61,5 @@ public class TecnologiaMembro {
     public void setTecnologia(Tecnologia tecnologia) {
         this.tecnologia = tecnologia;
     }
-        
 
 }

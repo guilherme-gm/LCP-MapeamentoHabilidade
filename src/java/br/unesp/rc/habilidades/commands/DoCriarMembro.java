@@ -11,6 +11,7 @@ import br.unesp.rc.habilidades.beans.Permissao;
 
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -43,6 +44,23 @@ public class DoCriarMembro implements ICommand{
         }
 
         MembroDAO membroDao = new MembroDAOImpl();
+        try {
+            membro.validate();
+        } catch (ValidateException ex) {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("Erros na inserção: <br /><ul>");
+            for (String erro : ex.getErros()) {
+                sb.append("<li>").append(erro).append("</li>");
+            }
+            sb.append("</ul>");
+
+            request.setAttribute("msg_tipo", "alert-danger");
+            request.setAttribute("msg", sb.toString());
+            request.setAttribute("menu", "adminmembro");
+            return new CommandResult(request, "CriarHabilidadesMembro");
+        }
+   
         membroDao.insert(membro);
 
         request.setAttribute("msg_tipo", "alert-success");
