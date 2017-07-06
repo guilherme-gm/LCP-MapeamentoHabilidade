@@ -15,9 +15,12 @@ import br.unesp.rc.habilidades.commands.DoAdicionarTecnologiaProjeto;
 import br.unesp.rc.habilidades.commands.DoCancelarProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarCargo;
 import br.unesp.rc.habilidades.commands.DoCriarHabilidadesMembro;
+import br.unesp.rc.habilidades.commands.DoCriarMembro;
 import br.unesp.rc.habilidades.commands.DoCriarProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoEditarCargo;
+import br.unesp.rc.habilidades.commands.DoEditarMembro;
+import br.unesp.rc.habilidades.commands.DoEditarPerfil;
 import br.unesp.rc.habilidades.commands.DoEditarTecnologia;
 import br.unesp.rc.habilidades.commands.DoEditarTecnologiaMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirCargo;
@@ -32,6 +35,7 @@ import br.unesp.rc.habilidades.commands.DoRemoverMembroProjeto;
 import br.unesp.rc.habilidades.commands.DoRemoverTecnologiaProjeto;
 import br.unesp.rc.habilidades.commands.DoSalvarProjeto;
 import br.unesp.rc.habilidades.commands.EditarCargo;
+import br.unesp.rc.habilidades.commands.EditarPerfil;
 import br.unesp.rc.habilidades.commands.EditarTecnologia;
 import br.unesp.rc.habilidades.commands.EditarUsuario;
 import br.unesp.rc.habilidades.commands.Home;
@@ -61,24 +65,33 @@ public class CommandHelper {
             case "/Usuario":
                 return new Usuario();
 
+            case "/EditarPerfil":
+                return new EditarPerfil();
+
             case "/EditarUsuario":
                 return new EditarUsuario();
-                
+
+            case "/DoEditarMembro":
+                return new DoEditarMembro();
+
+            case "/DoEditarPerfil":
+                return new DoEditarPerfil();
+
             case "/ListarHabilidadesMembro":
                 return new ListarHabilidadesMembro();
 
             case "/CriarHabilidadesMembro":
                 return new CriarHabilidadesMembro();
-                
+
             case "/DoCriarHabilidadesMembro":
                 return new DoCriarHabilidadesMembro();
-                
+
             case "/DoEditarTecnologiaMembro":
                 return new DoEditarTecnologiaMembro();
-            
+
             case "/DoExcluirTecnologiaMembro":
                 return new DoExcluirTecnologiaMembro();
-                
+
             case "/doLogin":
                 return new DoLogin();
 
@@ -115,6 +128,9 @@ public class CommandHelper {
             case "/CriarMembro":
                 return new CriarMembro();
 
+            case "/DoCriarMembro":
+                return new DoCriarMembro();
+                
             case "/ListarProjeto":
                 return new ListarProjeto();
 
@@ -132,13 +148,13 @@ public class CommandHelper {
 
             case "/DoExcluirTecnologia":
                 return new DoExcluirTecnologia();
-             
+
             case "/DoCriarTecnologia":
                 return new DoCriarTecnologia();
-               
+
             case "/DoEditarTecnologia":
                 return new DoEditarTecnologia();
-                
+
             case "/EditarTecnologia":
                 return new EditarTecnologia();
 
@@ -159,13 +175,13 @@ public class CommandHelper {
 
             case "/DoRemoverTecnologiaProjeto":
                 return new DoRemoverTecnologiaProjeto();
-                
+
             case "/DoSalvarProjeto":
                 return new DoSalvarProjeto();
-                
+
             case "/DoFinalizarProjeto":
                 return new DoFinalizarProjeto();
-                
+
             case "/DoCancelarProjeto":
                 return new DoCancelarProjeto();
 

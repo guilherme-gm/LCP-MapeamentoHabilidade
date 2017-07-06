@@ -28,6 +28,6 @@ public class MostrarPerfil implements ICommand{
             
         request.setAttribute("membro", membro);       
         request.setAttribute("menu", "adminmembro");
-        return new CommandResult("listar_membro");
+        return new CommandResult("mostrar_perfil");
     }   
 }

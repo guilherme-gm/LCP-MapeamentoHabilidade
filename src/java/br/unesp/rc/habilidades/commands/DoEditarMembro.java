@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -23,16 +24,13 @@ public class DoEditarMembro implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        Membro membro = new Membro();
-        try {
-            BeanUtils.populate(membro, request.getParameterMap());
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        HttpSession session = request.getSession(true);
+        Membro membro = (Membro) session.getAttribute("membro"); 
         MembroDAO membroDao = new MembroDAOImpl();
+        
+        membro.setEmail(request.getParameter("email"));
+        membro.setTelefone(request.getParameter("telefone"));        
+       
         membroDao.update(membro);
         
         request.setAttribute("msg_tipo", "alert-success");

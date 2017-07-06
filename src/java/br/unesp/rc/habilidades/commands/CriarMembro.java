@@ -5,6 +5,10 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Cargo;
+import br.unesp.rc.habilidades.dao.CargoDAO;
+import br.unesp.rc.habilidades.dao.CargoDAOImpl;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +20,10 @@ public class CriarMembro implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        CargoDAO cargoDao = new CargoDAOImpl();
+        List<Cargo> cargos = cargoDao.select();        
+        
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("criar_membro");
     }

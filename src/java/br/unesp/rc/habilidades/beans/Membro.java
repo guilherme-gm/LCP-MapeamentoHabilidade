@@ -8,19 +8,19 @@ public class Membro {
 
     private long idMembro;
 
-    private String nome;
+    private String nome;//
 
-    private String telefone;
+    private String telefone;//
 
-    private String email;
+    private String email;//
 
-    private Date dataContratacao;
+    private Date dataContratacao;//
 
     private Acesso acesso;
 
-    private Cargo cargo;
+    private Cargo cargo;//
 
-    private boolean ativo;
+    private boolean ativo;//
 
     private List<TecnologiaMembro> tecnologiaMembro;
     

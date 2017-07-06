@@ -5,8 +5,12 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.dao.MembroDAO;
+import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,6 +20,8 @@ public class Usuario implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        
         return new CommandResult("perfil_usuario");
     }
     

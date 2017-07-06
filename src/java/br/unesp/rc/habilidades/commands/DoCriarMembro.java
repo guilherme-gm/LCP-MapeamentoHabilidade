@@ -22,7 +22,6 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Raphael
  */
 public class DoCriarMembro implements ICommand{
-
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         Membro membro = new Membro();

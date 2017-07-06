@@ -113,7 +113,7 @@ public interface MembroDAO {
             + "    `Membro`.`Cargo_idCargo` = ?, "
             + "    `Acesso`.`senha` = ? "
             + "WHERE "
-            + "   `Membro`.`idAcesso` = `Acesso`.`idAcesso` AND "
+            + "   `Membro`.`Acesso_idAcesso` = `Acesso`.`idAcesso` AND "
             + "   `Membro`.`idMembro` = ?;";
 
     public boolean insert(Membro membro);
