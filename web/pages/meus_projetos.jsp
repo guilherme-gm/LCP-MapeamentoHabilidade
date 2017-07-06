@@ -7,7 +7,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nome do Projeto</th>

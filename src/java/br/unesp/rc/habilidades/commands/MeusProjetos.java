@@ -29,7 +29,7 @@ public class MeusProjetos implements ICommand {
         List<Projeto> projetos = projetoDao.selectProjetoMembro(membro);
 
         request.setAttribute("projetos", projetos);
-        request.setAttribute("menu", "adminproj");
+        request.setAttribute("menu", "mproj");
         return new CommandResult("meus_projetos");
     }
 
