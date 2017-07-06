@@ -53,7 +53,7 @@ public class EditarSelecionaMembro implements ICommand {
         });
 
         request.setAttribute("membros", membros);
-        return new CommandResult("seleciona_membro");
+        return new CommandResult("editar_seleciona_membro");
     }
 
 }
