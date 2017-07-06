@@ -12,19 +12,19 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <a href="<c:url value="CriarProjetos"></c:url>"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
+        <a href="<c:url value="CriarProjetos"/>"><span class="glyphicon glyphicon-plus"></span></a>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nome do Projeto</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome do Projeto</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
                 <c:forEach items="${projetos}" var="projeto">
                     <tr class="prj-${fn:toLowerCase(projeto.status)}">
                         <td><c:out value="${projeto.nome}" /></td>
