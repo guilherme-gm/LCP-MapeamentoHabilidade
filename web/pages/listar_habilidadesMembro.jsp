@@ -7,7 +7,7 @@
 </c:if>
 <div class="row">
     <div class="col-sm-12">
-        <h1>Lista de Habilidades de <c:out value="${habilidades.tecnologia.nome}"/></h1>
+        <h1>Lista de Habilidades de <c:out value="${membro.nome}"/></h1>
     </div>
 </div>
 <div class="row">
