@@ -5,6 +5,7 @@
  */
 package br.unesp.rc.habilidades.dao;
 
+import br.unesp.rc.habilidades.beans.Acesso;
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.util.FabricaConexao;
 import java.sql.Connection;
@@ -133,6 +134,8 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setLong(8, membro.getIdMembro());
 
             pstmt.executeUpdate();
+            
+            con.commit();
         } catch (SQLException ex) {
             ret = false;
         } finally {
@@ -148,6 +151,7 @@ public class MembroDAOImpl implements MembroDAO {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         Membro membro = null;
+        TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
 
         if (con == null) {
             return null;
@@ -170,9 +174,14 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setIdMembro(rs.getLong("idMembro"));
                 membro.setNome(rs.getString("nome"));
                 membro.setAtivo(rs.getBoolean("ativo"));
-                //membro.setProjeto(projeto);
-                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
+                
+                Acesso acesso = new Acesso();
+                membro.setAcesso(acesso);
+                acesso.setIdAcesso(rs.getLong("idAcesso"));
+                acesso.setUsuario(rs.getString("usuario"));
+                acesso.setSenha(rs.getString("senha"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,7 +212,7 @@ public class MembroDAOImpl implements MembroDAO {
             if (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
                 TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
-
+                
                 membro = new Membro();
                 membro.setCargo(cargoDao.select(rs.getInt("Cargo_idCargo")));
                 membro.setDataContratacao(rs.getDate("dataContratacao"));
@@ -213,6 +222,12 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setAtivo(rs.getBoolean("ativo"));
                 membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
+                
+                Acesso acesso = new Acesso();
+                membro.setAcesso(acesso);
+                acesso.setIdAcesso(rs.getLong("idAcesso"));
+                acesso.setUsuario(rs.getString("usuario"));
+                acesso.setSenha(rs.getString("senha"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MembroDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -238,7 +253,7 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt = con.prepareStatement(SELECT_ALL);
 
             rs = pstmt.executeQuery();
-
+            TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
             while (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
 
@@ -249,9 +264,14 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setIdMembro(rs.getLong("idMembro"));
                 membro.setNome(rs.getString("nome"));
                 membro.setAtivo(rs.getBoolean("ativo"));
-                //membro.setProjeto(projeto);
-                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
+                
+                Acesso acesso = new Acesso();
+                membro.setAcesso(acesso);
+                acesso.setIdAcesso(rs.getLong("idAcesso"));
+                acesso.setUsuario(rs.getString("usuario"));
+                acesso.setSenha(rs.getString("senha"));
 
                 membros.add(membro);
             }
