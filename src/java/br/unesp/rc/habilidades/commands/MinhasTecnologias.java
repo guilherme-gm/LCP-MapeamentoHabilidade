@@ -31,7 +31,7 @@ public class MinhasTecnologias implements ICommand{
         List<TecnologiaMembro> tecMembro = membroDao.select(membro);
 
         request.setAttribute("tecMembro", tecMembro);
-        request.setAttribute("menu", "adminmembro");
+        request.setAttribute("menu", "mtec");
         return new CommandResult("minhas_tecnologias");
     }
     

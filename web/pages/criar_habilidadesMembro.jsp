@@ -14,6 +14,7 @@
 <div class ="row">
 
     <form class="form-horizontal" method="POST" action = "<c:url value="/DoCriarHabilidadesMembro"/>">
+        <input type="hidden" name="idMembro" value="<c:out value="${idMembro}"/>"/>
         <div class="row"> 
             &nbsp;&nbsp;
         </div>
@@ -24,7 +25,6 @@
                 <select class="form-control" name="tecnologia" id="tecnologia">
                     <c:forEach var="tec" items="${tecnologia}">
                         <option value="<c:out value="${tec.idTecnologia}"/>">   <c:out value ="${tec.nome}" /></option>
-                        
                     </c:forEach>
                 </select>
             </div>

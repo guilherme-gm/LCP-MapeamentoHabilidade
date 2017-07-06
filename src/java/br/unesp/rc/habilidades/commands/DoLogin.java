@@ -48,7 +48,7 @@ public class DoLogin implements ICommand {
         request.setAttribute("menu", "home");
         request.getSession().setAttribute("membro", membro);
         
-        return new CommandResult(request, "Usuario");
+        return new CommandResult(request, "MostrarPerfil");
     }
     
 }

@@ -9,9 +9,9 @@
                         <h2><c:out value="${membro.nome}"/></h2>
                         <p><strong>Cargo: </strong> <c:out value="${membro.cargo.nome}"/></p>
                         <p><strong>Habilidades: </strong>  
-                        <c:forEach var="tec" items="${membro.tecnologiaMembro}">
-                            <span class="tags"><c:out value="${tec.tecnologia.nome}"/></span>
-                        </c:forEach>
+                            <c:forEach var="tec" items="${membro.tecnologiaMembro}">
+                                <span class="tags"><c:out value="${tec.tecnologia.nome}"/></span>
+                            </c:forEach>
                         </p>
                         <p><strong>Telefone: </strong><c:out value="${membro.telefone}"/></p>
                         <p><strong>Email: </strong><c:out value="${membro.email}"/></p>
@@ -21,12 +21,16 @@
                             <img src="img/blank.jpg" alt="" class="img-circle ">                            
                         </figure>
                     </div>
-                    <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 10px;">    
-                        <a href="<c:url value="/EditarPerfil"/>" class="btn btn-primary col-xs-10 col-sm-10 text-center"> Alterar Dados</a>
-                    </div>                    
-                    <div class="col-xs-12 col-sm-12 text-center">    
-                        <button type="button" class="btn btn-primary col-xs-10 col-sm-10 text-center "> Alterar Habilidades</button>
-                    </div>                     
+                    <c:if test="${membro.idMembro eq sessionScope.membro.idMembro}">
+                        <div class="col-xs-12 col-sm-12 text-center" style="margin-bottom: 10px;">    
+                            <a href="<c:url value="/EditarPerfil"/>" class="btn btn-primary col-xs-10 col-sm-10 text-center"> Alterar Dados</a>
+                        </div>                    
+                    </c:if>
+                    <c:if test="${sessionScope.membro.hasPermissao('GERENCIAR_HABILIDADES') eq true}">
+                        <div class="col-xs-12 col-sm-12 text-center">    
+                            <a href="<c:url value="/ListarHabilidadesMembro?id=${membro.idMembro}" />" class="btn btn-primary col-xs-10 col-sm-10 text-center "> Alterar Habilidades</a>
+                        </div>                     
+                    </c:if>
                 </div>
             </div>
         </div>

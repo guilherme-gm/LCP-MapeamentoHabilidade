@@ -21,7 +21,7 @@ public class Usuario implements ICommand{
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         
-        
+        request.setAttribute("menu", "home");
         return new CommandResult("perfil_usuario");
     }
     

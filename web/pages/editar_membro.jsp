@@ -39,7 +39,7 @@
             <div class="col-sm-4">
                 <select id="cargo" name="idCargo" class="form-control">
                     <c:forEach var="cargo" items="${Cargos}">
-                        <option value="<c:out value="${cargo.idCargo}"/>"><c:out value="${cargo.nome}"/></option>
+                        <option value="<c:out value="${cargo.idCargo}"/>" <c:if  test="${cargo.idCargo eq membro.cargo.idCargo}">selected="selected" </c:if>><c:out value="${cargo.nome}"/></option>
                     </c:forEach>
                 </select>
             </div>

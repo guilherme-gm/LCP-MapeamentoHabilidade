@@ -9,6 +9,8 @@ import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Tecnologia;
 import br.unesp.rc.habilidades.beans.TecnologiaMembro;
+import br.unesp.rc.habilidades.dao.MembroDAO;
+import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import br.unesp.rc.habilidades.dao.TecnologiaDAO;
 import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
 import br.unesp.rc.habilidades.dao.TecnologiaMembroDAO;
@@ -19,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +35,8 @@ public class DoCriarHabilidadesMembro implements ICommand {
             return new CommandResult("forbidden");
         }
 
+        long idMembro = Long.parseLong(request.getParameter("idMembro"));
+        
         TecnologiaMembro tecMembro = new TecnologiaMembro();
         tecMembro.setNivel(Short.parseShort(request.getParameter("nivel")));
 
@@ -41,8 +44,8 @@ public class DoCriarHabilidadesMembro implements ICommand {
         Tecnologia tec = tecDao.select(Integer.parseInt(request.getParameter("tecnologia")));
         tecMembro.setTecnologia(tec);
 
-        HttpSession session = request.getSession(true);
-        Membro membro = (Membro) session.getAttribute("membro");
+        MembroDAO membroDao = new MembroDAOImpl();
+        Membro membro = membroDao.select(idMembro);
         tecMembro.setMembro(membro);
 
         TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
@@ -70,6 +73,6 @@ public class DoCriarHabilidadesMembro implements ICommand {
         request.setAttribute("msg", "Tecnologia inserido com sucesso no membro.");
         request.setAttribute("menu", "adminmembro");
 
-        return new CommandResult(request, "ListarHabilidadesMembro");
+        return new CommandResult(request, "ListarHabilidadesMembro?id="+idMembro);
     }
 }

@@ -32,6 +32,7 @@ public class CriarHabilidadesMembro implements ICommand {
       
         List<Tecnologia> list = tec.select();
         
+        request.setAttribute("idMembro", request.getParameter("id"));
         request.setAttribute("tecnologia", list);
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("criar_habilidadesMembro");
