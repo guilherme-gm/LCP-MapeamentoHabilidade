@@ -33,6 +33,10 @@ public class Membro {
     public boolean hasPermissao(Permissao permissao) {
         return this.cargo.hasPermissao(permissao);
     }
+    
+    public boolean hasPermissao(String permissao) {
+        return this.cargo.hasPermissao(Permissao.valueOf(permissao));
+    }
 
     public long getIdMembro() {
         return idMembro;
