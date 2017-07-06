@@ -7,6 +7,7 @@ package br.unesp.rc.habilidades.dao;
 
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Projeto;
+import br.unesp.rc.habilidades.beans.StatusProjeto;
 import br.unesp.rc.habilidades.beans.Tecnologia;
 import java.util.List;
 
@@ -49,10 +50,17 @@ public interface ProjetoDAO {
             + "`nome` = ?, `descricao` = ?, `dataInicio` = ?, `dataFim` = ?, `status` = ? "
             + "WHERE `idProjeto` = ?;";
 
+    public final String UPDATE_STATUS
+            = "UPDATE `Projeto` "
+            + "SET "
+            + "`status` = ?, `dataFim` = ? "
+            + "WHERE `idProjeto` = ?;";
+
     public final String SELECT
             = "SELECT `Projeto`.`idProjeto`,`Projeto`.`nome`, `Projeto`.`descricao`, "
             + "`Projeto`.`dataInicio`, `Projeto`.`dataFim`, `Projeto`.`status` "
-            + "FROM `Projeto`";
+            + "FROM `Projeto` "
+            + "ORDER BY `Projeto`.`status` DESC";
 
     public final String SELECT_MEMBROS
             = "SELECT `Membro_idMembro`, `Projeto_idProjeto` FROM `Membro_has_Projeto` WHERE `Projeto_idProjeto` = ?";
@@ -92,5 +100,9 @@ public interface ProjetoDAO {
     public Projeto select(long projetoId);
     
     public List<Membro> select_membros(List<Tecnologia> tecnologias);
+    
+    public void finaliza(long projetoId);
+    
+    public void cancela(long projetoId);
 
 }

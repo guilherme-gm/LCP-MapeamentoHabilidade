@@ -14,7 +14,7 @@ import java.util.EnumSet;
 public enum StatusProjeto {
     EM_ANDAMENTO,
     CANCELADO,
-    FINALIZADO;
+    CONCLUIDO;
 
     public String getDisplayName() {
         switch (this) {
@@ -22,7 +22,7 @@ public enum StatusProjeto {
                 return "Em Andamento";
             case CANCELADO:
                 return "Cancelado";
-            case FINALIZADO:
+            case CONCLUIDO:
                 return "Finalizado";
         }
         return "";

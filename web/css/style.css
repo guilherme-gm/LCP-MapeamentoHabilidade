@@ -122,3 +122,15 @@ span.tags
     margin-left: -10px;
     z-index: 10;
 }
+
+.prj-cancelado {
+    /*background-color: red;*/
+}
+
+.prj-concluido {
+    /*background-color: green;*/
+}
+
+.prj-em_andamento {
+    
+}

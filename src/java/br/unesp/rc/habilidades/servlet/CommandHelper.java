@@ -12,6 +12,7 @@ import br.unesp.rc.habilidades.commands.CriarProjetos;
 import br.unesp.rc.habilidades.commands.CriarTecnologia;
 import br.unesp.rc.habilidades.commands.DoAdicionarMembroProjeto;
 import br.unesp.rc.habilidades.commands.DoAdicionarTecnologiaProjeto;
+import br.unesp.rc.habilidades.commands.DoCancelarProjeto;
 import br.unesp.rc.habilidades.commands.DoCriarCargo;
 import br.unesp.rc.habilidades.commands.DoCriarHabilidadesMembro;
 import br.unesp.rc.habilidades.commands.DoCriarProjeto;
@@ -24,6 +25,7 @@ import br.unesp.rc.habilidades.commands.DoExcluirMembro;
 import br.unesp.rc.habilidades.commands.DoExcluirProjeto;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologia;
 import br.unesp.rc.habilidades.commands.DoExcluirTecnologiaMembro;
+import br.unesp.rc.habilidades.commands.DoFinalizarProjeto;
 import br.unesp.rc.habilidades.commands.DoLogin;
 import br.unesp.rc.habilidades.commands.DoLogout;
 import br.unesp.rc.habilidades.commands.DoRemoverMembroProjeto;
@@ -160,6 +162,12 @@ public class CommandHelper {
                 
             case "/DoSalvarProjeto":
                 return new DoSalvarProjeto();
+                
+            case "/DoFinalizarProjeto":
+                return new DoFinalizarProjeto();
+                
+            case "/DoCancelarProjeto":
+                return new DoCancelarProjeto();
 
         }
         return new NotFound();

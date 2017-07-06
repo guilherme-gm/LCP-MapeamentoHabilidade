@@ -8,6 +8,16 @@ function remover_tecnologia_click(id) {
     $("#remover").modal(); 
 }
 
+function finalizar_projeto_click(id) {
+    $("#idConcluir").val(id);
+    $("#concluir").modal(); 
+}
+
+function cancelar_projeto_click(id) {
+    $("#idCancelar").val(id);
+    $("#cancelar").modal(); 
+}
+
 function remover_projeto_click(id) {
     $("#idProjeto").val(id);
     $("#remover").modal(); 

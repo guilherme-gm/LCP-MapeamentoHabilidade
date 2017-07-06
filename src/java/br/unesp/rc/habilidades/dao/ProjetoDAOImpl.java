@@ -15,7 +15,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -381,6 +383,56 @@ public class ProjetoDAOImpl implements ProjetoDAO {
         }
 
         return membros;
+    }
+
+    @Override
+    public void finaliza(long projetoId) {
+        Connection con = null;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        boolean ret = true;
+
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(UPDATE_STATUS);
+                pstm.setString(1, StatusProjeto.CONCLUIDO.toString());
+                pstm.setDate(2, new java.sql.Date((new Date()).getTime()));
+                pstm.setLong(3, projetoId);
+                pstm.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao finalizar projeto: " + ex.getMessage());
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
+    }
+    
+    @Override
+    public void cancela(long projetoId) {
+        Connection con = null;
+        ResultSet res = null;
+        PreparedStatement pstm = null;
+
+        boolean ret = true;
+
+        con = FabricaConexao.getConnection();
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(UPDATE_STATUS);
+                pstm.setString(1, StatusProjeto.CANCELADO.toString());
+                pstm.setDate(2, new java.sql.Date((new Date()).getTime()));
+                pstm.setLong(3, projetoId);
+                pstm.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cancelar projeto: " + ex.getMessage());
+            } finally {
+                FabricaConexao.close(con, pstm, res);
+            }
+        }
     }
 
 }
