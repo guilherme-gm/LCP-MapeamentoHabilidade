@@ -124,11 +124,11 @@ span.tags
 }
 
 .prj-cancelado {
-    /*background-color: red;*/
+    background-color: red;
 }
 
 .prj-concluido {
-    /*background-color: green;*/
+    background-color: green;
 }
 
 .prj-em_andamento {

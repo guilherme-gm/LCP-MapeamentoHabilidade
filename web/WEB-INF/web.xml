@@ -188,6 +188,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/MeusProjetos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
         <url-pattern>/doLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
