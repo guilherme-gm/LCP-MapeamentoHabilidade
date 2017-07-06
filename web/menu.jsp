@@ -15,10 +15,10 @@
                     <li <c:if test="${menu eq 'admintec'}">class="active"</c:if>><a href="<c:url value="/ListarTecnologia" />"><span class="glyphicon glyphicon-console"/>  <b>Administrar Tecnologias</b></a></li>
                     </c:if>
                     <c:if test="${membro.hasPermissao('GERENCIAR_MEMBROS') eq true}">
-                    <li <c:if test="${menu eq 'adminmembro'}">class="active"</c:if>><a href="<c:url value="/ListarMembro"></c:url>"><span class="glyphicon glyphicon-user"/>  <b>Administrar Membros</b></a></li>
+                    <li <c:if test="${menu eq 'adminmembro'}">class="active"</c:if>><a href="<c:url value="/ListarMembro"/>"><span class="glyphicon glyphicon-user"/>  <b>Administrar Membros</b></a></li>
                     </c:if>
                     <c:if test="${membro.hasPermissao('GERENCIAR_CARGOS') eq true}">
-                    <li <c:if test="${menu eq 'admincargo'}">class="active"</c:if>><a href="<c:url value="/ListarCargo"></c:url>"><span class="glyphicon glyphicon-edit"/>  <b>Administrar Cargos</b></a></li>
+                    <li <c:if test="${menu eq 'admincargo'}">class="active"</c:if>><a href="<c:url value="/ListarCargo"/>"><span class="glyphicon glyphicon-edit"/>  <b>Administrar Cargos</b></a></li>
                     </c:if>
             </ul>
             <c:if test="${membro ne null}">
