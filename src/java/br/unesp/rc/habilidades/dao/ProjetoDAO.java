@@ -65,6 +65,16 @@ public interface ProjetoDAO {
     public final String SELECT_MEMBROS
             = "SELECT `Membro_idMembro`, `Projeto_idProjeto` FROM `Membro_has_Projeto` WHERE `Projeto_idProjeto` = ?";
 
+    public final String SELECT_TECNOLOGIAS_BY_ID
+            = "SELECT `Projeto_has_Tecnologia`.`Tecnologia_idTecnologia` "
+            + "FROM `Projeto_has_Tecnologia` "
+            + "WHERE `Projeto_has_Tecnologia`.`Projeto_idProjeto` = ?";
+    
+    public final String SELECT_MEMBROS_BY_ID
+            = "SELECT `Membro_has_Projeto`.`Membro_idMembro` "
+            + "FROM `Membro_has_Projeto` "
+            + "WHERE `Membro_has_Projeto`.`Projeto_idProjeto` = ?";
+    
     public final String SELECT_BY_ID
             = "SELECT `Projeto`.`idProjeto`,`Projeto`.`nome`, `Projeto`.`descricao`, "
             + "`Projeto`.`dataInicio`, `Projeto`.`dataFim`, `Projeto`.`status` "

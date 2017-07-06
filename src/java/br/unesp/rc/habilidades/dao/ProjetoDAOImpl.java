@@ -246,7 +246,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
         }
 
         try {
-            pstmt = con.prepareStatement(SELECT_BY_ID);
+            pstmt = con.prepareStatement(SELECT_MEMBROS_BY_ID);
             pstmt.setLong(1, projetoId);
 
             rs = pstmt.executeQuery();
@@ -275,7 +275,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
         }
 
         try {
-            pstmt = con.prepareStatement(SELECT_BY_ID);
+            pstmt = con.prepareStatement(SELECT_TECNOLOGIAS_BY_ID);
             pstmt.setLong(1, projetoId);
 
             rs = pstmt.executeQuery();
