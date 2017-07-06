@@ -5,9 +5,11 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.dao.ProjetoDAO;
 import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +23,10 @@ public class ListarProjeto implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)) {
+            return new CommandResult("forbidden");
+        }
         
         ProjetoDAO projetoDao = new ProjetoDAOImpl();
         List<Projeto> projetos = projetoDao.select();

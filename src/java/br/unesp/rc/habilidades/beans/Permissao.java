@@ -14,7 +14,8 @@ import java.util.EnumSet;
 public enum Permissao {
     GERENCIAR_CARGOS,
     GERENCIAR_PROJETOS,
-    GERENCIAR_HABILIDADES;
+    GERENCIAR_HABILIDADES,
+    GERENCIAR_MEMBROS;
 
     public String getDisplayName() {
         switch (this) {
@@ -24,6 +25,8 @@ public enum Permissao {
                 return "Gerenciar Cargos";
             case GERENCIAR_HABILIDADES:
                 return "Gerenciar Habilidades";
+            case GERENCIAR_MEMBROS:
+                return "Gerenciar Membros";
         }
         return "";
     }
