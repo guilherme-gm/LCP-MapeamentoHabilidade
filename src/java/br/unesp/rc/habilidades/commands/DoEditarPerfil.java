@@ -33,7 +33,7 @@ public class DoEditarPerfil implements ICommand{
             request.setAttribute("msg_tipo", "alert-success");
             request.setAttribute("msg", "Membro atualizado com sucesso.");
             request.setAttribute("menu", "adminmembro");
-            return new CommandResult(request, "Usuario");
+            return new CommandResult(request, "MostrarPerfil");
         }
     }    
 

@@ -28,7 +28,7 @@
                 <tbody>
                 <c:forEach var="membro" items="${membros}">
                     <tr>                    
-                        <td><c:out value="${membro.nome}"/></td>
+                        <td><a href="<c:url value="/MostrarPerfil?id=${membro.idMembro}"/>"><c:out value="${membro.nome}"/></a></td>
                         <td><c:out value="${membro.cargo.nome}"/></td>
                         <td>
                             <a href="<c:url value="EditarMembro?idMembro=${membro.idMembro}"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
