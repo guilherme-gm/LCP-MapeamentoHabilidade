@@ -32,7 +32,7 @@
                         <td><c:out value="${membro.cargo.nome}"/></td>
                         <td>
                             <a href="<c:url value="EditarMembro?idMembro=${membro.idMembro}"></c:url>"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
-                            <a onclick="remover_membro_click(1)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a onclick="remover_membro_click(<c:out value="${membro.idMembro}" />)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                      </tr>
                 </c:forEach>

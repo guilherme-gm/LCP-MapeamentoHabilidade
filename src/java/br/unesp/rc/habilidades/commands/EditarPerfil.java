@@ -21,7 +21,7 @@ public class EditarPerfil implements ICommand{
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
       
-        request.setAttribute("menu", "adminmembro");
+        request.setAttribute("menu", "home");
         return new CommandResult("editar_perfil");
     }
     
