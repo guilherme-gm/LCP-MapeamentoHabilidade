@@ -316,7 +316,7 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 projeto.setNome(rs.getString("nome"));
                 projeto.setDescricao(rs.getString("descricao"));
                 projeto.setDataInicio(rs.getDate("dataInicio"));
-                projeto.setDataFim(rs.getDate("projetoFim"));
+                projeto.setDataFim(rs.getDate("dataFim"));
                 projeto.setStatus(StatusProjeto.valueOf(rs.getString("status")));
                 projeto.setMembro(this.selectMembros(projetoId));
                 projeto.setTecnologia(this.selectTecnologias(projetoId));

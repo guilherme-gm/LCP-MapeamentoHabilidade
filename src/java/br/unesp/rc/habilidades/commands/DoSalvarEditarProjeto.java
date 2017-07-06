@@ -5,12 +5,9 @@
  */
 package br.unesp.rc.habilidades.commands;
 
-import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.dao.ProjetoDAO;
 import br.unesp.rc.habilidades.dao.ProjetoDAOImpl;
-import br.unesp.rc.habilidades.util.PermissaoUtils;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,26 +16,21 @@ import javax.servlet.http.HttpSession;
  *
  * @author guilh
  */
-public class ListarProjeto implements ICommand {
+public class DoSalvarEditarProjeto implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        
-        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)) {
-            return new CommandResult("forbidden");
-        }
-        
+        HttpSession session = request.getSession(true);
+        Projeto projeto = (Projeto) session.getAttribute("projeto");
+        //projeto.validate();
+
         ProjetoDAO projetoDao = new ProjetoDAOImpl();
-        List<Projeto> projetos = projetoDao.select();
-        
-        HttpSession session = request.getSession();
-        if (session != null) {
-            session.setAttribute("projeto", null);
-        }
-        
-        request.setAttribute("projetos", projetos);
+        projetoDao.update(projeto);
+
+        request.setAttribute("msg_tipo", "alert-success");
+        request.setAttribute("msg", "Projeto atualizado com sucesso.");
         request.setAttribute("menu", "adminproj");
-        return new CommandResult("listar_projeto");
+
+        return new CommandResult(request, "ListarProjeto");
     }
-    
 }

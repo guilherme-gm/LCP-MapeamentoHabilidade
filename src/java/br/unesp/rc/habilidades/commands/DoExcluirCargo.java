@@ -5,8 +5,10 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +20,10 @@ public class DoExcluirCargo implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_CARGOS)) {
+            return new CommandResult("forbidden");
+        }
         
         int id = Integer.parseInt(request.getParameter("idCargo"));
         

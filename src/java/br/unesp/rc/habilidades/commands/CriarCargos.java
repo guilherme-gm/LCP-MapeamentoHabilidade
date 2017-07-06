@@ -6,6 +6,7 @@
 package br.unesp.rc.habilidades.commands;
 
 import br.unesp.rc.habilidades.beans.Permissao;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,10 @@ public class CriarCargos implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_CARGOS)) {
+            return new CommandResult("forbidden");
+        }
+        
         request.setAttribute("menu", "admincargo");
         request.setAttribute("permissoes", Permissao.values());
         

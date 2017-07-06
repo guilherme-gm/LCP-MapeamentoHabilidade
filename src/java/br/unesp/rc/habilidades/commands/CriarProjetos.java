@@ -5,7 +5,9 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.StatusProjeto;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +19,11 @@ public class CriarProjetos implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_PROJETOS)) {
+            return new CommandResult("forbidden");
+        }
+        
         request.setAttribute("menu", "adminproj");
         request.setAttribute("status", StatusProjeto.values());
         return new CommandResult("criar_projetos");

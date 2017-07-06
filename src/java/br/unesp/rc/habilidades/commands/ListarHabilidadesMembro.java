@@ -5,8 +5,16 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.beans.Permissao;
+import br.unesp.rc.habilidades.beans.TecnologiaMembro;
+import br.unesp.rc.habilidades.dao.TecnologiaMembroDAO;
+import br.unesp.rc.habilidades.dao.TecnologiaMembroDaoImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,8 +24,22 @@ public class ListarHabilidadesMembro implements ICommand {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
+       
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_HABILIDADES) || (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_MEMBROS)))
+        {
+             return new CommandResult("forbidden");
+        }
+        
+        HttpSession session = request.getSession(true);
+        Membro membro = (Membro) session.getAttribute("membro");
+        
+        TecnologiaMembroDAO membroDao = new TecnologiaMembroDaoImpl();
+        
+        List<TecnologiaMembro> tecMembro = membroDao.select(membro);
+
+        request.setAttribute("tecMembro", tecMembro);
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("listar_habilidadesMembro");
     }
-    
+
 }

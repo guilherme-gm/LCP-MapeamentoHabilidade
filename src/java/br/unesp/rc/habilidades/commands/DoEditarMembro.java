@@ -5,15 +5,19 @@
  */
 package br.unesp.rc.habilidades.commands;
 
+import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.beans.Membro;
+import br.unesp.rc.habilidades.beans.Permissao;
+import br.unesp.rc.habilidades.dao.CargoDAO;
+import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
+import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -24,12 +28,27 @@ public class DoEditarMembro implements ICommand{
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Membro membro = (Membro) session.getAttribute("membro"); 
-        MembroDAO membroDao = new MembroDAOImpl();
         
-        membro.setEmail(request.getParameter("email"));
-        membro.setTelefone(request.getParameter("telefone"));        
+        if (!PermissaoUtils.hasPermissao(request, Permissao.GERENCIAR_MEMBROS))
+        {
+             return new CommandResult("forbidden");
+        }
+        
+        MembroDAO membroDao = new MembroDAOImpl();
+        Membro membro = membroDao.select(Long.parseLong(request.getParameter("idMembro")));
+        
+        try {
+            BeanUtils.populate(membro, request.getParameterMap());
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(DoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        CargoDAO cargoDao = new CargoDAOImpl();
+        int idCargo = Integer.parseInt(request.getParameter("idCargo"));
+        Cargo cargo = cargoDao.select(idCargo);
+        membro.setCargo(cargo);
        
         membroDao.update(membro);
         

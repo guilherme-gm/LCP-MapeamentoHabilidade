@@ -38,12 +38,11 @@ public interface MembroDAO {
 
     final String INSERT_ACESSO
             = "INSERT INTO `Acesso`"
-            + "(`idAcesso`,"
+            + "("
             + "`usuario`,"
             + "`senha`)"
             + "VALUES"
-            + "(?,"
-            + "?,"
+            + "(?,"          
             + "?);";
 
     final String SELECT_BY_LOGIN
@@ -72,7 +71,7 @@ public interface MembroDAO {
             + "    `Membro`.`dataContratacao`, "
             + "    `Membro`.`ativo`, "
             + "    `Membro`.`Acesso_idAcesso`, "
-            + "    `Membro`.`Cargo_idCargo` "
+            + "    `Membro`.`Cargo_idCargo`, "
             + "    `Acesso`.`idAcesso`, "
             + "    `Acesso`.`usuario`, "
             + "    `Acesso`.`senha` "
@@ -90,7 +89,7 @@ public interface MembroDAO {
             + "    `Membro`.`dataContratacao`, "
             + "    `Membro`.`ativo`, "
             + "    `Membro`.`Acesso_idAcesso`, "
-            + "    `Membro`.`Cargo_idCargo` "
+            + "    `Membro`.`Cargo_idCargo`, "
             + "    `Acesso`.`idAcesso`, "
             + "    `Acesso`.`usuario`, "
             + "    `Acesso`.`senha` "
