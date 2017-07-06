@@ -28,9 +28,9 @@ public class ListarMembro implements ICommand {
         }
         
         MembroDAO membroDao = new MembroDAOImpl();
-        //List<Membro> membros = membroDao.select(); a fazer
+        List<Membro> membros = membroDao.select();
             
-        //request.setAttribute("membros", membros);       
+        request.setAttribute("membros", membros);       
         request.setAttribute("menu", "adminmembro");
         return new CommandResult("listar_membro");
     }

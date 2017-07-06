@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">
     <div class="col-sm-12">
-        <h1>Adicionar Membro</h1>
+        <h1>Editar Membro</h1>
     </div>
 </div>
 
 <div class ="row">
-    <form method="POST" action="<c:url value="/DoCriarMembro"/> " class="form-horizontal">
+    <form method="POST" action="<c:url value="/DoEditarMembro"/> " class="form-horizontal">
+        <input type="hidden" name="idMembro" value="<c:out value="${membro.idMembro}"/>"/><br />
         <div class="row"> 
             &nbsp;&nbsp;
         </div>
@@ -14,27 +15,21 @@
         <div class="form-group">
             <label for="nome" class="col-sm-2 control-label">Nome</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="nome" placeholder="Nome"/> <br />
+                <input class="form-control" type="text" name="nome" placeholder="Nome" value="<c:out value="${membro.nome}"/>"/> <br />
             </div>
         </div>
         <div class="form-group">
             <label for="telefone" class="col-sm-2 control-label">Telefone</label>
             <div class="col-sm-4">
-                <input class="form-control" type="tel" name="telefone" placeholder="Telefone" id="telefone"/> <br />
+                <input class="form-control" type="tel" name="telefone" placeholder="Telefone" id="telefone" value="<c:out value="${membro.telefone}"/>"/> <br />
             </div>
         </div>
         <div class="form-group">
             <label for="email" class="col-sm-2 control-label">E-mail</label>
             <div class="col-sm-4">
-                <input class="form-control" type="email" name="email" placeholder="E-mail" id="email" required=""/> <br />
+                <input class="form-control" type="email" name="email" placeholder="E-mail" id="email" required="" value="<c:out value="${membro.email}"/>"/> <br />
             </div>
-        </div>
-        <div class="form-group">
-            <label for="usuario" class="col-sm-2 control-label">Nome de Usuário</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="usuario" placeholder="Usuário"/> <br />
-            </div>
-        </div>
+        </div>       
         <div class="form-group">
             <label for="cargo" class="col-sm-2 control-label">Cargo</label>
             <div class="col-sm-4">
@@ -50,10 +45,8 @@
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Confirmar</button>
             &nbsp;&nbsp;
-            <button type="button" class="btn btn-default">Voltar</button>
+            <a href="<c:url value="/ListarMembro"/>" class="btn btn-default">Voltar</a>
         </div>
-
-
         </p>
     </form>
 </div>
