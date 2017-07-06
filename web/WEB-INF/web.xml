@@ -140,6 +140,44 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/DoSalvarProjeto</url-pattern>
     </servlet-mapping>
+    <!-- -->
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/EditarProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoEditarProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/EditarSelecionaMembro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoAdicionarMembroProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoRemoverMembroProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/EditarSelecionaTecnologia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoAdicionarTecnologiaEditarProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoRemoverTecnologiaEditarProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/DoSalvarEditarProjeto</url-pattern>
+    </servlet-mapping>
+    <!-- -->
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/DoFinalizarProjeto</url-pattern>
