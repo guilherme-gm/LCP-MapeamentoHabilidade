@@ -148,6 +148,7 @@ public class MembroDAOImpl implements MembroDAO {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         Membro membro = null;
+        TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
 
         if (con == null) {
             return null;
@@ -171,7 +172,7 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setNome(rs.getString("nome"));
                 membro.setAtivo(rs.getBoolean("ativo"));
                 //membro.setProjeto(projeto);
-                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
             }
         } catch (SQLException ex) {
@@ -238,7 +239,7 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt = con.prepareStatement(SELECT_ALL);
 
             rs = pstmt.executeQuery();
-
+            TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
             while (rs.next()) {
                 CargoDAO cargoDao = new CargoDAOImpl();
 
@@ -250,7 +251,7 @@ public class MembroDAOImpl implements MembroDAO {
                 membro.setNome(rs.getString("nome"));
                 membro.setAtivo(rs.getBoolean("ativo"));
                 //membro.setProjeto(projeto);
-                //membro.setTecnologiaMembro(tecnologiaMembro);
+                membro.setTecnologiaMembro(tecMembroDao.select(membro));
                 membro.setTelefone(rs.getString("telefone"));
 
                 membros.add(membro);
