@@ -18,9 +18,20 @@ function cancelar_projeto_click(id) {
     $("#cancelar").modal(); 
 }
 
-function remover_projeto_click(id) {
+function remover_projeto_click(id, nome) {
+    $("#delNome").val(nome);
+    $("#projNome").val("");
+    $("#btnDeleta").attr("disabled", "disabled");
     $("#idProjeto").val(id);
     $("#remover").modal(); 
+}
+
+function remover_projeto_change() {
+    if ($("#projNome").val() === $("#delNome").val()) {
+        $("#btnDeleta").removeAttr("disabled");
+    } else {
+        $("#btnDeleta").attr("disabled", "disabled");
+    }
 }
 
 function remover_membro_click(id) {

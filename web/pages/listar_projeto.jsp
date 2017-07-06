@@ -32,7 +32,7 @@
                             <a href="<c:url value="EditarProjeto?id=${projeto.idProjeto}" />"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;
                             <a onclick="finalizar_projeto_click(<c:out value="${projeto.idProjeto}"/>)" href="#"><span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;
                             <a onclick="cancelar_projeto_click(<c:out value="${projeto.idProjeto}"/>)" href="#"><span class="glyphicon glyphicon-ban-circle"></span></a>&nbsp;&nbsp;
-                            <a onclick="remover_projeto_click(<c:out value="${projeto.idProjeto}"/>)" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a onclick="remover_projeto_click(<c:out value="${projeto.idProjeto}"/>, '<c:out value="${projeto.nome}"/>')" href="#"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -50,13 +50,16 @@
                 <h4 class="modal-title" id="myModalLabel">Remover Projeto</h4>
             </div>
             <div class="modal-body">
-                Tem certeza que deseja remover este projeto?
+                Remover este projeto <b>apagará todas</b> as informações relacionadas a ele!<br />
+                Se ainda assim deseja continuar, <b>digite o nome do projeto na caixa abaixo</b>:<br />
+                <input type="text" id="projNome" oninput="remover_projeto_change()"/>
             </div>
             <div class="modal-footer">
                 <form method="POST" action="<c:url value="/DoExcluirProjeto"/>">
+                    <input type="hidden" id="delNome" />
                     <input type="hidden" id="idProjeto" name="idProjeto"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Excluir</button>
+                    <button type="submit" id="btnDeleta" class="btn btn-primary">Excluir</button>
                 </form> 
             </div>
         </div>
