@@ -47,6 +47,8 @@ public class DoCriarHabilidadesMembro implements ICommand {
 
         TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
         
+        
+        
         try {
             tecMembro.validate();
         } catch (ValidateException ex) {

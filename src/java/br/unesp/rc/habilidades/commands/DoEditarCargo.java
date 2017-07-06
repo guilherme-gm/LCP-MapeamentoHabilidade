@@ -9,6 +9,7 @@ import br.unesp.rc.habilidades.beans.Cargo;
 import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,22 @@ public class DoEditarCargo implements ICommand {
         cargo.setPermissao(Permissao.fromArray(permissoes));
         
         CargoDAO cargoDao = new CargoDAOImpl();
+        try {
+            cargo.validate();
+        } catch (ValidateException ex) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Erros na inserção: <br /><ul>");
+            for (String erro : ex.getErros()) {
+                sb.append("<li>").append(erro).append("</li>");
+            }
+            sb.append("</ul>");
+            
+            request.setAttribute("msg_tipo", "alert-danger");
+            request.setAttribute("msg", sb.toString());
+            request.setAttribute("menu", "admincargo");
+            return new CommandResult(request,"EditarCargo?idCargo="+cargo.getIdCargo());
+        }
+        
         cargoDao.update(cargo);
         
         request.setAttribute("msg_tipo", "alert-success");

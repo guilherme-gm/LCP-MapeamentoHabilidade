@@ -12,6 +12,7 @@ import br.unesp.rc.habilidades.dao.CargoDAO;
 import br.unesp.rc.habilidades.dao.CargoDAOImpl;
 import br.unesp.rc.habilidades.dao.MembroDAO;
 import br.unesp.rc.habilidades.dao.MembroDAOImpl;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -49,7 +50,25 @@ public class DoEditarMembro implements ICommand{
         int idCargo = Integer.parseInt(request.getParameter("idCargo"));
         Cargo cargo = cargoDao.select(idCargo);
         membro.setCargo(cargo);
+        
+        try {
+            membro.validate();
+        } catch (ValidateException ex) {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("Erros na inserção: <br /><ul>");
+            for (String erro : ex.getErros()) {
+                sb.append("<li>").append(erro).append("</li>");
+            }
+            sb.append("</ul>");
+
+            request.setAttribute("msg_tipo", "alert-danger");
+            request.setAttribute("msg", sb.toString());
+            request.setAttribute("menu", "adminmembro");
+            return new CommandResult(request, "EditarMembro?idMembro="+membro.getIdMembro());
+        }
        
+        
         membroDao.update(membro);
         
         request.setAttribute("msg_tipo", "alert-success");
