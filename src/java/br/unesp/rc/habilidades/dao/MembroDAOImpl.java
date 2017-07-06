@@ -40,7 +40,7 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt = con.prepareStatement(INSERT_ACESSO, PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, membro.getAcesso().getUsuario());
             pstmt.setString(2, membro.getAcesso().getSenha());
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (!rs.next()) {
@@ -60,15 +60,17 @@ public class MembroDAOImpl implements MembroDAO {
             pstmt.setLong(6, idAcesso);
             pstmt.setInt(7, membro.getCargo().getIdCargo());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if (!rs.next()) {
                 throw new Exception("Nao foi possível inserir Acesso.");
             }
 
+            
             long idMembro = rs.getInt(1);
             membro.setIdMembro(idMembro);
+            con.commit();
         } catch (Exception ex) {
             try {
                 con.rollback();
@@ -95,8 +97,6 @@ public class MembroDAOImpl implements MembroDAO {
         }
 
         try {
-            con.setAutoCommit(false);
-
             pstmt = con.prepareStatement(DELETE_MEMBRO);
             pstmt.setLong(1, idMembro);
             pstmt.executeUpdate();
