@@ -57,7 +57,6 @@ import br.unesp.rc.habilidades.commands.MostrarPerfil;
 import br.unesp.rc.habilidades.commands.NotFound;
 import br.unesp.rc.habilidades.commands.SelecionaMembro;
 import br.unesp.rc.habilidades.commands.SelecionaTecnologia;
-import br.unesp.rc.habilidades.commands.Usuario;
 
 /**
  *
@@ -70,9 +69,6 @@ public class CommandHelper {
             case "/":
             case "/Home":
                 return new Home();
-
-            case "/Usuario":
-                return new Usuario();
 
             case "/MostrarPerfil":
                 return new MostrarPerfil();
