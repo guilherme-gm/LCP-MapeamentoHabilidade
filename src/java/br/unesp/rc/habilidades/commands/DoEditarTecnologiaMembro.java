@@ -8,6 +8,8 @@ package br.unesp.rc.habilidades.commands;
 import br.unesp.rc.habilidades.beans.Membro;
 import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.TecnologiaMembro;
+import br.unesp.rc.habilidades.dao.MembroDAO;
+import br.unesp.rc.habilidades.dao.MembroDAOImpl;
 import br.unesp.rc.habilidades.dao.TecnologiaMembroDAO;
 import br.unesp.rc.habilidades.dao.TecnologiaMembroDaoImpl;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
@@ -36,8 +38,8 @@ public class DoEditarTecnologiaMembro implements ICommand{
         
         TecnologiaMembroDAO tecMembroDao = new TecnologiaMembroDaoImpl();
         
-        HttpSession session = request.getSession(true);
-        Membro membro = (Membro) session.getAttribute("membro");
+        MembroDAO membroDao = new MembroDAOImpl();
+        Membro membro = membroDao.select(Long.parseLong(request.getParameter("idMembro")));
         tecMembro.setMembro(membro);
         
         tecMembroDao.update(tecMembro);
@@ -46,7 +48,7 @@ public class DoEditarTecnologiaMembro implements ICommand{
         request.setAttribute("msg", "Tecnologia atualizada com sucesso.");
         request.setAttribute("menu", "admintec");
         
-        return new CommandResult(request, "ListarHabilidadesMembro");
+        return new CommandResult(request, "ListarHabilidadesMembro?id="+membro.getIdMembro());
     }
     
     

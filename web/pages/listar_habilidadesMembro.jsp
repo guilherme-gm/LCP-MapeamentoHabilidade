@@ -54,6 +54,7 @@
             </div>
             <div class="modal-footer">
                 <form method="POST" action="<c:url value="/DoExcluirTecnologiaMembro"/>">
+                    <input type="hidden" name="idMembro" value="<c:out value="${membro.idMembro}"/>"/>
                     <input type="hidden" id="idTecno" name="idTecno"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Excluir</button>
@@ -64,6 +65,7 @@
 </div>
 <!-- Modal: Editar Tecnologia Membro -->
 <form method="POST" action="<c:url value="/DoEditarTecnologiaMembro"/>">
+    <input type="hidden" name="idMembro" value="<c:out value="${membro.idMembro}"/>"/>
     <input type="hidden" id="idTecnologiaMembro" name="idTecnologiaMembro"/>
 
     <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

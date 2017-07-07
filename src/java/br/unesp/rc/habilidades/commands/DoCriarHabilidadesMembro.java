@@ -66,7 +66,7 @@ public class DoCriarHabilidadesMembro implements ICommand {
             request.setAttribute("msg_tipo", "alert-danger");
             request.setAttribute("msg", sb.toString());
             request.setAttribute("menu", "adminmembro");
-            return new CommandResult(request, "CriarHabilidadesMembro");
+            return new CommandResult(request, "CriarHabilidadesMembro?id="+idMembro);
         }
         tecMembroDao.insert(tecMembro);
         request.setAttribute("msg_tipo", "alert-success");

@@ -35,7 +35,7 @@ public class DoExcluirTecnologiaMembro implements ICommand {
         request.setAttribute("msg_tipo", "alert-success");
         request.setAttribute("msg", "Tecnologia excluída com sucesso");
         request.setAttribute("menu", "admintec");
-        return new CommandResult(request, "ListarHabilidadesMembro");
+        return new CommandResult(request, "ListarHabilidadesMembro?id="+request.getParameter("idMembro"));
     }
     
 }

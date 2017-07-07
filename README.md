@@ -9,7 +9,8 @@
 - Raphael Espindola Trench
 
 # Instalação
-1. Importe o modelo de banco de dados para o MySQL
+## Método 1
+1. Importe o modelo de banco de dados utilizando o MySQL Workbench para o MySQL
 2. Altere as configurações do banco de dados no arquivo IMySQL (br.unesp.rc.habilidades.util)
 3. Conecte-se ao banco de dados por um gerenciador
 4. Na tabela Acesso adicione um usuario e senha (será usado para a conta de administrador)
@@ -18,3 +19,8 @@
 e campo "ativo" igual a 1
 6. Na tabela Membro adicione um novo cadastro tendo ativo = 1, Acesso_idAcesso sendo o id criado na tabela acesso e Cargo_idCargo sendo o id criado na tabela Cargo.
 7. Inicie o sistema no NetBeans e faça login com sua conta de Administrador.
+
+## Método 2
+1. Execute o script instalacao.sql no Banco de Dados
+2. Altere as configurações do banco de dados no arquivo IMySQL (br.unesp.rc.habilidades.util)
+3. Inicie o sistema no NetBeans e faça login com o usuário admin e senha admin.
