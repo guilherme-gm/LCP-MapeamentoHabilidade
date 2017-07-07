@@ -1,5 +1,8 @@
 package br.unesp.rc.habilidades.beans;
 
+import br.unesp.rc.habilidades.exception.ValidateException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Tecnologia {
@@ -10,7 +13,21 @@ public class Tecnologia {
     
     private boolean ativo;
 
-    public void validate() {
+    public void validate() throws ValidateException {
+        
+        List<String> erros = new ArrayList<>();
+        
+        if(this.nome.length() == 0)
+        {
+            erros.add("Nome de Tecnologia Inválido!");
+        }
+        if(this.nome.length() > 50)
+        {
+            erros.add("Nome Deve Ter Menos de 50 caracteres");
+        }
+        if (erros.size() > 0) {
+            throw new ValidateException(erros);
+        }
 
     }
 

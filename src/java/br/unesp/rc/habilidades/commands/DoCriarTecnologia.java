@@ -9,7 +9,10 @@ import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Tecnologia;
 import br.unesp.rc.habilidades.dao.TecnologiaDAO;
 import br.unesp.rc.habilidades.dao.TecnologiaDAOImpl;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,6 +32,22 @@ public class DoCriarTecnologia implements ICommand{
         tec.setNome(request.getParameter("nome"));
         
         TecnologiaDAO tecDao = new TecnologiaDAOImpl();
+        
+        try {        
+            tec.validate();
+        } catch (ValidateException ex) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Erros na inserção: <br /><ul>");
+            for (String erro : ex.getErros()) {
+                sb.append("<li>").append(erro).append("</li>");
+            }
+            sb.append("</ul>");
+            
+            request.setAttribute("msg_tipo", "alert-danger");
+            request.setAttribute("msg", sb.toString());
+            request.setAttribute("menu", "admintec");
+            return new CommandResult(request, "CriarTecnologia");
+        }
         
         tecDao.insert(tec);
         

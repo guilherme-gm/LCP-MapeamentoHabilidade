@@ -8,6 +8,7 @@ package br.unesp.rc.habilidades.commands;
 import br.unesp.rc.habilidades.beans.Permissao;
 import br.unesp.rc.habilidades.beans.Projeto;
 import br.unesp.rc.habilidades.beans.StatusProjeto;
+import br.unesp.rc.habilidades.exception.ValidateException;
 import br.unesp.rc.habilidades.util.PermissaoUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -40,6 +41,22 @@ public class DoEditarProjeto implements ICommand {
             Logger.getLogger(DoEditarProjeto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
             Logger.getLogger(DoEditarProjeto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {        
+            projeto.validate();
+        } catch (ValidateException ex) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Erros na inserção: <br /><ul>");
+            for (String erro : ex.getErros()) {
+                sb.append("<li>").append(erro).append("</li>");
+            }
+            sb.append("</ul>");
+            
+            request.setAttribute("msg_tipo", "alert-danger");
+            request.setAttribute("msg", sb.toString());
+            request.setAttribute("menu", "adminproj");
+            return new CommandResult(request, "EditarProjeto?id=" + projeto.getIdProjeto());
         }
 
         request.setAttribute("menu", "adminproj");

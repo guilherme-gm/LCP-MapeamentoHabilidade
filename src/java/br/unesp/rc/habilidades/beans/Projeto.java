@@ -1,5 +1,6 @@
 package br.unesp.rc.habilidades.beans;
 
+import br.unesp.rc.habilidades.exception.ValidateException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,29 @@ public class Projeto {
         this.tecnologia = new ArrayList<>();
     }
 
-    public void validate() {
+    public void validate() throws ValidateException {
 
+        List<String> erros = new ArrayList<>();
+
+        if(this.nome.length() == 0)
+        {
+            erros.add("Nome de Projeto Inválido!");
+        }
+        if(this.nome.length() > 50)
+        {
+            erros.add("Nome Deve Ter Menos de 50 caracteres");
+        }        
+        if(this.dataFim.before(dataInicio))
+        {
+            erros.add("Data de Entrega Deve Ser Alguma Data Após a Data Inicial!");
+        }
+        if(this.descricao.length() == 0)
+        {
+            erros.add("Descrição Necessária!");
+        }        
+        if (erros.size() > 0) {
+            throw new ValidateException(erros);
+        }
     }
 
     public long getIdProjeto() {
@@ -118,5 +140,4 @@ public class Projeto {
     public void delMembro(Membro membro) {
         this.membro.remove(membro);
     }
-
 }
