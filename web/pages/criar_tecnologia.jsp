@@ -4,7 +4,11 @@
         <h1>Adicionar Tecnologias</h1>
     </div>
 </div>
-
+<c:if test="${not empty msg}">
+    <div class="alert <c:out value="${msg_tipo}"></c:out>">
+        ${msg}
+    </div>
+</c:if>
 <div class ="row">
 
     <form class="form-horizontal" method="POST" action = "<c:url value="/DoCriarTecnologia"/>">
@@ -23,7 +27,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default">Confirmar</button>
                 &nbsp;&nbsp;
-                <button type="submit" class="btn btn-default">Voltar</button>
+                <a href="<c:url value="/ListarTecnologia"/>" class="btn btn-default">Voltar</a>
             </div>
 
            

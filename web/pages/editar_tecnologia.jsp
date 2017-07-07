@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">
     <div class="col-sm-12">
-        <h1>Adicionar Tecnologias</h1>
+        <h1>Editar Tecnologia</h1>
     </div>
 </div>
-
+<c:if test="${not empty msg}">
+    <div class="alert <c:out value="${msg_tipo}"></c:out>">
+        ${msg}
+    </div>
+</c:if>
 <div class ="row">
 
     <form class="form-horizontal" method="POST" action = "<c:url value="/DoEditarTecnologia"/>">

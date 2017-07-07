@@ -4,7 +4,11 @@
         <h1>Editar Projeto</h1>
     </div>
 </div>
-
+<c:if test="${not empty msg}">
+    <div class="alert <c:out value="${msg_tipo}"></c:out>">
+        ${msg}
+    </div>
+</c:if>
 <div class ="row">
 
     <form class="form-horizontal col-sm-12" method="POST" action="<c:url value="/DoEditarProjeto"/>">
@@ -59,7 +63,5 @@
             &nbsp;&nbsp;
             <a href="<c:url value="/ListarProjeto"/>" class="btn btn-default">Voltar</a>
         </div>
-
-
     </form>
 </div>
