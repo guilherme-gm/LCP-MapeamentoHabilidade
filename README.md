@@ -1,7 +1,7 @@
 # Sistema de Mapeamento de Habilidades
 ### LCP Integral 2017
 
-- Desenvolvido utilizando NetBeans 8.2 e GlassFish Server
+- Desenvolvido utilizando NetBeans 8.2 e GlassFish Server 4.1.1
 
 # Grupo:
 - Guilherme Guiguer Menaldo
